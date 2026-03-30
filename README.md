@@ -77,4 +77,4 @@ jskills/
 
 ## License
 
-MIT - [juserch](https://github.com/juserch)
+[MIT](LICENSE) - [juserch](https://github.com/juserch)
