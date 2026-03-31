@@ -88,32 +88,25 @@ for skill_name in "${SKILL_NAMES[@]}"; do
         add_error "S04: skills/$skill_name/SKILL.md missing required field 'description'"
     fi
 
-    # --- S05: Commands correspondence ---
-    # Check both new structure (skill-local) and legacy structure (root commands/)
-    if [ -f "$SKILLS_DIR/$skill_name/commands/$skill_name.md" ]; then
-        add_passed "S05: skills/$skill_name/commands/$skill_name.md exists"
-    elif [ -f "$PLUGIN_ROOT/commands/$skill_name.md" ]; then
-        add_passed "S05: commands/$skill_name.md exists (legacy root location)"
-    else
-        add_warning "S05: commands/$skill_name.md missing — skill cannot be invoked via /$skill_name"
-    fi
-
-    # --- S05b: Per-skill plugin.json ---
-    if [ -f "$SKILLS_DIR/$skill_name/plugin.json" ]; then
-        add_passed "S05b: skills/$skill_name/plugin.json exists"
-    else
-        add_warning "S05b: skills/$skill_name/plugin.json missing — skill may not display its own name in plugin list"
-    fi
-
     # --- S06: marketplace.json entry ---
+    # Check both formats: per-plugin name entries OR skills array paths
     if [ -f "$PLUGIN_ROOT/.claude-plugin/marketplace.json" ]; then
         if python3 -c "
 import json, sys
 with open('$PLUGIN_ROOT/.claude-plugin/marketplace.json') as f:
     data = json.load(f)
 plugins = data.get('plugins', [])
+# Check per-plugin name match
 names = [p.get('name', '') for p in plugins]
-sys.exit(0 if '$skill_name' in names else 1)
+if '$skill_name' in names:
+    sys.exit(0)
+# Check skills array paths (e.g. './skills/block-break')
+for p in plugins:
+    skills = p.get('skills', [])
+    for s in skills:
+        if s.rstrip('/').endswith('$skill_name'):
+            sys.exit(0)
+sys.exit(1)
 " 2>/dev/null; then
             add_passed "S06: '$skill_name' listed in marketplace.json"
         else

@@ -103,12 +103,10 @@ jskills/
 
 ## 贡献新 Skill
 
-1. `skills/<name>/plugin.json` — skill 级元数据（name 决定 plugin 列表显示名）
-2. `skills/<name>/SKILL.md` — 核心定义（精简），详细内容放 `references/`
-3. `skills/<name>/commands/<name>.md` — `/name` 命令入口
-4. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — 评估场景 + 自动测试
-5. `.claude-plugin/marketplace.json` — `plugins` 数组追加条目，`source` 指向 `./skills/<name>/`
-6. 如需 hooks，在 `skills/<name>/hooks/hooks.json` 中添加配置
+1. `skills/<name>/SKILL.md` — 核心定义（精简），详细内容放 `references/`
+2. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — 评估场景 + 自动测试
+3. `.claude-plugin/marketplace.json` — `skills` 数组追加 skill 路径
+4. 如需 hooks，在根 `hooks/hooks.json` 中添加配置
 
 详见 [CLAUDE.md](CLAUDE.md) 开发规范。
 

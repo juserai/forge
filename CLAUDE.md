@@ -11,7 +11,6 @@ skills/<skill>/
 ├── plugin.json                    # skill 级元数据（name 用于 plugin 列表显示）
 ├── SKILL.md                       # skill 核心定义（精简）
 ├── references/*.md                # 按需加载的详细内容
-├── commands/<skill>.md            # /command 入口
 ├── scripts/*.sh                   # 辅助脚本（按需）
 ├── hooks/hooks.json + *.sh        # Hook 配置和脚本（按需）
 └── agents/*.md                    # Sub-agent 定义（按需）
@@ -26,7 +25,7 @@ docs/plans/<topic>-design.md       # 设计文档
 
 - `plugin.json`（根）— 集合级元数据（name=juserch-skills）
 - `.claude-plugin/plugin.json` — 发布用元数据（与根级保持一致）
-- `.claude-plugin/marketplace.json` — Marketplace 入口，`plugins` 数组列出所有 skill，`source` 指向各 skill 子目录
+- `.claude-plugin/marketplace.json` — Marketplace 入口，`plugins` 数组列出所有 skill，``skills` 数组列出各 skill 路径
 - `skills/<name>/plugin.json` — skill 级元数据，`name` 字段决定 plugin 列表中的显示名
 - `skills/<name>/commands/` — 该 skill 的 slash command 入口
 - `skills/<name>/hooks/` — 该 skill 的生命周期 hook（如有）
@@ -38,7 +37,7 @@ docs/plans/<topic>-design.md       # 设计文档
 1. `skills/<name>/plugin.json` — skill 级元数据（name/version/description）
 2. `skills/<name>/SKILL.md` — 核心行为定义，frontmatter 含 name/description/license
 3. `skills/<name>/references/*.md` — 详细内容（检查清单、方法论等），SKILL.md 中引用
-4. `skills/<name>/commands/<name>.md` — slash command 入口，加载对应 skill
+4. `commands 已废弃，skill 通过 SKILL.md frontmatter` — slash command 入口，加载对应 skill
 5. `evals/<name>/scenarios.md` — 至少 5 个评估场景
 6. `evals/<name>/run-trigger-test.sh` — 可执行的触发测试脚本
 7. `.claude-plugin/marketplace.json` — 在 `plugins` 数组追加条目，`source` 指向 `./skills/<name>/`
@@ -59,8 +58,8 @@ docs/plans/<topic>-design.md       # 设计文档
 
 运行时状态存储在 `~/.juserch-skills/`：
 - `block-break-state.json` — 失败计数、压力等级、最后更新时间
-- 由 `skills/block-break/hooks/failure-detector.sh` 写入
-- 由 `skills/block-break/hooks/session-restore.sh` 读取
+- 由 `hooks/failure-detector.sh` 写入
+- 由 `hooks/session-restore.sh` 读取
 - PreCompact hook 通过 prompt 指示 agent 保存上下文状态
 - 状态在 2 小时内有效，超过则不恢复
 

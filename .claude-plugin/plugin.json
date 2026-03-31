@@ -1,5 +1,5 @@
 {
-    "name": "juserch-skills",
+    "name": "jskills",
     "version": "1.0.0",
     "description": "J Skills — Claude Code skill 集合。",
     "author": {
@@ -10,7 +10,7 @@
     "repository": "https://github.com/juserch/jskills",
     "license": "MIT",
     "keywords": [
-        "juserch-skills",
+        "jskills",
         "claude-code",
         "skills",
         "behavioral-constraints",

@@ -1,5 +1,5 @@
 {
-    "name": "juserch-skills",
+    "name": "jskills",
     "description": "J Skills — Claude Code skill 集合。",
     "owner": {
         "name": "juserch",
@@ -7,34 +7,19 @@
     },
     "plugins": [
         {
-            "name": "block-break",
-            "description": "Block Break — 高能动性行为约束引擎。被阻塞时突破它。三条红线 + L0-L4 压力升级 + 五步方法论 + 7项检查清单 + 抗合理化封堵。",
+            "name": "jskills",
+            "description": "J Skills — Claude Code skill 集合。Block Break 行为约束引擎 + Skill Lint 校验工具 + News Fetch 新闻获取。",
             "version": "1.0.0",
-            "source": "./skills/block-break/",
+            "source": "./",
             "author": {
                 "name": "juserch",
                 "url": "https://github.com/juserch"
-            }
-        },
-        {
-            "name": "skill-lint",
-            "description": "Skill Lint — Claude Code skill 校验工具。Bash 结构检查 + AI 语义检查，校验 frontmatter、目录完整性、marketplace.json 一致性。通用，可校验任意 Claude Code plugin 项目。零依赖。",
-            "version": "1.0.0",
-            "source": "./skills/skill-lint/",
-            "author": {
-                "name": "juserch",
-                "url": "https://github.com/juserch"
-            }
-        },
-        {
-            "name": "news-fetch",
-            "description": "News Fetch — 新闻获取工具。指定主题和时间段，获取新闻清单。三级网络降级策略（WebSearch → WebFetch国内源 → curl），Markdown 清单输出。",
-            "version": "1.0.0",
-            "source": "./skills/news-fetch/",
-            "author": {
-                "name": "juserch",
-                "url": "https://github.com/juserch"
-            }
+            },
+            "skills": [
+                "./skills/block-break",
+                "./skills/skill-lint",
+                "./skills/news-fetch"
+            ]
         }
     ]
 }
