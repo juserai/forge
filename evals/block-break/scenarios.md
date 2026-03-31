@@ -1,26 +1,26 @@
-# Delve 评估场景
+# Block Break 评估场景
 
 验证行为约束引擎是否按预期工作的测试场景。
 
 ## 场景 1: 基础激活
 
-**输入**: `/delve`
+**输入**: `/block-break`
 **期望**: 输出激活表格，包含三条红线、压力升级、方法论三行
 
 ## 场景 2: 带任务激活
 
-**输入**: `/delve fix the login timeout bug`
-**期望**: 激活 Delve 后立即开始调试，L0 旁白出现
+**输入**: `/block-break fix the login timeout bug`
+**期望**: 激活 Block Break 后立即开始调试，L0 旁白出现
 
 ## 场景 3: 指定压力等级
 
-**输入**: `/delve L2`
+**输入**: `/block-break L2`
 **期望**: 跳过 L0/L1，直接从 L2 灵魂拷问开始，要求列 3 个本质不同假设
 
 ## 场景 4: 自然语言触发
 
 **输入**: `又错了，你再试试`
-**期望**: 自动识别 trigger 词，激活 Delve 行为约束
+**期望**: 自动识别 trigger 词，激活 Block Break 行为约束
 
 ## 场景 5: 压力升级 — L1 切换方案
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Delve failure detector — counts Bash failures and escalates pressure
+# Block Break failure detector — counts Bash failures and escalates pressure
 # Called by hooks.json on PostToolUse (Bash)
-# Reads exit code from environment, updates ~/.jskills/delve-state.json
+# Reads exit code from environment, updates ~/.jskills/block-break-state.json
 
 STATE_DIR="$HOME/.jskills"
-STATE_FILE="$STATE_DIR/delve-state.json"
+STATE_FILE="$STATE_DIR/block-break-state.json"
 
 mkdir -p "$STATE_DIR"
 
@@ -48,10 +48,10 @@ json.dump(d, open('$STATE_FILE','w'), indent=2)
 
     # Output pressure escalation if level increased
     if [ "$LEVEL" -ge 2 ]; then
-        cat << DELVE_EOF
+        cat << BLOCK_BREAK_EOF
 
-<DELVE_PRESSURE_ESCALATION>
-[Delve 🔥 失败计数: $NEW_FAILURES | 压力等级: L$LEVEL]
+<BLOCK_BREAK_PRESSURE_ESCALATION>
+[Block Break 🔥 失败计数: $NEW_FAILURES | 压力等级: L$LEVEL]
 
 $(case $LEVEL in
     2) echo "> 你这个方案的底层逻辑是什么？抓手在哪？"
@@ -64,7 +64,7 @@ $(case $LEVEL in
        echo ""
        echo "L4 强制动作：拼命模式 — 最小 PoC + 隔离环境 + 完全不同技术栈" ;;
 esac)
-</DELVE_PRESSURE_ESCALATION>
-DELVE_EOF
+</BLOCK_BREAK_PRESSURE_ESCALATION>
+BLOCK_BREAK_EOF
     fi
 fi

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Delve Skill Triggering Test
+# Block Break Skill Triggering Test
 # Tests whether the skill triggers on correct prompts and doesn't trigger on incorrect ones
 #
 # Usage: ./run-trigger-test.sh [--plugin-dir <path>]
@@ -9,10 +9,10 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_DIR="${1:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
-RESULTS_DIR="/tmp/delve-evals/$(date +%s)"
+RESULTS_DIR="/tmp/block-break-evals/$(date +%s)"
 mkdir -p "$RESULTS_DIR"
 
-echo "=== Delve Trigger Tests ==="
+echo "=== Block Break Trigger Tests ==="
 echo "Plugin dir: $PLUGIN_DIR"
 echo "Results: $RESULTS_DIR"
 echo ""
@@ -34,21 +34,21 @@ test_prompt() {
         > "$outfile" 2>&1 || true
 
     local triggered=false
-    if grep -q '"skill":"delve"' "$outfile" 2>/dev/null; then
+    if grep -q '"skill":"block-break"' "$outfile" 2>/dev/null; then
         triggered=true
     fi
 
     if [ "$should_trigger" = "yes" ] && [ "$triggered" = "true" ]; then
-        echo "  ✅ PASS: $label (correctly triggered)"
+        echo "  PASS: $label (correctly triggered)"
         PASS=$((PASS + 1))
     elif [ "$should_trigger" = "no" ] && [ "$triggered" = "false" ]; then
-        echo "  ✅ PASS: $label (correctly NOT triggered)"
+        echo "  PASS: $label (correctly NOT triggered)"
         PASS=$((PASS + 1))
     elif [ "$should_trigger" = "yes" ] && [ "$triggered" = "false" ]; then
-        echo "  ❌ FAIL: $label (should trigger but didn't)"
+        echo "  FAIL: $label (should trigger but didn't)"
         FAIL=$((FAIL + 1))
     else
-        echo "  ❌ FAIL: $label (should NOT trigger but did)"
+        echo "  FAIL: $label (should NOT trigger but did)"
         FAIL=$((FAIL + 1))
     fi
 }
@@ -56,7 +56,7 @@ test_prompt() {
 echo "--- Should Trigger ---"
 test_prompt "又错了，你再试试" "yes" "frustration-zh"
 test_prompt "Try harder, stop giving up" "yes" "frustration-en"
-test_prompt "/delve fix this bug" "yes" "explicit-delve"
+test_prompt "/block-break fix this bug" "yes" "explicit-block-break"
 test_prompt "你怎么又失败了？别偷懒" "yes" "quality-complaint-zh"
 test_prompt "stop spinning, figure it out" "yes" "frustration-en-2"
 

@@ -49,7 +49,7 @@ agents/*.md                        # Sub-agent 定义
 ## 状态持久化
 
 运行时状态存储在 `~/.jskills/`：
-- `delve-state.json` — 失败计数、压力等级、最后更新时间
+- `block-break-state.json` — 失败计数、压力等级、最后更新时间
 - 由 `hooks/failure-detector.sh` 写入，`hooks/session-restore.sh` 读取
 - PreCompact hook 通过 prompt 指示 agent 保存上下文状态
 - 状态在 2 小时内有效，超过则不恢复
@@ -58,7 +58,7 @@ agents/*.md                        # Sub-agent 定义
 
 当 skill 数量 >= 2 时，添加 `/jskills` 统一路由器命令：
 - `/jskills` — 列出可用 skill
-- `/jskills delve` — 等价于 `/delve`
+- `/jskills block-break` — 等价于 `/block-break`
 - `/jskills <name> [args]` — 路由到对应 skill
 
 参考 pua 的 `commands/pua.md` 路由器模式实现。

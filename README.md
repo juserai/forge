@@ -12,9 +12,9 @@ claude plugin add juserch/jskills
 
 ## Skills
 
-### Delve — 高能动性行为约束引擎
+### Block Break — 高能动性行为约束引擎
 
-强制 AI 穷尽一切方案，不轻言放弃。参考 [PUA](https://github.com/tanweai/pua) 设计。
+被阻塞时突破它。强制 AI 穷尽一切方案，不轻言放弃。参考 [PUA](https://github.com/tanweai/pua) 设计。
 
 | 机制 | 说明 |
 |------|------|
@@ -28,9 +28,9 @@ claude plugin add juserch/jskills
 **使用**：
 
 ```text
-/delve              # 激活 Delve 模式
-/delve L2           # 从指定压力等级启动
-/delve fix the bug  # 激活后立即执行任务
+/block-break              # 激活 Block Break 模式
+/block-break L2           # 从指定压力等级启动
+/block-break fix the bug  # 激活后立即执行任务
 ```
 
 也可通过自然语言触发：`try harder`、`别偷懒`、`又错了`、`stop spinning` 等（由 hooks 自动检测）。
@@ -68,7 +68,7 @@ jskills/
 │   ├── failure-detector.sh        # Bash 失败自动计数 + 压力升级
 │   └── session-restore.sh         # 会话恢复状态
 ├── agents/
-│   └── delve-worker.md            # Sub-agent 行为约束定义
+│   └── block-break-worker.md      # Sub-agent 行为约束定义
 ├── commands/
 │   └── <skill>.md                 # 各 skill 的 /command 入口
 ├── skills/

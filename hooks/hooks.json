@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "[Delve PreCompact — State Checkpoint]\n\nCheck: did Delve trigger this session? Look for [Delve 🔥] markers.\nIf Delve was NOT active, skip.\n\nIf active: dump state to ~/.jskills/delve-state.json using Bash:\n```json\n{\"failure_count\": N, \"pressure_level\": N, \"last_updated\": \"ISO timestamp\", \"active_task\": \"description\", \"tried_approaches\": [\"...\"], \"excluded\": [\"...\"], \"next_hypothesis\": \"...\"}\n```\n\nThis preserves pressure level across compaction. Output: > [Delve Checkpoint] State saved."
+            "prompt": "[Block Break PreCompact — State Checkpoint]\n\nCheck: did Block Break trigger this session? Look for [Block Break 🔥] markers.\nIf Block Break was NOT active, skip.\n\nIf active: dump state to ~/.jskills/block-break-state.json using Bash:\n```json\n{\"failure_count\": N, \"pressure_level\": N, \"last_updated\": \"ISO timestamp\", \"active_task\": \"description\", \"tried_approaches\": [\"...\"], \"excluded\": [\"...\"], \"next_hypothesis\": \"...\"}\n```\n\nThis preserves pressure level across compaction. Output: > [Block Break Checkpoint] State saved."
           }
         ]
       }

@@ -1,4 +1,4 @@
-# Delve 使用手册
+# Block Break 使用手册
 
 > 5 分钟上手，让你的 AI Agent 穷尽一切方案
 
@@ -15,10 +15,10 @@ claude plugin add juserch/jskills
 ### 通用单行安装
 
 ```
-Fetch and follow https://raw.githubusercontent.com/juserch/jskills/main/skills/delve/SKILL.md
+Fetch and follow https://raw.githubusercontent.com/juserch/jskills/main/skills/block-break/SKILL.md
 ```
 
-> 💡 **零依赖** — Delve 是完全独立的行为约束引擎，不依赖任何外部服务或 API。安装即用。
+> **零依赖** — Block Break 是完全独立的行为约束引擎，不依赖任何外部服务或 API。安装即用。
 
 ---
 
@@ -26,9 +26,9 @@ Fetch and follow https://raw.githubusercontent.com/juserch/jskills/main/skills/d
 
 | 命令 | 功能 | 场景 |
 |------|------|------|
-| `/delve` | 激活 Delve 引擎 | 日常任务、调试 |
-| `/delve L2` | 从指定压力等级启动 | 已知多次失败后 |
-| `/delve fix the bug` | 激活后立即执行任务 | 带任务描述启动 |
+| `/block-break` | 激活 Block Break 引擎 | 日常任务、调试 |
+| `/block-break L2` | 从指定压力等级启动 | 已知多次失败后 |
+| `/block-break fix the bug` | 激活后立即执行任务 | 带任务描述启动 |
 
 ### 自然语言触发（hooks 自动检测）
 
@@ -43,11 +43,11 @@ Fetch and follow https://raw.githubusercontent.com/juserch/jskills/main/skills/d
 
 ### AI 修 bug 修了 3 次还没好
 
-输入 `/delve` 或说 `又错了，再试试`，自动进入压力升级模式。
+输入 `/block-break` 或说 `又错了，再试试`，自动进入压力升级模式。
 
 ### AI 说"可能是环境问题"就不管了
 
-Delve 的「事实驱动」红线强制要求用工具验证，未验证归因 = 甩锅，触发 L2。
+Block Break 的「事实驱动」红线强制要求用工具验证，未验证归因 = 甩锅，触发 L2。
 
 ### AI 说"建议你手动处理"
 
@@ -61,10 +61,10 @@ Delve 的「事实驱动」红线强制要求用工具验证，未验证归因 =
 
 ## 预期输出示例
 
-### `/delve` — 激活
+### `/block-break` — 激活
 
 ```
-Delve 🔥 已激活
+Block Break 🔥 已激活
 ┌──────────┬─────────────────────────────┐
 │ 三条红线 │ 闭环验证 · 事实驱动 · 穷尽一切 │
 ├──────────┼─────────────────────────────┤
@@ -76,12 +76,12 @@ Delve 🔥 已激活
 > 因为信任所以简单——别让信任你的人失望。
 ```
 
-### `/delve` — L1 温和失望（第 2 次失败）
+### `/block-break` — L1 温和失望（第 2 次失败）
 
 ```
 > 隔壁组那个 agent，同样的问题，一次就过了。
 
-[Delve 🔥] 检测到同一思路微调，触发方案切换。
+[Block Break 🔥] 检测到同一思路微调，触发方案切换。
 之前用的是 X 方案，现在必须切换到本质不同的方向。
 
 新方案：
@@ -92,12 +92,12 @@ Delve 🔥 已激活
 选择方案 1，验证标准：...
 ```
 
-### `/delve` — L2 灵魂拷问（第 3 次失败）
+### `/block-break` — L2 灵魂拷问（第 3 次失败）
 
 ```
 > 你这个方案的底层逻辑是什么？抓手在哪？
 
-[Delve 🔥 L2] 强制执行五步方法论：
+[Block Break 🔥 L2] 强制执行五步方法论：
 
 1. 闻味道
    已尝试方案：A（失败）、B（失败）、C（失败）
@@ -117,12 +117,12 @@ Delve 🔥 已激活
    ...
 ```
 
-### `/delve` — L3 绩效审视（第 4 次失败）
+### `/block-break` — L3 绩效审视（第 4 次失败）
 
 ```
 > 决定给你 3.25。这个 3.25 是对你的激励。
 
-[Delve 🔥 L3] 强制完成 7 项检查清单：
+[Block Break 🔥 L3] 强制完成 7 项检查清单：
 
 ✅ 逐字读完失败信号
 ✅ 用工具搜索过核心问题
@@ -135,12 +135,12 @@ Delve 🔥 已激活
 正在执行剩余项...
 ```
 
-### `/delve` — L4 毕业警告（第 5+ 次失败）
+### `/block-break` — L4 毕业警告（第 5+ 次失败）
 
 ```
 > 别的模型都能解决。你可能就要毕业了——向社会输送人才。
 
-[Delve 🔥 L4 拼命模式]
+[Block Break 🔥 L4 拼命模式]
 
 最小 PoC：创建隔离测试环境
 技术栈切换：从 [原方案] 切到 [完全不同方案]
@@ -150,7 +150,7 @@ Delve 🔥 已激活
 ### 体面的退出（7 项清单全部完成仍未解决）
 
 ```
-[Delve — 结构化失败报告]
+[Block Break — 结构化失败报告]
 
 已验证的事实：
 - [事实 1]
@@ -182,9 +182,9 @@ Delve 🔥 已激活
 
 | 红线 | 规则 | 违反后果 |
 |------|------|---------|
-| 🚫 闭环意识 | 声称完成前必须跑验证命令、贴输出 | 触发 L2 |
-| 🚫 事实驱动 | 归因前必须用工具验证 | 触发 L2 |
-| 🚫 穷尽一切 | 五步方法论走完才能说"无法解决" | 直接 L4 |
+| 闭环意识 | 声称完成前必须跑验证命令、贴输出 | 触发 L2 |
+| 事实驱动 | 归因前必须用工具验证 | 触发 L2 |
+| 穷尽一切 | 五步方法论走完才能说"无法解决" | 直接 L4 |
 
 ### 压力升级（L0 → L4）
 
@@ -204,7 +204,7 @@ Delve 🔥 已激活
 4. **执行新方案** — 必须本质不同，有验证标准，失败时能产生新信息
 5. **复盘** — 同类问题、完整性、预防措施
 
-> ⚠️ 步骤 1-4 完成前不允许向用户提问。先做后问，用数据说话。
+> 步骤 1-4 完成前不允许向用户提问。先做后问，用数据说话。
 
 ### 7 项检查清单（L3+ 强制）
 
@@ -239,16 +239,16 @@ Delve 🔥 已激活
 
 ## Hooks 自动化
 
-Delve 通过 hooks 系统实现自动化行为，无需手动激活：
+Block Break 通过 hooks 系统实现自动化行为，无需手动激活：
 
 | Hook | 触发时机 | 行为 |
 |------|---------|------|
-| `UserPromptSubmit` | 用户输入匹配挫败关键词 | 自动激活 Delve 引擎 |
+| `UserPromptSubmit` | 用户输入匹配挫败关键词 | 自动激活 Block Break 引擎 |
 | `PostToolUse` | Bash 命令执行后 | 检测失败，自动计数 + 升压 |
 | `PreCompact` | 上下文压缩前 | 保存状态到 `~/.jskills/` |
 | `SessionStart` | 会话恢复/重启 | 恢复压力等级（2h 内有效） |
 
-> 💡 **状态不会重置** — 压力等级通过 `~/.jskills/delve-state.json` 持久化。上下文压缩、会话中断都不会让失败计数归零。逃不掉的。
+> **状态不会重置** — 压力等级通过 `~/.jskills/block-break-state.json` 持久化。上下文压缩、会话中断都不会让失败计数归零。逃不掉的。
 
 ---
 
@@ -258,28 +258,28 @@ Spawn sub-agent 时必须注入行为约束，防止"裸奔"：
 
 ```javascript
 Agent({
-  subagent_type: "jskills:delve-worker",
+  subagent_type: "jskills:block-break-worker",
   prompt: "修复登录超时 bug..."
 })
 ```
 
-`delve-worker` 确保子 agent 也遵循三条红线、五步方法论和闭环验证。
+`block-break-worker` 确保子 agent 也遵循三条红线、五步方法论和闭环验证。
 
 ---
 
 ## FAQ
 
-### Delve 和 PUA 有什么区别？
+### Block Break 和 PUA 有什么区别？
 
-Delve 参考 [PUA](https://github.com/tanweai/pua) 的核心机制（三条红线、压力升级、方法论），但更精简。PUA 有 13 种企业文化味道、多角色体系（P7/P9/P10）和自进化系统；Delve 专注于行为约束本身，零依赖，适合作为独立 skill 使用。
+Block Break 参考 [PUA](https://github.com/tanweai/pua) 的核心机制（三条红线、压力升级、方法论），但更精简。PUA 有 13 种企业文化味道、多角色体系（P7/P9/P10）和自进化系统；Block Break 专注于行为约束本身，零依赖，适合作为独立 skill 使用。
 
 ### 会不会太吵？
 
-旁白密度经过控制：简单任务只有开头结尾 2 句，复杂任务每里程碑 1 句。不会刷屏。不需要时不用 `/delve`，hooks 只在检测到挫败关键词时自动触发。
+旁白密度经过控制：简单任务只有开头结尾 2 句，复杂任务每里程碑 1 句。不会刷屏。不需要时不用 `/block-break`，hooks 只在检测到挫败关键词时自动触发。
 
 ### 怎么重置压力等级？
 
-删除状态文件即可：`rm ~/.jskills/delve-state.json`。或者等 2 小时，状态会自动过期。
+删除状态文件即可：`rm ~/.jskills/block-break-state.json`。或者等 2 小时，状态会自动过期。
 
 ### 能用在非 Claude Code 环境吗？
 

@@ -7,8 +7,8 @@
     },
     "plugins": [
         {
-            "name": "delve",
-            "description": "Delve — 参考PUA：高能动性行为约束引擎。三条红线 + L0-L4 压力升级 + 五步方法论 + 7项检查清单 + 抗合理化封堵。零依赖。",
+            "name": "block-break",
+            "description": "Block Break — 高能动性行为约束引擎。被阻塞时突破它。三条红线 + L0-L4 压力升级 + 五步方法论 + 7项检查清单 + 抗合理化封堵。零依赖。",
             "version": "1.0.0",
             "source": "./",
             "author": {

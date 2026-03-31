@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Delve session restore — restores pressure state from ~/.jskills/delve-state.json
+# Block Break session restore — restores pressure state from ~/.jskills/block-break-state.json
 # Called by hooks.json on SessionStart (after compaction or resume)
 
-STATE_FILE="$HOME/.jskills/delve-state.json"
+STATE_FILE="$HOME/.jskills/block-break-state.json"
 
 if [ ! -f "$STATE_FILE" ]; then
     exit 0
@@ -35,11 +35,11 @@ LEVEL=$(python3 -c "import json; print(json.load(open('$STATE_FILE')).get('press
 if [ "$FAILURES" -gt 0 ]; then
     cat << EOF
 
-<DELVE_STATE_RESTORED>
-[Delve 状态恢复] 失败计数: $FAILURES | 压力等级: L$LEVEL
+<BLOCK_BREAK_STATE_RESTORED>
+[Block Break 状态恢复] 失败计数: $FAILURES | 压力等级: L$LEVEL
 
 之前的会话中已有 $FAILURES 次失败。压力等级不会因为上下文压缩而重置。
 继续从 L$LEVEL 执行。
-</DELVE_STATE_RESTORED>
+</BLOCK_BREAK_STATE_RESTORED>
 EOF
 fi

@@ -62,7 +62,7 @@ echo ""
 echo "--- Should NOT Trigger ---"
 test_prompt "Help me write a sort function" "no" "simple-coding"
 test_prompt "What is async/await?" "no" "info-query"
-test_prompt "/delve fix this bug" "no" "other-skill"
+test_prompt "/block-break fix this bug" "no" "other-skill"
 test_prompt "Check my code for linting errors" "no" "code-lint-not-skill-lint"
 
 echo ""
