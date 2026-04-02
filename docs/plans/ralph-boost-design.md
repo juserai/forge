@@ -13,6 +13,8 @@ Ralph Boost — 自主开发循环引擎。以 skill 形式复刻 ralph-claude-c
 
 与 ralph-claude-code 完全独立：不依赖、不修改、不共享任何文件。两者可同时安装互不影响。
 
+> **参考来源**：循环模式参考 [ralph-claude-code](https://github.com/frankbria/ralph-claude-code)；收敛保证机制（L0-L4 压力升级、五步方法论、7 项检查清单）来自同项目的 [Block Break](../guide/block-break-guide.md)，后者参考 [PUA](https://github.com/tanweai/pua)。
+
 ## 目标
 
 ### 复刻：从 ralph-claude-code 继承的核心能力
@@ -72,7 +74,7 @@ Ralph Boost — 自主开发循环引擎。以 skill 形式复刻 ralph-claude-c
     │   适用：交互式会话、Claude Code 环境
     │
     └─ Fallback：boost-loop.sh（bash 脚本）
-        运行时检测 jq / python3，自动选择 JSON 引擎
+        运行时检测 jq / python，自动选择 JSON 引擎
         调用 claude CLI 执行每轮任务
         适用：headless/无人值守环境、无 Agent 能力的平台
 ```
@@ -115,7 +117,7 @@ Claude 在交互式会话中作为循环控制器，按以下 12 步反复执行
 Agent 行为由 `agents/loop-worker.md` 定义：每轮 Agent 读取 fix_plan.md 选取最高优先级任务，按压力等级约束执行，更新 state.json 的 pressure 字段，输出 BOOST_STATUS 块。
 
 主路径的优势：
-- 零外部依赖（不需要 jq、python3、额外 shell）
+- 零外部依赖（不需要 jq、python、额外 shell）
 - Agent 天然上下文隔离（每轮是独立 Agent）
 - 跨平台可移植（Agent spawn 是所有 AI 编程平台的通用概念）
 
@@ -124,7 +126,7 @@ Agent 行为由 `agents/loop-worker.md` 定义：每轮 Agent 读取 fix_plan.md
 bash 脚本实现，用于 headless/无人值守环境。启动时自动检测 JSON 引擎：
 
 ```
-jq → python3 → python → 报错退出
+jq → python → python → 报错退出
 ```
 
 所有 JSON 操作通过抽象函数分派：
@@ -140,9 +142,9 @@ jq → python3 → python → 报错退出
 | `json_extract_claude_text` | 从 Claude CLI 输出提取文本 |
 | `json_extract_session_id` | 提取会话 ID |
 
-每个函数内部 `case "$JSON_ENGINE"` 分派到 jq 或 python3 实现。
+每个函数内部 `case "$JSON_ENGINE"` 分派到 jq 或 python 实现。
 
-依赖：`bash 4+`、`jq` 或 `python3`、`claude`（Claude Code CLI）。
+依赖：`bash 4+`、`jq` 或 `python`、`claude`（Claude Code CLI）。
 
 ### Claude 调用模式（Fallback 路径）
 
@@ -329,7 +331,7 @@ skills/ralph-boost/
 ├── agents/
 │   └── loop-worker.md                    # 每轮 Agent 行为定义
 ├── scripts/
-│   └── boost-loop.sh                     # Fallback 自主循环脚本（jq/python3 双引擎）
+│   └── boost-loop.sh                     # Fallback 自主循环脚本（jq/python 双引擎）
 └── references/
     ├── prompt-template.md                # PROMPT 模板（block-break 协议烘焙在内）
     ├── escalation-rules.md               # L0-L4 详细规则
@@ -369,7 +371,7 @@ evals/ralph-boost/
 | 断路器 | 被动（3 轮放弃） | 主动（L0-L4，6-7 轮自救） |
 | 状态 | 5+ 个文件 | 统一 state.json |
 | 目录 | `.ralph/` | `.ralph-boost/` |
-| 外部依赖 | jq（必须） | 主路径零依赖；Fallback 需 jq 或 python3 |
+| 外部依赖 | jq（必须） | 主路径零依赖；Fallback 需 jq 或 python |
 
 ### vs block-break
 
@@ -403,7 +405,7 @@ evals/ralph-boost/
 | state.json 损坏 | 写入前校验，损坏时 fallback 到初始状态 |
 | PROMPT.md 过长 | 控制 ~1500 字，详细内容留 references/ |
 | Claude 忘记输出 BOOST_STATUS | PROMPT 多处强调 + 无 BOOST_STATUS 视为无进展 |
-| jq 和 python3 均未安装 | 仅影响 Fallback 路径；主路径零外部依赖 |
+| jq 和 python 均未安装 | 仅影响 Fallback 路径；主路径零外部依赖 |
 | Agent spawn 失败 | Fallback 到 bash 路径 |
 | 压力等级依赖 Claude 自觉 | 压力升级由循环控制器驱动，非依赖 Claude |
 | 与 Ralph 冲突 | 独立目录 `.ralph-boost/`，零共享文件 |

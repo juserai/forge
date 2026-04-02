@@ -44,6 +44,8 @@ cp -r jskills/platforms/openclaw/* ~/.openclaw/skills/
 
 也可通过自然语言触发：`try harder`、`别偷懒`、`又错了`、`stop spinning` 等（由 hooks 自动检测）。
 
+> 参考 [PUA](https://github.com/tanweai/pua) 核心机制，精简为零依赖 skill。
+
 ### Skill Lint — Claude Code Skill 校验工具
 
 校验 Claude Code plugin 项目中 skill 文件的结构完整性和语义质量。Bash 脚本做结构检查，AI 做语义检查，互补覆盖。
@@ -87,7 +89,7 @@ cp -r jskills/platforms/openclaw/* ~/.openclaw/skills/
 
 | 特性 | 说明 |
 |------|------|
-| **双路径循环** | Agent 循环（主路径，零外部依赖）+ bash 脚本 Fallback（jq/python3 双引擎） |
+| **双路径循环** | Agent 循环（主路径，零外部依赖）+ bash 脚本 Fallback（jq/python 双引擎） |
 | **增强断路器** | L0-L4 压力升级原生内建，从"3 轮放弃"到"6-7 轮渐进自救" |
 | **状态追踪** | 统一 state.json 持久化断路器 + 压力 + 策略 + 会话 |
 | **优雅交接** | L4 后生成结构化交接报告，而非裸停机 |
