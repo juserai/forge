@@ -87,7 +87,7 @@ cp -r jskills/platforms/openclaw/* ~/.openclaw/skills/
 
 | 特性 | 说明 |
 |------|------|
-| **自主循环** | `claude -p` 驱动的自动开发循环，每轮执行一个任务 |
+| **双路径循环** | Agent 循环（主路径，零外部依赖）+ bash 脚本 Fallback（jq/python3 双引擎） |
 | **增强断路器** | L0-L4 压力升级原生内建，从"3 轮放弃"到"6-7 轮渐进自救" |
 | **状态追踪** | 统一 state.json 持久化断路器 + 压力 + 策略 + 会话 |
 | **优雅交接** | L4 后生成结构化交接报告，而非裸停机 |
@@ -97,7 +97,7 @@ cp -r jskills/platforms/openclaw/* ~/.openclaw/skills/
 
 ```text
 /ralph-boost setup        # 初始化项目
-/ralph-boost run          # 获取启动命令
+/ralph-boost run          # 启动自主循环
 /ralph-boost status       # 查看当前状态
 /ralph-boost clean        # 清理
 ```

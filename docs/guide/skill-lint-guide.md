@@ -154,6 +154,15 @@ bash skills/skill-lint/scripts/skill-lint.sh .
 - **error**: 结构性问题，会导致 skill 无法正常加载或发布
 - **warning**: 质量问题，不影响功能但影响可维护性和发现性
 
+### 其他 jskills 工具
+
+Skill Lint 是 jskills 集合的一部分，与以下 skill 协同使用：
+
+- [Block Break](block-break-guide.md) — 高能动性行为约束引擎，强制 AI 穷尽一切方案
+- [Ralph Boost](ralph-boost-guide.md) — 自主开发循环引擎，内建 Block Break 收敛保证
+
+开发新 skill 后，建议用 `/skill-lint .` 校验结构完整性，确保 frontmatter、marketplace.json、references 引用等均正确。
+
 ---
 
 ## License
