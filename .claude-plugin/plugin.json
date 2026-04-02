@@ -1,7 +1,7 @@
 {
     "name": "jskills",
     "version": "1.0.0",
-    "description": "J Skills — Claude Code skill 集合。",
+    "description": "J Skills — Work harder, then take a break. Behavioral constraints, autonomous loops, and more.",
     "author": {
         "name": "juserch",
         "url": "https://github.com/juserch"
@@ -13,8 +13,19 @@
         "jskills",
         "claude-code",
         "skills",
+        "plugin",
         "behavioral-constraints",
         "high-agency",
-        "methodology"
+        "try-harder",
+        "autonomous-loop",
+        "dev-loop",
+        "convergence",
+        "skill-validator",
+        "lint",
+        "news",
+        "methodology",
+        "zero-dependency",
+        "productivity",
+        "debugging"
     ]
 }

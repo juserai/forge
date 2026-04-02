@@ -1,6 +1,6 @@
 {
     "name": "jskills",
-    "description": "J Skills — Claude Code skill 集合。",
+    "description": "J Skills — Work harder, then take a break. Behavioral constraints, autonomous loops, skill validation, and quick news for your coding rhythm. Zero dependencies.",
     "owner": {
         "name": "juserch",
         "url": "https://github.com/juserch"
@@ -8,7 +8,7 @@
     "plugins": [
         {
             "name": "block-break",
-            "description": "Block Break — 高能动性行为约束引擎。被阻塞时突破它。三条红线 + L0-L4 压力升级 + 五步方法论 + 7项检查清单 + 抗合理化封堵。零依赖。",
+            "description": "Block Break — Behavioral constraint engine. Forces Claude to exhaust all approaches before giving up. L0-L4 pressure escalation. Zero-dep.",
             "version": "1.0.0",
             "source": "./",
             "author": {
@@ -20,8 +20,21 @@
             ]
         },
         {
+            "name": "ralph-boost",
+            "description": "Ralph Boost — Autonomous dev loop engine with built-in convergence guarantee. Prevents infinite spinning. Zero-dep.",
+            "version": "1.0.0",
+            "source": "./",
+            "author": {
+                "name": "juserch",
+                "url": "https://github.com/juserch"
+            },
+            "skills": [
+                "./skills/ralph-boost"
+            ]
+        },
+        {
             "name": "skill-lint",
-            "description": "Skill Lint — Claude Code skill 校验工具。Bash 结构检查 + AI 语义检查，校验 frontmatter、目录完整性、marketplace.json 一致性。零依赖。",
+            "description": "Skill Lint — Validate Claude Code skill plugins. Structural (bash) + semantic (AI) checks. Works on any plugin project. Zero-dep.",
             "version": "1.0.0",
             "source": "./",
             "author": {
@@ -34,7 +47,7 @@
         },
         {
             "name": "news-fetch",
-            "description": "News Fetch — 新闻获取工具。指定主题和时间段，获取新闻清单。三级网络降级策略。零依赖。",
+            "description": "News Fetch — Quick news at your fingertips. Take a mental break between coding sessions. 3-tier network fallback, Markdown output. Zero-dep.",
             "version": "1.0.0",
             "source": "./",
             "author": {
@@ -43,19 +56,6 @@
             },
             "skills": [
                 "./skills/news-fetch"
-            ]
-        },
-        {
-            "name": "ralph-boost",
-            "description": "Ralph Boost — 自主开发循环引擎。复刻 ralph-claude-code 核心能力，内建 Block Break 收敛保证。L0-L4 压力升级 + 优雅交接。零依赖。",
-            "version": "1.0.0",
-            "source": "./",
-            "author": {
-                "name": "juserch",
-                "url": "https://github.com/juserch"
-            },
-            "skills": [
-                "./skills/ralph-boost"
             ]
         }
     ]

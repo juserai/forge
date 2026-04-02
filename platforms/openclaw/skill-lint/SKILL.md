@@ -1,6 +1,6 @@
 ---
 name: skill-lint
-description: "Skill Lint — AI agent skill 校验工具。Bash 结构检查 + AI 语义检查，校验 frontmatter、目录完整性、marketplace 元数据一致性。可校验任意 AI agent plugin 项目。"
+description: "Skill Lint — Validate Claude Code skill plugins. Structural + semantic checks for any plugin project."
 license: MIT
 ---
 

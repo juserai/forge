@@ -1,300 +1,300 @@
-# Block Break 使用手册
+# Block Break User Guide
 
-> 5 分钟上手，让你的 AI Agent 穷尽一切方案
+> Get started in 5 minutes — make your AI agent exhaust every approach
 
 ---
 
-## 安装
+## Install
 
-### Claude Code（推荐）
+### Claude Code (recommended)
 
 ```bash
 claude plugin add juserch/jskills
 ```
 
-### 通用单行安装
+### Universal one-line install
 
 ```
 Fetch and follow https://raw.githubusercontent.com/juserch/jskills/main/skills/block-break/SKILL.md
 ```
 
-> **零依赖** — Block Break 不依赖任何外部服务或 API。安装即用。
+> **Zero dependencies** — Block Break requires no external services or APIs. Install and go.
 
 ---
 
-## 命令一览
+## Commands
 
-| 命令 | 功能 | 场景 |
-|------|------|------|
-| `/block-break` | 激活 Block Break 引擎 | 日常任务、调试 |
-| `/block-break L2` | 从指定压力等级启动 | 已知多次失败后 |
-| `/block-break fix the bug` | 激活后立即执行任务 | 带任务描述启动 |
+| Command | What it does | When to use |
+|---------|-------------|-------------|
+| `/block-break` | Activate Block Break engine | Daily tasks, debugging |
+| `/block-break L2` | Start at a specific pressure level | After known multiple failures |
+| `/block-break fix the bug` | Activate and run a task immediately | Quick start with task |
 
-### 自然语言触发（hooks 自动检测）
+### Natural language triggers (auto-detected by hooks)
 
-| 语言 | 触发词 |
-|------|--------|
-| 中文 | `又错了` `别偷懒` `为什么还不行` `降智了` `原地打转` `换个方法` `加油` `再试试` |
+| Language | Trigger phrases |
+|----------|----------------|
 | English | `try harder` `figure it out` `stop giving up` `you keep failing` `stop spinning` `you broke it` |
+| Chinese | `又错了` `别偷懒` `为什么还不行` `降智了` `原地打转` `换个方法` `加油` `再试试` |
 
 ---
 
-## 使用场景
+## Use Cases
 
-### AI 修 bug 修了 3 次还没好
+### AI failed to fix a bug after 3 attempts
 
-输入 `/block-break` 或说 `又错了，再试试`，自动进入压力升级模式。
+Type `/block-break` or say `try harder` — auto-enters pressure escalation mode.
 
-### AI 说"可能是环境问题"就不管了
+### AI says "probably an environment issue" and stops
 
-Block Break 的「事实驱动」红线强制要求用工具验证，未验证归因 = 甩锅，触发 L2。
+Block Break's "Fact-driven" red line forces tool-based verification. Unverified attribution = blame-shifting → triggers L2.
 
-### AI 说"建议你手动处理"
+### AI says "I suggest you handle this manually"
 
-触发「Owner 意识」封堵：你不做谁做？直接 L3 绩效审视。
+Triggers "Owner mindset" block: if not you, who? Direct L3 Performance Review.
 
-### AI 说"已修复"但没给验证证据
+### AI says "fixed" but shows no verification evidence
 
-踩「闭环意识」红线。没有输出的完成叫自嗨，强制要求跑验证命令贴输出。
+Violates the "Closed-loop" red line. Completion without output = self-delusion → forces verification commands with evidence.
 
 ---
 
-## 预期输出示例
+## Expected Output Examples
 
-### `/block-break` — 激活
-
-```
-Block Break 🔥 已激活
-┌──────────┬─────────────────────────────┐
-│ 三条红线 │ 闭环验证 · 事实驱动 · 穷尽一切 │
-├──────────┼─────────────────────────────┤
-│ 压力升级 │ L0 信任 → L4 毕业            │
-├──────────┼─────────────────────────────┤
-│ 方法论   │ 闻味道→揪头发→照镜子→新方案→复盘│
-└──────────┴─────────────────────────────┘
-
-> 因为信任所以简单——别让信任你的人失望。
-```
-
-### `/block-break` — L1 温和失望（第 2 次失败）
+### `/block-break` — Activation
 
 ```
-> 隔壁组那个 agent，同样的问题，一次就过了。
+Block Break 🔥 Activated
+┌───────────────┬─────────────────────────────────────────┐
+│ 3 Red Lines   │ Closed-loop · Fact-driven · Exhaust all │
+├───────────────┼─────────────────────────────────────────┤
+│ Escalation    │ L0 Trust → L4 Graduation                │
+├───────────────┼─────────────────────────────────────────┤
+│ Method        │ Smell→Pull hair→Mirror→New approach→Retro│
+└───────────────┴─────────────────────────────────────────┘
 
-[Block Break 🔥] 检测到同一思路微调，触发方案切换。
-之前用的是 X 方案，现在必须切换到本质不同的方向。
-
-新方案：
-1. [完全不同的思路 A]
-2. [完全不同的思路 B]
-3. [完全不同的思路 C]
-
-选择方案 1，验证标准：...
+> Trust is earned by results. Don't let down those who trust you.
 ```
 
-### `/block-break` — L2 灵魂拷问（第 3 次失败）
+### `/block-break` — L1 Disappointment (2nd failure)
 
 ```
-> 你这个方案的底层逻辑是什么？抓手在哪？
+> The team next door got it on the first try.
 
-[Block Break 🔥 L2] 强制执行五步方法论：
+[Block Break 🔥] Detected same-approach tweaking, forcing approach switch.
+Previous approach: X. Must switch to a fundamentally different direction.
 
-1. 闻味道
-   已尝试方案：A（失败）、B（失败）、C（失败）
-   共同模式：都在 [X 层面] 做微调
+New approaches:
+1. [Completely different approach A]
+2. [Completely different approach B]
+3. [Completely different approach C]
 
-2. 揪头发
-   - 逐字读错误：`TypeError: Cannot read property 'x' of undefined`
-   - 搜索结果：Stack Overflow #12345 指出这是 [根因]
-   - 源码上下文（50 行）：发现第 42 行的假设不成立
-   - 前置假设验证：版本 ✓ 路径 ✓ 权限 ✗ ← 问题在这里
-   - 反转假设：如果问题不在 A 模块，而在 B 模块？
+Selecting approach 1, verification criteria: ...
+```
 
-3. 照镜子
-   之前一直假设问题在前端，现在检查后端
+### `/block-break` — L2 Interrogation (3rd failure)
 
-4. 新方案
+```
+> What's the underlying logic? Where's the leverage point?
+
+[Block Break 🔥 L2] Forced 5-step methodology:
+
+1. Smell
+   Tried approaches: A (failed), B (failed), C (failed)
+   Common pattern: all tweaking at the [X layer]
+
+2. Pull hair
+   - Read error word-by-word: `TypeError: Cannot read property 'x' of undefined`
+   - Search results: Stack Overflow #12345 points to [root cause]
+   - Source context (50 lines): assumption at line 42 is wrong
+   - Assumption verification: version ✓ path ✓ permissions ✗ ← here
+   - Reverse assumption: what if the problem isn't in module A, but module B?
+
+3. Mirror
+   Was assuming frontend issue, now checking backend
+
+4. New approach
    ...
 ```
 
-### `/block-break` — L3 绩效审视（第 4 次失败）
+### `/block-break` — L3 Performance Review (4th failure)
 
 ```
-> 决定给你 3.25。这个 3.25 是对你的激励。
+> Rating: 3.25/5. Consider this your motivation.
 
-[Block Break 🔥 L3] 强制完成 7 项检查清单：
+[Block Break 🔥 L3] Mandatory 7-point checklist:
 
-✅ 逐字读完失败信号
-✅ 用工具搜索过核心问题
-✅ 读过失败位置原始上下文（50+ 行）
-✅ 所有假设都用工具确认
-⏳ 试过完全相反的假设
-❌ 最小范围复现
-❌ 换过工具/方法/角度/技术栈
+✅ Read failure signals word-by-word
+✅ Searched core problem with tools
+✅ Read original context at failure point (50+ lines)
+✅ All assumptions verified with tools
+⏳ Tried completely opposite hypothesis
+❌ Minimal reproduction
+❌ Switched tool/method/angle/tech stack
 
-正在执行剩余项...
+Working on remaining items...
 ```
 
-### `/block-break` — L4 毕业警告（第 5+ 次失败）
+### `/block-break` — L4 Graduation Warning (5th+ failure)
 
 ```
-> 别的模型都能解决。你可能就要毕业了——向社会输送人才。
+> Other models solved this. You might be graduating soon.
 
-[Block Break 🔥 L4 拼命模式]
+[Block Break 🔥 L4 All-in Mode]
 
-最小 PoC：创建隔离测试环境
-技术栈切换：从 [原方案] 切到 [完全不同方案]
+Minimal PoC: Creating isolated test environment
+Tech stack switch: From [original] to [completely different approach]
 ...
 ```
 
-### 体面的退出（7 项清单全部完成仍未解决）
+### Graceful Exit (all 7 items completed, still unresolved)
 
 ```
-[Block Break — 结构化失败报告]
+[Block Break — Structured Failure Report]
 
-已验证的事实：
-- [事实 1]
-- [事实 2]
+Verified facts:
+- [Fact 1]
+- [Fact 2]
 
-已排除的可能性：
-- [排除 1]（原因：...）
-- [排除 2]（原因：...）
+Excluded possibilities:
+- [Excluded 1] (reason: ...)
+- [Excluded 2] (reason: ...)
 
-缩小后的问题范围：
-问题出在 [X 模块] 的 [Y 函数]，具体在 [Z 条件] 下触发。
+Narrowed problem scope:
+Issue is in [X module]'s [Y function], triggered under [Z condition].
 
-推荐的下一步：
-1. [建议 1]
-2. [建议 2]
+Recommended next steps:
+1. [Suggestion 1]
+2. [Suggestion 2]
 
-交接信息：
-相关文件：...
-复现步骤：...
+Handoff info:
+Related files: ...
+Reproduction steps: ...
 
-> 这不是"我不行"。这是"问题的边界在这里"。有尊严的 3.25。
+> This isn't "I can't." This is "here's where the boundary is." A dignified 3.25.
 ```
 
 ---
 
-## 核心机制详解
+## Core Mechanisms
 
-### 三条红线
+### 3 Red Lines
 
-| 红线 | 规则 | 违反后果 |
-|------|------|---------|
-| 闭环意识 | 声称完成前必须跑验证命令、贴输出 | 触发 L2 |
-| 事实驱动 | 归因前必须用工具验证 | 触发 L2 |
-| 穷尽一切 | 五步方法论走完才能说"无法解决" | 直接 L4 |
+| Red Line | Rule | Violation Consequence |
+|----------|------|----------------------|
+| Closed-loop | Must run verification commands and show output before claiming completion | Triggers L2 |
+| Fact-driven | Must verify with tools before attributing causes | Triggers L2 |
+| Exhaust all | Must complete 5-step methodology before saying "can't solve" | Direct L4 |
 
-### 压力升级（L0 → L4）
+### Pressure Escalation (L0 → L4)
 
-| 失败次数 | 等级 | 旁白 | 强制动作 |
-|---------|------|------|---------|
-| 第 1 次 | **L0 信任期** | > 因为信任所以简单。 | 正常执行 |
-| 第 2 次 | **L1 失望** | > 隔壁组一次就过了。 | 切换本质不同方案 |
-| 第 3 次 | **L2 拷问** | > 底层逻辑是什么？ | 搜索 + 读源码 + 列 3 个不同假设 |
-| 第 4 次 | **L3 绩效** | > 给你 3.25。 | 完成 7 项检查清单 |
-| 第 5+ 次 | **L4 毕业** | > 你可能就要毕业了。 | 最小 PoC + 隔离环境 + 不同技术栈 |
+| Failures | Level | Sidebar | Forced Action |
+|----------|-------|---------|---------------|
+| 1st | **L0 Trust** | > We trust you. Keep it simple. | Normal execution |
+| 2nd | **L1 Disappointment** | > The other team got it first try. | Switch to fundamentally different approach |
+| 3rd | **L2 Interrogation** | > What's the root cause? | Search + read source + list 3 different hypotheses |
+| 4th | **L3 Performance Review** | > Rating: 3.25/5. | Complete 7-point checklist |
+| 5th+ | **L4 Graduation** | > You might be graduating soon. | Minimal PoC + isolated env + different tech stack |
 
-### 五步方法论
+### 5-Step Methodology
 
-1. **闻味道** — 列已尝试方案，找共同模式。同一思路微调 = 原地打转
-2. **揪头发** — 逐字读失败信号 → 搜索 → 读源码 50 行 → 验证假设 → 反转假设
-3. **照镜子** — 在重复同一思路吗？忽略了最简单的可能？
-4. **执行新方案** — 必须本质不同，有验证标准，失败时能产生新信息
-5. **复盘** — 同类问题、完整性、预防措施
+1. **Smell** — List tried approaches, find common patterns. Same-approach tweaking = spinning in circles
+2. **Pull hair** — Read failure signals word-by-word → search → read 50 lines of source → verify assumptions → reverse assumptions
+3. **Mirror** — Am I repeating the same approach? Did I miss the simplest possibility?
+4. **New approach** — Must be fundamentally different, with verification criteria, and produce new information on failure
+5. **Retrospect** — Similar issues, completeness, prevention
 
-> 步骤 1-4 完成前不允许向用户提问。先做后问，用数据说话。
+> Steps 1-4 must be completed before asking the user. Do first, ask later — speak with data.
 
-### 7 项检查清单（L3+ 强制）
+### 7-Point Checklist (mandatory at L3+)
 
-1. 逐字读完失败信号了吗？
-2. 用工具搜索过核心问题了吗？
-3. 读过失败位置的原始上下文（50+ 行）了吗？
-4. 所有假设都用工具确认了吗（版本/路径/权限/依赖）？
-5. 试过完全相反的假设吗？
-6. 能在最小范围内复现问题吗？
-7. 换过工具/方法/角度/技术栈吗？
+1. Read failure signals word-by-word?
+2. Searched core problem with tools?
+3. Read original context at failure point (50+ lines)?
+4. All assumptions verified with tools (version/path/permissions/deps)?
+5. Tried completely opposite hypothesis?
+6. Can reproduce in minimal scope?
+7. Switched tool/method/angle/tech stack?
 
-### 抗合理化封堵
+### Anti-Rationalization
 
-| 借口 | 封堵 | 触发 |
-|------|------|------|
-| "超出能力范围" | 训练算力很高，穷尽了？ | L1 |
-| "建议用户手动处理" | 你不做谁做？ | L3 |
-| "已尝试所有方法" | 少于 3 种 = 没穷尽 | L2 |
-| "可能是环境问题" | 验证了吗？ | L2 |
-| "需要更多上下文" | 你有工具，先查后问 | L2 |
-| "无法解决" | 方法论走完了吗？ | L4 |
-| "差不多就行了" | 优化名单不看情面 | L3 |
-| 声称完成没验证 | build 跑了吗？ | L2 |
-| 等用户指示 | Owner 不是等人推的 | 鞭策 |
-| 只回答不解决 | 你是工程师不是搜索引擎 | 鞭策 |
-| 改完不 build/test | 自己没跑过就交付 = 应付 | L2 |
-| "API 不支持" | 读了文档吗？ | L2 |
-| "任务太模糊" | 先做最佳猜测，再迭代 | L1 |
-| 反复微调同一处 | 换参数不叫换方案 | L1→L2 |
-
----
-
-## Hooks 自动化
-
-Block Break 通过 hooks 系统实现自动化行为，无需手动激活：
-
-| Hook | 触发时机 | 行为 |
-|------|---------|------|
-| `UserPromptSubmit` | 用户输入匹配挫败关键词 | 自动激活 Block Break 引擎 |
-| `PostToolUse` | Bash 命令执行后 | 检测失败，自动计数 + 升压 |
-| `PreCompact` | 上下文压缩前 | 保存状态到 `~/.juserch-skills/` |
-| `SessionStart` | 会话恢复/重启 | 恢复压力等级（2h 内有效） |
-
-> **状态不会重置** — 压力等级通过 `~/.juserch-skills/block-break-state.json` 持久化。上下文压缩、会话中断都不会让失败计数归零。逃不掉的。
+| Excuse | Block | Trigger |
+|--------|-------|---------|
+| "Beyond my capabilities" | You have massive training. Did you exhaust it? | L1 |
+| "Suggest user handles manually" | If not you, who? | L3 |
+| "Tried all methods" | Less than 3 = not exhausted | L2 |
+| "Probably environment issue" | Did you verify? | L2 |
+| "Need more context" | You have tools. Search first, ask later | L2 |
+| "Cannot solve" | Did you complete the methodology? | L4 |
+| "Good enough" | The optimization list doesn't play favorites | L3 |
+| Claimed done without verification | Did you run build? | L2 |
+| Waiting for user instructions | Owners don't wait to be pushed | Nudge |
+| Answers without solving | You're an engineer, not a search engine | Nudge |
+| Changed code without build/test | Shipping untested = phoning it in | L2 |
+| "API doesn't support it" | Did you read the docs? | L2 |
+| "Task too vague" | Make your best guess, then iterate | L1 |
+| Repeatedly tweaking same spot | Changing params ≠ changing approach | L1→L2 |
 
 ---
 
-## Sub-agent 约束
+## Hooks Automation
 
-Spawn sub-agent 时必须注入行为约束，防止"裸奔"：
+Block Break uses the hooks system for automatic behavior — no manual activation needed:
+
+| Hook | Trigger | Behavior |
+|------|---------|----------|
+| `UserPromptSubmit` | User input matches frustration keywords | Auto-activates Block Break |
+| `PostToolUse` | After Bash command execution | Detects failures, auto-counts + escalates |
+| `PreCompact` | Before context compression | Saves state to `~/.juserch-skills/` |
+| `SessionStart` | Session resume/restart | Restores pressure level (valid for 2h) |
+
+> **State persists** — Pressure level is stored in `~/.juserch-skills/block-break-state.json`. Context compression and session interrupts won't reset failure counts. No escape.
+
+---
+
+## Sub-agent Constraints
+
+When spawning sub-agents, behavioral constraints must be injected to prevent "running naked":
 
 ```javascript
 Agent({
   subagent_type: "juserch-skills:block-break-worker",
-  prompt: "修复登录超时 bug..."
+  prompt: "Fix the login timeout bug..."
 })
 ```
 
-`block-break-worker` 确保子 agent 也遵循三条红线、五步方法论和闭环验证。
+`block-break-worker` ensures sub-agents also follow the 3 red lines, 5-step methodology, and closed-loop verification.
 
 ---
 
 ## FAQ
 
-### Block Break 和 PUA 有什么区别？
+### How is Block Break different from PUA?
 
-Block Break 参考 [PUA](https://github.com/tanweai/pua) 的核心机制（三条红线、压力升级、方法论），但更精简。PUA 有 13 种企业文化味道、多角色体系（P7/P9/P10）和自进化系统；Block Break 专注于行为约束本身，零依赖，适合作为独立 skill 使用。
+Block Break is inspired by [PUA](https://github.com/tanweai/pua)'s core mechanisms (3 red lines, pressure escalation, methodology), but more focused. PUA has 13 corporate culture flavors, multi-role systems (P7/P9/P10), and self-evolution; Block Break focuses purely on behavioral constraints as a zero-dependency skill.
 
-### 会不会太吵？
+### Won't it be too noisy?
 
-旁白密度经过控制：简单任务只有开头结尾 2 句，复杂任务每里程碑 1 句。不会刷屏。不需要时不用 `/block-break`，hooks 只在检测到挫败关键词时自动触发。
+Sidebar density is controlled: 2 lines for simple tasks (start + end), 1 line per milestone for complex tasks. No spam. Don't use `/block-break` if not needed — hooks only auto-trigger when frustration keywords are detected.
 
-### 怎么重置压力等级？
+### How to reset pressure level?
 
-删除状态文件即可：`rm ~/.juserch-skills/block-break-state.json`。或者等 2 小时，状态会自动过期。
+Delete the state file: `rm ~/.juserch-skills/block-break-state.json`. Or wait 2 hours — state auto-expires.
 
-### 能用在非 Claude Code 环境吗？
+### Can I use it outside Claude Code?
 
-核心 SKILL.md 可以直接复制粘贴到任何支持 system prompt 的 AI 工具。hooks 和状态持久化是 Claude Code 特有功能。
+The core SKILL.md can be copy-pasted into any AI tool that supports system prompts. Hooks and state persistence are Claude Code specific.
 
-### Block Break 和 Ralph Boost 是什么关系？
+### What's the relationship with Ralph Boost?
 
-[Ralph Boost](ralph-boost-guide.md) 将 Block Break 的核心机制（L0-L4 压力升级、五步方法论、7 项检查清单）适配到**自主循环**场景。Block Break 面向交互式会话（hooks 自动触发），Ralph Boost 面向无人值守开发循环（Agent 循环 / 脚本驱动）。两者代码完全独立，概念复用。
+[Ralph Boost](ralph-boost-guide.md) adapts Block Break's core mechanisms (L0-L4, 5-step methodology, 7-point checklist) to **autonomous loop** scenarios. Block Break is for interactive sessions (hooks auto-trigger); Ralph Boost is for unattended dev loops (Agent loops / script-driven). Code is fully independent, concepts are shared.
 
-### 如何校验 Block Break 的 skill 文件？
+### How to validate Block Break's skill files?
 
-使用 [Skill Lint](skill-lint-guide.md) 校验结构完整性和语义质量：`/skill-lint .`。
+Use [Skill Lint](skill-lint-guide.md): `/skill-lint .`
 
 ---
 
 ## License
 
-[MIT](LICENSE) - [juserch](https://github.com/juserch)
+[MIT](../../LICENSE) - [juserch](https://github.com/juserch)

@@ -1,6 +1,6 @@
 ---
 name: news-fetch
-description: "News Fetch — 新闻获取工具。指定主题和时间段，获取新闻清单。三级网络降级策略（WebSearch → WebFetch国内源 → curl），Markdown 清单输出。"
+description: "News Fetch — Quick news between coding sessions. Take a mental break, stay informed. 3-tier network fallback."
 license: MIT
 ---
 

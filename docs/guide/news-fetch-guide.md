@@ -1,141 +1,146 @@
-# News Fetch 使用手册
+# News Fetch User Guide
 
-> 3 分钟上手，让 AI 帮你获取最新新闻简报
+> Get started in 3 minutes — let AI fetch your news briefing
+
+Burned out from debugging? Take 2 minutes, catch up on what's happening in the world, and come back refreshed.
 
 ---
 
-## 安装
+## Install
 
-### Claude Code（推荐）
+### Claude Code (recommended)
 
 ```bash
 claude plugin add juserch/jskills
 ```
 
-### 通用单行安装
+### Universal one-line install
 
 ```
 Fetch and follow https://raw.githubusercontent.com/juserch/jskills/main/skills/news-fetch/SKILL.md
 ```
 
-> **零依赖** — News Fetch 不依赖任何外部服务或 API。安装即用。
+> **Zero dependencies** — News Fetch requires no external services or API keys. Install and go.
 
 ---
 
-## 命令一览
+## Commands
 
-| 命令 | 功能 | 场景 |
-|------|------|------|
-| `/news-fetch AI` | 获取本周 AI 新闻 | 快速了解行业动态 |
-| `/news-fetch AI today` | 获取今日 AI 新闻 | 每日早报 |
-| `/news-fetch 机器人 month` | 获取本月机器人新闻 | 月度回顾 |
-| `/news-fetch climate 2026-03-01~2026-03-31` | 指定时间范围 | 定向调研 |
+| Command | What it does | When to use |
+|---------|-------------|-------------|
+| `/news-fetch AI` | Fetch this week's AI news | Quick industry update |
+| `/news-fetch AI today` | Fetch today's AI news | Daily briefing |
+| `/news-fetch robotics month` | Fetch this month's robotics news | Monthly review |
+| `/news-fetch climate 2026-03-01~2026-03-31` | Fetch news for a specific date range | Targeted research |
 
 ---
 
-## 使用场景
+## Use Cases
 
-### 每日技术早报
+### Daily tech briefing
 
 ```
 /news-fetch AI today
 ```
 
-获取今日 AI 领域最新资讯，按相关性排序，快速浏览标题和摘要。
+Get the latest AI news for today, ranked by relevance. Scan headlines and summaries in seconds.
 
-### 行业调研
+### Industry research
 
 ```
-/news-fetch 新能源汽车 2026-03-01~2026-03-31
+/news-fetch electric vehicles 2026-03-01~2026-03-31
 ```
 
-获取指定时间段的行业新闻，辅助市场分析和竞品调研。
+Pull news for a specific time period to support market analysis and competitive research.
 
-### 跨语言新闻
+### Cross-language news
 
-中文主题会自动追加英文搜索扩大覆盖，反之亦然。
+Chinese topics automatically get supplementary English searches for broader coverage, and vice versa. You get the best of both worlds without extra effort.
 
 ---
 
-## 预期输出示例
+## Expected Output Example
 
 ```markdown
-## AI资讯
+## AI News
 
-2026年3月30日 星期一
+Monday, March 30, 2026
 
-TOP 5 条
+TOP 5
 
-### 1. OpenAI 发布 GPT-5 多模态版本
+### 1. OpenAI Releases GPT-5 Multimodal Edition
 
-**Reuters** | 相关性得分: 223.0
+**Reuters** | Relevance score: 223.0
 
-OpenAI 正式发布 GPT-5，支持原生视频理解和实时语音对话，
-定价较前代下降 40%。该模型在多项基准测试中超越前代...
+OpenAI officially released GPT-5 with native video comprehension
+and real-time voice conversation. Pricing is 40% lower than the
+previous generation. The model surpasses its predecessor across
+multiple benchmarks...
 
-[查看详情](https://example.com/article1)
-相关报道: [新智元](https://example.com/a2) | [量子位](https://example.com/a3)
+[Read more](https://example.com/article1)
+Related coverage: [TechCrunch](https://example.com/a2) | [The Verge](https://example.com/a3)
 
-### 2. 此芯科技完成近十亿元B轮融资
+### 2. CIX Tech Closes ~$140M Series B
 
-**投资界** | 相关性得分: 118.0
+**TechNode** | Relevance score: 118.0
 
-此芯科技完成近十亿元B轮融资，发布首款智能体CPU——
-CIX ClawCore螯芯系列芯片，覆盖低功耗至高性能场景...
+CIX Tech closed a near-$140M Series B round and unveiled its first
+agent-class CPU — the CIX ClawCore series, spanning low-power to
+high-performance use cases...
 
-[查看详情](https://example.com/article2)
+[Read more](https://example.com/article2)
 
 ---
-共 5 条 | 数据获取: L1 WebSearch
+5 items total | Source: L1 WebSearch
 ```
 
 ---
 
-## 三级网络降级
+## 3-Tier Network Fallback
 
-News Fetch 内置三级降级策略，确保不同网络环境下都能获取新闻：
+News Fetch has a built-in fallback strategy to ensure news retrieval works across different network conditions:
 
-| 级别 | 工具 | 数据源 | 触发条件 |
-|------|------|--------|---------|
-| **L1** | WebSearch | Google/Bing | 默认首选 |
-| **L2** | WebFetch | 百度新闻、新浪、网易 | L1 失败 |
-| **L3** | Bash curl | 同 L2 源 | L2 也失败 |
+| Tier | Tool | Data Source | Trigger |
+|------|------|-------------|---------|
+| **L1** | WebSearch | Google/Bing | Default (preferred) |
+| **L2** | WebFetch | Baidu News, Sina, NetEase | L1 fails |
+| **L3** | Bash curl | Same as L2 sources | L2 also fails |
 
-所有级别失败时输出结构化失败报告，列出每个源的失败原因。
+When all tiers fail, a structured failure report is produced listing the failure reason for each source.
 
 ---
 
-## 输出特性
+## Output Features
 
-| 特性 | 说明 |
-|------|------|
-| **去重** | 同一事件多来源时，保留最高分条目，其余折叠为"相关报道" |
-| **概要补全** | 搜索结果无摘要时，自动抓取正文生成概要 |
-| **相关性得分** | AI 根据主题匹配度打分，越相关分越高 |
-| **可点击链接** | Markdown 链接格式，IDE/终端中可点击跳转 |
+| Feature | Description |
+|---------|-------------|
+| **Deduplication** | When multiple sources cover the same event, the highest-scoring entry is kept; others are collapsed into "Related coverage" |
+| **Summary completion** | If search results lack a summary, the article body is fetched and a summary is generated |
+| **Relevance scoring** | AI scores each result by topic relevance — higher means more relevant |
+| **Clickable links** | Markdown link format — clickable in IDEs and terminals |
 
 ---
 
 ## FAQ
 
-### 需要 API Key 吗？
+### Do I need an API key?
 
-不需要。完全基于 WebSearch 和公开网页抓取，零配置。
+No. News Fetch relies entirely on WebSearch and public web scraping. Zero configuration required.
 
-### 能获取英文新闻吗？
+### Can it fetch English-language news?
 
-可以。中文主题会自动追加英文搜索，英文主题同理。
+Absolutely. Chinese topics automatically include supplementary English searches, and English topics work natively. Coverage spans both languages.
 
-### 网络不好怎么办？
+### What if my network is restricted?
 
-三级降级策略自动应对。即使 WebSearch 不可用，也会尝试国内新闻源。
+The 3-tier fallback strategy handles this automatically. Even if WebSearch is unavailable, News Fetch falls back to domestic news sources.
 
-### 一次能获取多少条？
+### How many articles does it return?
 
-默认最多 20 条（去重后）。搜索结果数量取决于数据源返回。
+Up to 20 (after deduplication). The actual count depends on what the data sources return.
 
 ---
 
 ## License
 
-[MIT](LICENSE) - [juserch](https://github.com/juserch)
+[MIT](../../LICENSE) - [juserch](https://github.com/juserch)

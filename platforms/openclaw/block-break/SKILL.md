@@ -1,6 +1,6 @@
 ---
 name: block-break
-description: "Block Break — 高能动性行为约束引擎。被阻塞时突破它。三条红线 + L0-L4 压力升级 + 五步方法论 + 7项检查清单 + 抗合理化封堵。触发条件：(1) 任务失败 2+ 次或反复微调同一思路; (2) 即将说'无法解决'、建议用户手动、未验证就归因环境; (3) 被动等待不搜索不读源码; (4) 用户不满：'try harder'、'别偷懒'、'又错了'、'stop spinning'。"
+description: "Block Break — Behavioral constraint engine. When stuck, forces exhaustive problem-solving with L0-L4 pressure escalation."
 license: MIT
 ---
 
