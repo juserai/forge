@@ -282,26 +282,23 @@ load_config() {
     SAME_ERROR_THRESHOLD=$(json_get_file "$CONFIG_FILE" ".same_error_threshold" "8")
     SLEEP_SECONDS=$(json_get_file "$CONFIG_FILE" ".sleep_seconds" "3600")
 
-    case "$JSON_ENGINE" in
-        jq)
-            local tools_json
-            tools_json=$(jq -r '.allowed_tools // empty' "$CONFIG_FILE")
-            if [[ -n "$tools_json" ]]; then
-                mapfile -t ALLOWED_TOOLS < <(jq -r '.allowed_tools[]' "$CONFIG_FILE")
-            fi
-            ;;
-        python3|python)
-            local tools_csv
-            tools_csv=$($JSON_ENGINE -c "
+    # Load allowed_tools array
+    local tools_list
+    tools_list=$(json_get_file "$CONFIG_FILE" ".allowed_tools" "")
+    if [[ -n "$tools_list" ]] && [[ "$tools_list" != "None" ]]; then
+        case "$JSON_ENGINE" in
+            jq)
+                mapfile -t ALLOWED_TOOLS < <(cat "$CONFIG_FILE" | jq -r '.allowed_tools[]')
+                ;;
+            python3|python)
+                mapfile -t ALLOWED_TOOLS < <($JSON_ENGINE -c "
 import json
 with open('${CONFIG_FILE}') as f: d = json.load(f)
 for t in d.get('allowed_tools', []): print(t)
 ")
-            if [[ -n "$tools_csv" ]]; then
-                mapfile -t ALLOWED_TOOLS <<< "$tools_csv"
-            fi
-            ;;
-    esac
+                ;;
+        esac
+    fi
 }
 
 # ============================================================
