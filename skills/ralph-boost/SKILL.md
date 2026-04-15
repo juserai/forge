@@ -2,6 +2,8 @@
 name: ralph-boost
 description: "Ralph Boost — Autonomous dev loop engine with convergence guarantee. Built-in Block Break integration. setup → run → status → clean."
 license: MIT
+metadata:
+  category: hammer
 argument-hint: "[setup|run|status|clean]"
 ---
 

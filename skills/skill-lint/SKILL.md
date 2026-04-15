@@ -2,6 +2,8 @@
 name: skill-lint
 description: "Skill Lint — Validate Claude Code skill plugins. Structural + semantic checks for any plugin project."
 license: MIT
+metadata:
+  category: anvil
 ---
 
 # Skill Lint — Claude Code Skill 校验工具
@@ -19,6 +21,8 @@ license: MIT
 
 运行 `${SKILL_DIR}/scripts/skill-lint.sh [path]`，脚本自动检查：
 
+**Core 规则（始终执行，适用于任何 Claude Code plugin）：**
+
 1. **plugin.json 存在性** — 根目录和 `.claude-plugin/` 下的 plugin.json 是否存在
 2. **marketplace.json 存在性** — `.claude-plugin/marketplace.json` 是否存在
 3. **SKILL.md 存在性** — `skills/<name>/SKILL.md` 是否存在
@@ -27,6 +31,34 @@ license: MIT
 6. **marketplace.json 条目** — 每个 skill 是否在 `plugins` 数组中
 7. **References 引用检查** — SKILL.md 中引用的 `references/` 文件是否实际存在
 8. **Evals 目录** — `evals/<name>/scenarios.md` 是否存在
+
+**Extended 规则（仅当目标目录存在 `.skill-lint.json` 配置时执行）：**
+
+9. **命名规范** — skill 目录名是否匹配配置中的 `naming-pattern` 正则
+10. **Category 字段** — frontmatter `category` 值是否在配置的 `category-values` 中
+11. **触发测试脚本** — `evals/<name>/run-trigger-test.sh` 是否存在
+12. **使用手册** — `docs/guide/<name>-guide.md` 是否存在
+13. **设计文档** — `docs/plans/<name>-design.md` 是否存在
+14. **平台适配** — 配置中 `platforms` 数组指定的平台目录下是否有对应 SKILL.md 及 references
+15. **i18n 覆盖** — 配置中 `i18n-dir` 指定目录下的每个 README 是否包含该 skill
+
+**`.skill-lint.json` 配置示例：**
+
+```json
+{
+  "rules": {
+    "naming-pattern": "^[a-z]+-[a-z]+$",
+    "category-values": ["hammer", "crucible", "anvil", "quench"],
+    "require-trigger-test": true,
+    "require-guide": true,
+    "require-design-doc": true,
+    "platforms": ["openclaw"],
+    "i18n-dir": "docs/i18n"
+  }
+}
+```
+
+每个字段缺失 = 该规则不执行。无配置文件 = 只跑 Core 规则。
 
 脚本输出 JSON：`{"errors": [...], "warnings": [...], "passed": [...]}`
 

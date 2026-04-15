@@ -49,5 +49,25 @@
 
 ## 场景 10: 全部通过
 
-**设置**: 完整合规的 skill 项目
+**设置**: 完整合规的 skill 项目（含 .skill-lint.json）
 **期望**: 结构检查和语义检查全部 passed，无 errors 和 warnings
+
+## 场景 11: 无 .skill-lint.json — 通用模式
+
+**设置**: 一个标准 Claude Code plugin 项目，无 .skill-lint.json
+**期望**: 只执行 S01-S08 Core 规则，不报 S09-S15 相关的 errors 或 warnings
+
+## 场景 12: 部分配置 — 只启用命名和分类
+
+**设置**: .skill-lint.json 只含 `naming-pattern` 和 `category-values`，不含其他字段
+**期望**: S09 和 S10 执行，S11-S15 不执行
+
+## 场景 13: 自定义 category 值
+
+**设置**: .skill-lint.json 中 `category-values` 为 `["core", "util", "experimental"]`
+**期望**: S10 按自定义值校验，不报 Forge 的 hammer/crucible/anvil/quench
+
+## 场景 14: 多平台配置
+
+**设置**: .skill-lint.json 中 `platforms` 为 `["openclaw", "gemini"]`
+**期望**: S14 分别检查 `platforms/openclaw/` 和 `platforms/gemini/` 下的适配文件

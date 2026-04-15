@@ -2,6 +2,8 @@
 name: block-break
 description: "Block Break — Behavioral constraint engine. When stuck, forces exhaustive problem-solving with L0-L4 pressure escalation."
 license: MIT
+metadata:
+  category: hammer
 ---
 
 # Block Break — 高能动性行为约束引擎

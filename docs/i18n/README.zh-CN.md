@@ -30,12 +30,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | 强制穷尽一切方案，不轻言放弃 | `/block-break` |
 | **ralph-boost** | 自主开发循环，保证收敛 | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | 功能 | 试试看 |
+|-------|------|--------|
+| **council-fuse** | 多视角议会蒸馏，获得更好的答案 | `/council-fuse <question>` |
+| **tome-forge** | 个人知识库，LLM 编纂的 wiki | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | 功能 | 试试看 |
 |-------|------|--------|
 | **skill-lint** | 校验任意 Claude Code skill 插件 | `/skill-lint .` |
-| **council-fuse** | 多视角议会蒸馏，获得更好的答案 | `/council-fuse <question>` |
 
 ### Quench
 

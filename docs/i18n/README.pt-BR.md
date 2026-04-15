@@ -50,12 +50,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | Força a resolução exaustiva antes de desistir | `/block-break` |
 | **ralph-boost** | Ciclos de desenvolvimento autônomos com garantia de convergência | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | O que faz | Experimente |
+|-------|-----------|-------------|
+| **council-fuse** | Deliberação multiperspectiva para respostas melhores | `/council-fuse <question>` |
+| **tome-forge** | Base de conhecimento pessoal com wiki compilada por LLM | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | O que faz | Experimente |
 |-------|-----------|-------------|
 | **skill-lint** | Valida qualquer skill plugin do Claude Code | `/skill-lint .` |
-| **council-fuse** | Deliberação multiperspectiva para respostas melhores | `/council-fuse <question>` |
 
 ### Quench
 

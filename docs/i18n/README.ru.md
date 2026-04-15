@@ -50,12 +50,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | Заставляет исчерпать все подходы перед тем, как сдаться | `/block-break` |
 | **ralph-boost** | Автономные циклы разработки с гарантией сходимости | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | Что делает | Попробуй |
+|-------|-----------|----------|
+| **council-fuse** | Мультиперспективное обсуждение для лучших ответов | `/council-fuse <question>` |
+| **tome-forge** | Персональная база знаний с wiki, компилируемой LLM | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | Что делает | Попробуй |
 |-------|-----------|----------|
 | **skill-lint** | Валидация любого Claude Code skill-плагина | `/skill-lint .` |
-| **council-fuse** | Мультиперспективное обсуждение для лучших ответов | `/council-fuse <question>` |
 
 ### Quench
 

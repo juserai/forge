@@ -50,12 +50,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | हार मानने से पहले हर approach try करने पर मजबूर करता है | `/block-break` |
 | **ralph-boost** | Convergence guarantee के साथ autonomous dev loops | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | क्या करता है | आज़माएँ |
+|-------|-------------|---------|
+| **council-fuse** | बेहतर जवाबों के लिए बहु-दृष्टिकोण विचार-विमर्श | `/council-fuse <question>` |
+| **tome-forge** | LLM-संकलित wiki के साथ व्यक्तिगत ज्ञान आधार | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | क्या करता है | आज़माएँ |
 |-------|-------------|---------|
 | **skill-lint** | किसी भी Claude Code skill plugin को validate करें | `/skill-lint .` |
-| **council-fuse** | बेहतर जवाबों के लिए बहु-दृष्टिकोण विचार-विमर्श | `/council-fuse <question>` |
 
 ### Quench
 

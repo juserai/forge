@@ -1,6 +1,8 @@
 # Skill Lint 规则详情
 
-## 结构检查规则（Bash 脚本执行）
+规则分两层：Core（S01-S08）始终执行，Extended（S09-S15）需 `.skill-lint.json` 配置驱动。
+
+## Core 结构检查规则（始终执行）
 
 ### S01: plugin.json 存在性
 
@@ -57,6 +59,59 @@
 - **检查**: `evals/<name>/scenarios.md` 是否存在
 - **级别**: warning
 - **说明**: 没有评估场景的 skill 难以验证质量，但不阻断使用
+
+## Extended 结构检查规则（需 `.skill-lint.json` 配置）
+
+以下规则仅在目标目录下存在 `.skill-lint.json` 且包含对应配置字段时执行。无配置文件的项目不会触发这些检查。
+
+### S09: 命名规范
+
+- **检查**: skill 目录名是否匹配配置中 `naming-pattern` 正则表达式
+- **级别**: warning
+- **配置**: `"naming-pattern": "^[a-z]+-[a-z]+$"`
+- **说明**: 命名规范因项目而异，通过正则自定义
+
+### S10: Category 字段
+
+- **检查**: SKILL.md frontmatter 中 `category` 值是否在配置的 `category-values` 列表中
+- **级别**: error
+- **配置**: `"category-values": ["hammer", "crucible", "anvil", "quench"]`
+- **说明**: category 值由项目自行定义，脚本仅校验值是否在允许列表内
+
+### S11: 触发测试脚本
+
+- **检查**: `evals/<name>/run-trigger-test.sh` 是否存在
+- **级别**: warning
+- **配置**: `"require-trigger-test": true`
+- **说明**: 触发测试用于验证 skill 的注册完整性
+
+### S12: 使用手册
+
+- **检查**: `docs/guide/<name>-guide.md` 是否存在
+- **级别**: warning
+- **配置**: `"require-guide": true`
+- **说明**: 使用手册是用户了解 skill 的入口
+
+### S13: 设计文档
+
+- **检查**: `docs/plans/<name>-design.md` 是否存在
+- **级别**: warning
+- **配置**: `"require-design-doc": true`
+- **说明**: 设计文档记录 skill 的定位、机制和决策理由
+
+### S14: 平台适配
+
+- **检查**: 配置中 `platforms` 数组指定的每个平台目录下，是否有对应的 `SKILL.md` 和 `references/*.md`
+- **级别**: warning
+- **配置**: `"platforms": ["openclaw"]`
+- **说明**: 支持任意平台名称，不限于 OpenClaw
+
+### S15: i18n README 覆盖
+
+- **检查**: 配置中 `i18n-dir` 指定目录下的每个 `README.*.md` 是否包含该 skill 名称
+- **级别**: warning
+- **配置**: `"i18n-dir": "docs/i18n"`
+- **说明**: i18n 目录路径可自定义
 
 ## 语义检查规则（AI 执行）
 

@@ -50,12 +50,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | Pes etmeden önce tüm yaklaşımları denemeye zorlar | `/block-break` |
 | **ralph-boost** | Yakınsama garantili otonom geliştirme döngüleri | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | Ne yapar | Dene |
+|-------|----------|------|
+| **council-fuse** | Daha iyi yanıtlar için çok perspektifli müzakere | `/council-fuse <question>` |
+| **tome-forge** | LLM derlemeli wiki ile kişisel bilgi tabanı | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | Ne yapar | Dene |
 |-------|----------|------|
 | **skill-lint** | Herhangi bir Claude Code skill plugin'ini doğrular | `/skill-lint .` |
-| **council-fuse** | Daha iyi yanıtlar için çok perspektifli müzakere | `/council-fuse <question>` |
 
 ### Quench
 

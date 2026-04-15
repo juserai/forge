@@ -21,7 +21,7 @@ platforms/<platform>/<skill>/      # 其他平台适配
 
 evals/<skill>/scenarios.md         # 评估场景（跨平台）
 evals/<skill>/run-trigger-test.sh  # 自动化触发测试
-docs/guide/<skill>.md              # 使用手册
+docs/guide/<skill>-guide.md        # 使用手册
 docs/plans/<topic>-design.md       # 设计文档
 ```
 
@@ -39,7 +39,7 @@ docs/plans/<topic>-design.md       # 设计文档
 
 ## 新增 Skill 流程
 
-1. `skills/<name>/SKILL.md` — Claude Code 适配版，frontmatter 含 name/description/license
+1. `skills/<name>/SKILL.md` — Claude Code 适配版，frontmatter 含 name/description/license/metadata.category
 2. `skills/<name>/references/*.md` — 详细内容（方法论、规则等）
 3. `skills/<name>/scripts/*.sh` — 辅助脚本（如有）
 4. `skills/<name>/agents/*.md` — Sub-agent 定义（如有）
@@ -47,9 +47,12 @@ docs/plans/<topic>-design.md       # 设计文档
 6. `platforms/openclaw/<name>/references/` — 复制或适配 references
 7. `evals/<name>/scenarios.md` — 至少 5 个评估场景
 8. `evals/<name>/run-trigger-test.sh` — 可执行的触发测试脚本
-9. `.claude-plugin/marketplace.json` — 在 `plugins` 数组追加条目
-10. `README.md` — 在 Skills 章节追加介绍
-11. 如需 Claude Code hooks，在根 `hooks/hooks.json` 中添加配置
+9. `docs/guide/<name>-guide.md` — 使用手册
+10. `docs/plans/<name>-design.md` — 设计文档
+11. `.claude-plugin/marketplace.json` — 在 `plugins` 数组追加条目
+12. `README.md` — 在对应分类章节追加介绍，同步所有 `docs/i18n/README.*.md`
+13. 如需 Claude Code hooks，在根 `hooks/hooks.json` 中添加配置
+14. 运行 `/skill-lint .` 验证所有检查通过（`.skill-lint.json` 已配置扩展规则）
 
 ## 新增平台流程
 
@@ -58,11 +61,31 @@ docs/plans/<topic>-design.md       # 设计文档
 3. 为每个 skill 复制或适配 references/scripts/agents
 4. `README.md` — 在安装章节追加该平台说明
 
+## 命名规范
+
+- Skill 目录名和 frontmatter `name` 必须使用 `noun-verb` 格式，kebab-case
+- 正确示例：`block-break`、`council-fuse`、`news-fetch`、`tome-forge`
+- 错误示例：`breaking-blocks`（verb-noun）、`lint`（单词）、`my_skill`（下划线）
+- 命名应体现 skill 的核心隐喻：名词是对象，动词是动作
+
+## 分类约定
+
+每个 skill 必须归入一个 Forge 分类，通过 frontmatter `metadata.category` 字段声明（`category` 非 Claude Code 原生字段，须放在 `metadata:` 下）：
+
+| 分类 | 锻造隐喻 | 定位 | 判断标准 |
+|------|---------|------|---------|
+| `hammer` | 锤 — 施力塑形 | 主动施压、驱动执行 | skill 的核心是推动 agent 执行、施加约束或驱动循环 |
+| `crucible` | 坩埚 — 熔炼提纯 | 多源融合、知识沉淀 | skill 的核心是融合多个来源/视角，产出比输入更精炼的结果 |
+| `anvil` | 砧 — 承托定型 | 验证、校验、质量保证 | skill 的核心是检验成品质量，输出通过/不通过判定 |
+| `quench` | 淬火 — 冷却定性 | 休息、信息补给 | skill 不直接参与开发，提供辅助信息或调节节奏 |
+
+分类变更时需同步更新所有 README.md 的 Skills 章节。
+
 ## 开发规范
 
 - 根 `plugin.json` 变更时同步 `.claude-plugin/plugin.json`
 - SKILL.md 保持精简，详细内容放 `references/` 按需加载，减少 token 消耗
-- frontmatter 支持字段：name, description, license, argument-hint, user-invokable, metadata
+- frontmatter 支持字段：name, description, license, argument-hint, user-invokable, metadata, category
 - 每个 skill 保持零依赖，可独立使用
 - skill 之间不应有硬依赖，可有可选组合关系
 - Spawn sub-agent 时必须注入行为约束（使用同目录 agents/ 的定义）

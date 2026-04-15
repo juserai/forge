@@ -70,6 +70,19 @@
             "skills": [
                 "./skills/news-fetch"
             ]
+        },
+        {
+            "name": "tome-forge",
+            "description": "Tome Forge — Personal knowledge base engine. LLM-compiled Markdown wiki based on Karpathy's pattern. No RAG needed. Zero-dep.",
+            "version": "1.0.0",
+            "source": "./",
+            "author": {
+                "name": "Juneq Cheung",
+                "url": "https://github.com/juserai"
+            },
+            "skills": [
+                "./skills/tome-forge"
+            ]
         }
     ]
 }

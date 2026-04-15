@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "naming-pattern": "^[a-z]+-[a-z]+$",
+    "category-values": ["hammer", "crucible", "anvil", "quench"],
+    "require-trigger-test": true,
+    "require-guide": true,
+    "require-design-doc": true,
+    "platforms": ["openclaw"],
+    "i18n-dir": "docs/i18n"
+  }
+}

@@ -50,12 +50,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | Buộc phải thử hết mọi cách trước khi bỏ cuộc | `/block-break` |
 | **ralph-boost** | Vòng lặp phát triển tự động với đảm bảo hội tụ | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | Chức năng | Thử ngay |
+|-------|-----------|----------|
+| **council-fuse** | Thảo luận đa góc nhìn để có câu trả lời tốt hơn | `/council-fuse <question>` |
+| **tome-forge** | Cơ sở tri thức cá nhân với wiki biên soạn bởi LLM | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | Chức năng | Thử ngay |
 |-------|-----------|----------|
 | **skill-lint** | Kiểm tra tính hợp lệ của bất kỳ Claude Code skill plugin nào | `/skill-lint .` |
-| **council-fuse** | Thảo luận đa góc nhìn để có câu trả lời tốt hơn | `/council-fuse <question>` |
 
 ### Quench
 

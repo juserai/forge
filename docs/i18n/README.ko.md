@@ -30,12 +30,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | 포기하기 전에 모든 방법을 소진하도록 강제합니다 | `/block-break` |
 | **ralph-boost** | 수렴을 보장하는 자율 개발 루프 | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | 기능 | 사용해 보기 |
+|-------|------|-------------|
+| **council-fuse** | 다관점 심의로 더 나은 답변 도출 | `/council-fuse <question>` |
+| **tome-forge** | LLM으로 편찬하는 개인 지식 베이스 | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | 기능 | 사용해 보기 |
 |-------|------|-------------|
 | **skill-lint** | Claude Code skill 플러그인 검증 | `/skill-lint .` |
-| **council-fuse** | 다관점 심의로 더 나은 답변 도출 | `/council-fuse <question>` |
 
 ### Quench
 

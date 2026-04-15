@@ -1,9 +1,9 @@
 # Forge
 
-> Forge stronger AI agents. 5 skills for a better coding rhythm with Claude Code.
+> Forge stronger AI agents. 6 skills for a better coding rhythm with Claude Code.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-5-blue.svg)]()
+[![Skills](https://img.shields.io/badge/skills-6-blue.svg)]()
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)]()
 [![Claude Code](https://img.shields.io/badge/platform-Claude%20Code-purple.svg)]()
 [![OpenClaw](https://img.shields.io/badge/platform-OpenClaw-orange.svg)]()
@@ -50,12 +50,18 @@ cp -r forge/platforms/openclaw/* ~/.openclaw/skills/
 | **block-break** | Forces exhaustive problem-solving before giving up | `/block-break` |
 | **ralph-boost** | Autonomous dev loops with convergence guarantee | `/ralph-boost setup` |
 
+### Crucible
+
+| Skill | What it does | Try it |
+|-------|-------------|--------|
+| **council-fuse** | Multi-perspective deliberation for better answers | `/council-fuse <question>` |
+| **tome-forge** | Personal knowledge base with LLM-compiled wiki | `/tome-forge init` |
+
 ### Anvil
 
 | Skill | What it does | Try it |
 |-------|-------------|--------|
 | **skill-lint** | Validate any Claude Code skill plugin | `/skill-lint .` |
-| **council-fuse** | Multi-perspective deliberation for better answers | `/council-fuse <question>` |
 
 ### Quench
 
@@ -168,6 +174,28 @@ The other three skills push you to work harder. This one reminds you to take a b
 /news-fetch robotics month        # This month's robotics news
 /news-fetch climate 2026-03-01~2026-03-31  # Custom date range
 ```
+
+## Tome Forge — Personal Knowledge Base Engine
+
+Build a personal knowledge base that an LLM compiles and maintains. Based on [Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — raw Markdown sources compiled into a structured wiki, no RAG or vector DB needed.
+
+| Feature | Description |
+|---------|-------------|
+| **Three-Layer Architecture** | Raw Sources (immutable) / Wiki (LLM-compiled) / Schema (CLAUDE.md) |
+| **6 Operations** | init, capture, ingest, query, lint, compile |
+| **My Understanding Delta** | Sacred section for human insights — LLM never overwrites |
+| **Zero Infra** | Pure Markdown + Git. No databases, no embeddings, no servers |
+
+```text
+/tome-forge init              # Initialize KB in current directory
+/tome-forge capture "idea"    # Quick-capture a note
+/tome-forge ingest raw/paper  # Compile raw material into wiki
+/tome-forge query "question"  # Search and synthesize
+/tome-forge lint              # Health-check wiki structure
+/tome-forge compile           # Batch compile all new materials
+```
+
+> Inspired by [Karpathy's LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), built as a zero-dependency skill.
 
 ## Quality
 
