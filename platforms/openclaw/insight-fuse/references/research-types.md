@@ -1,6 +1,6 @@
 # Research Types — 6 类调研预设
 
-`--type <name>` 参数激活一个预设包。预设声明默认模板、perspectives、来源权重、特有 checks。**显式传入的 `--template` / `--perspectives` / `--outputs` 覆盖预设对应字段，其余继承**。
+`--type <name>` 参数激活一个预设包。预设声明默认模板、perspectives、来源权重、特有 checks。**显式传入的 `--template` / `--perspectives` / `--sections` 覆盖预设对应字段，其余继承**。
 
 ## 决策树
 
@@ -17,7 +17,7 @@
 
 ## 预设矩阵
 
-| type | 默认 template | 默认 perspectives | Source 权重倾斜 | 特有 check | 默认 `--outputs` |
+| type | 默认 template | 默认 perspectives | Source 权重倾斜 | 特有 check | 默认 `--sections` |
 |------|-------------|------------------|----------------|----------|-----------------|
 | `overview` | meta-overview | generalist+critic+specialist | 均衡，加 meta-critic stance | skeleton-anchoring + multi-angle coverage | report,checklist |
 | `technology` | technology | generalist+critic+specialist | 官方 docs×2 / arxiv×1 / GitHub×1 | 学习/迁移/维护成本 + 锁定风险 | report,adr,checklist |
@@ -48,7 +48,7 @@
   - 迁移成本：从旧方案迁移的工作量估算
   - 维护成本：长期运维负担
   - 锁定风险：专有特性、供应商绑定
-- **默认 `--outputs`**：加 `adr`（Architecture Decision Record）便于决策落地
+- **默认 `--sections`**：加 `adr`（Architecture Decision Record）便于决策落地
 
 ### market — 市场调研
 
@@ -86,7 +86,7 @@
 - **特有 check**：
   - 必须含 user quote 或 journey map
   - JTBD（Jobs-to-be-Done）框架落地
-  - `--outputs` 默认加 `poc` 便于验证
+  - `--sections` 默认加 `poc` 便于验证
 
 ### competitive — 竞品分析
 
@@ -154,7 +154,7 @@ Check 15-17（Primary-source binding / Verbatim snippet / Numeric reconciliation
 
 - **显式 `--template X`** 覆盖预设 template
 - **显式 `--perspectives a,b,c`** 覆盖预设 perspectives（fallback 机制仍生效）
-- **显式 `--outputs a,b`** 覆盖预设 outputs
+- **显式 `--sections a,b`** 覆盖预设 outputs
 - 未显式指定的字段全部继承预设
 - 未指定 `--type` → 默认 `overview`
 

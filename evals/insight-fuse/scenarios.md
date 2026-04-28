@@ -1,6 +1,6 @@
 # insight-fuse v3 Trigger Scenarios
 
-测试 insight-fuse v3 的触发、参数路由、7 阶段流水线、14 check 执行、6 维评分、多输出渲染。
+测试 insight-fuse v3 的触发、参数路由、7 阶段流水线、14 check 执行、6 维评分、合并报告多段落渲染。
 
 ## Scenario 1: Brainstorm-only (Stage 0 solo)
 
@@ -52,23 +52,23 @@
 
 ## Scenario 4: research-type=technology
 
-**Input**: `/insight-fuse "Kubernetes Autoscaling 方案选型" --type technology --outputs report,adr,poc`
+**Input**: `/insight-fuse "Kubernetes Autoscaling 方案选型" --type technology --sections report,adr,poc`
 
 **Expected**:
 - Template: technology.md，含 FIR 标记 + 比例声明（10/30/35/15/10）
 - Specialist 强制 ≥1 comparison matrix（无则 GAPS_IDENTIFIED 显式说明）
 - 特有 check：学习/迁移/维护成本 + 锁定风险识别
-- 输出 3 物件：report.md + adr.md + poc.md
+- 单份合并文档含 3 个段落：report + adr + poc
 - ADR 含 3 条证据每条带 URL
 - PoC 假设对齐 skeleton.hypotheses + 量化成功标准
 
-**Validates**: technology 预设 + multi-output + specialist 强制数据表
+**Validates**: technology 预设 + multi-section merged output + specialist 强制数据表
 
 ---
 
 ## Scenario 5: research-type=market
 
-**Input**: `/insight-fuse "向量数据库市场 2026" --type market --depth deep --outputs report,decision-tree`
+**Input**: `/insight-fuse "向量数据库市场 2026" --type market --depth deep --sections report,decision-tree`
 
 **Expected**:
 - Perspectives: generalist + specialist + futurist（futurist 走 stance-override）
@@ -99,7 +99,7 @@
 
 ## Scenario 7: research-type=product
 
-**Input**: `/insight-fuse "AI 笔记产品机会" --type product --outputs report,poc`
+**Input**: `/insight-fuse "AI 笔记产品机会" --type product --sections report,poc`
 
 **Expected**:
 - Perspectives: user + designer + business（三者都走 stance-override，无独立 agent 文件）
@@ -130,15 +130,15 @@
 
 ## Scenario 9: multi-output generation
 
-**Input**: `/insight-fuse "k8s 向量化 autoscaling" --type technology --outputs report,adr,decision-tree,checklist,poc`
+**Input**: `/insight-fuse "k8s 向量化 autoscaling" --type technology --sections report,adr,decision-tree,checklist,poc`
 
 **Expected**:
-- Stage 6 依次渲染 5 个物件
-- 物件间相对路径互引
-- 每物件独立文件，命名 `<slug>-<date>-<kind>.md`
+- Stage 6 依次渲染 5 个段落到单份合并文档
+- 段落间内部锚点互引
+- 单份文件，命名 `<slug>-<date>.md`，含全部 5 段落
 - ADR 引用 report §X；decision-tree 引用 report；poc 引用 skeleton.hypotheses
 
-**Validates**: 全部 5 种输出物 + 物件间交叉引用
+**Validates**: 全部 5 种段落合并输出 + 段落间交叉引用
 
 ---
 

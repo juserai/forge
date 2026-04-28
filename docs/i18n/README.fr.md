@@ -176,11 +176,11 @@ Analyse multi-perspectives intégrée, 6 préréglages de type de recherche (ove
 | **Profondeur configurable** | quick / standard / deep / full — quick saute Stage 2-5 ; full exécute les 7 étapes avec portes interactives |
 | **Skeleton.yaml** | Contrat de données à 7 champs (dimensions / taxonomies / out_of_scope / existing_consensus / known_dissensus / hypotheses / business_neutral) consommé par chaque stage |
 | **Grille de qualité** | Score 6-dim (falsifiabilité / densité de preuves / reproductibilité / diversité des sources / actionnabilité / transparence) + 14 vérifications bloquantes + note A/B/C/D |
-| **Multi-sortie** | report / checklist / ADR / decision-tree / PoC — `--outputs` sélectionne les combinaisons |
+| **Multi-section** | report / checklist / ADR / decision-tree / PoC — `--sections` sélectionne les sections dans le document fusionné |
 
 ```text
 /insight-fuse "AI glasses"
-/insight-fuse "Kubernetes autoscaling" --type technology --outputs report,adr,poc
+/insight-fuse "Kubernetes autoscaling" --type technology --sections report,adr,poc
 /insight-fuse "Sparse MoE interpretability" --type academic --depth deep
 /insight-fuse "AI Native landscape" --type overview --depth full --audience "new entrants"
 ```

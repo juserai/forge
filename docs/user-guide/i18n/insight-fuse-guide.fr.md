@@ -9,7 +9,7 @@ Insight Fuse v3.1 transforme n'importe quel sujet en rapport de recherche publia
 
 ```bash
 /insight-fuse "AI glasses"
-/insight-fuse "Kubernetes autoscaling options" --type technology --outputs report,adr,poc
+/insight-fuse "Kubernetes autoscaling options" --type technology --sections report,adr,poc
 /insight-fuse "AI Native: panorama, discrimination framework, trajectory" --type overview --depth full
 /insight-fuse "AI Native in finance" --skeleton ~/team/skeletons/ai-native-fin.yaml
 /insight-fuse "Sparse MoE interpretability" --type academic --depth deep
@@ -78,7 +78,7 @@ Full schema: `skills/insight-fuse/references/skeleton-schema.md`.
 ## Formats de sortie (5 types)
 
 
-| `--outputs` | Template | Consumer |
+| `--sections` | Template | Consumer |
 |---|---|---|
 | `report` | `templates/<type>.md` | Decision makers |
 | `checklist` | `templates/checklist.md` | Implementation owners |

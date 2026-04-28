@@ -104,7 +104,7 @@
         },
         {
             "name": "insight-fuse",
-            "description": "Insight Fuse v3.1 — Systematic multi-source research engine. 7-stage pipeline with skeleton.yaml data contract, 6 research-type presets, 6-dim quality rubric + 17 blocking checks (incl. primary-source binding / verbatim snippet / numeric reconciliation), and 5 output formats. Zero-dep.",
+            "description": "Insight Fuse v3.1 — Systematic multi-source research engine. 7-stage pipeline with skeleton.yaml data contract, 6 research-type presets, 6-dim quality rubric, and unified merged report (5-section composition). Zero-dep.",
             "version": "3.1.0",
             "source": "./skills/insight-fuse",
             "author": {
@@ -112,7 +112,7 @@
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "d26c12ed2460a2346ff67be2376ee6ed8cb57a1113cc8c1577359f7f7979f1b0"
+                "skill-md-sha256": "42befccb98d0d4f737a01c6a872a77098201e0170290d271ede890859e6fffba"
             },
             "skills": [
                 "./"

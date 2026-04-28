@@ -11,7 +11,7 @@ Insight Fuse v3.1 turns any topic into a publishable research report. The engine
 /insight-fuse "AI glasses"
 
 # Technology selection with ADR + PoC outputs
-/insight-fuse "Kubernetes autoscaling options" --type technology --outputs report,adr,poc
+/insight-fuse "Kubernetes autoscaling options" --type technology --sections report,adr,poc
 
 # Full pipeline with interactive brainstorming + focus selection
 /insight-fuse "AI Native: panorama, discrimination framework, trajectory" --type overview --depth full
@@ -119,7 +119,7 @@ Every later stage consumes specific fields — see `skills/insight-fuse/referenc
 
 ## Output formats (5 types)
 
-| `--outputs` value | Template | Consumer |
+| `--sections` value | Template | Consumer |
 |---|---|---|
 | `report` | `templates/<type>.md` | Decision makers, peers |
 | `checklist` | `templates/checklist.md` | Implementation owners |
@@ -127,7 +127,7 @@ Every later stage consumes specific fields — see `skills/insight-fuse/referenc
 | `decision-tree` | `templates/decision-tree.md` | Developers (fast selection) |
 | `poc` | `templates/poc.md` | Validation engineers |
 
-Multi-output: `--outputs report,adr,checklist,decision-tree,poc` renders all five, each a separate file, cross-referenced by relative path.
+Multi-section: `--sections report,adr,checklist,decision-tree,poc` renders all five as sections within a single merged document, cross-referenced by internal anchors.
 
 ## Quality assurance: 17 checks + 6-dim scoring
 

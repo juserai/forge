@@ -156,11 +156,11 @@ AI 又放弃了？`/block-break` 强制它穷尽一切方案。
 | **可配置深度** | quick / standard / deep / full — quick 跳过 Stage 2-5；full 跑全 7 阶段含交互 gate |
 | **Skeleton.yaml** | 7 字段数据契约（dimensions / taxonomies / out_of_scope / existing_consensus / known_dissensus / hypotheses / business_neutral）被每个 stage 消费 |
 | **质量尺** | 6 维评分（可证伪 / 证据密度 / 可复现 / 来源多样 / 可行动 / 透明度） + 14 项 blocking check + A/B/C/D 等级 |
-| **多输出物** | report / checklist / ADR / decision-tree / PoC — 通过 `--outputs` 组合 |
+| **多段落合并** | report / checklist / ADR / decision-tree / PoC — 通过 `--sections` 选择合并文档中包含的段落 |
 
 ```text
 /insight-fuse "AI 眼镜"
-/insight-fuse "Kubernetes 自动伸缩" --type technology --outputs report,adr,poc
+/insight-fuse "Kubernetes 自动伸缩" --type technology --sections report,adr,poc
 /insight-fuse "Sparse MoE 可解释性" --type academic --depth deep
 /insight-fuse "AI Native 全景" --type overview --depth full --audience "新入局者"
 ```

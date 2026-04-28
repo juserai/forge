@@ -1,10 +1,10 @@
-# Output Formats — 5 种输出物渲染规范
+# Output Formats — 单一合并报告的 5 段可选段落规范
 
-`--outputs <list>` 参数选择要生成的物件。Stage 6 按此列表逐一渲染，全部输出到同一目录（默认控制台；若装 tome-forge 则归档到 KB）。
+`--sections <list>` 参数选择合并报告中要包含的段落。Stage 6 按依赖顺序将各段落拼接为**单一 markdown 文件**输出（默认控制台；若装 tome-forge 则归档到 KB）。report 段落作为文档根 H1，其余段落以 H2 续编号拼接（详见下方"段落合并规则"）。
 
 ## 总览
 
-| 名称 | `--outputs` 值 | 模板 | 主要消费者 | 默认生成 |
+| 名称 | `--sections` 值 | 模板 | 主要消费者 | 默认生成 |
 |------|:-:|-------|-----------|:-:|
 | 主报告 | `report` | `templates/<research_type>.md` | 决策层 / 同行 | ✅ 默认 |
 | 可执行 checklist | `checklist` | `templates/checklist.md` | 落地执行者 | ✅ 默认 |
@@ -12,7 +12,7 @@
 | 快速选型决策树 | `decision-tree` | `templates/decision-tree.md` | 开发者 / 快速选型 | market/competitive 默认 |
 | PoC 验证模板 | `poc` | `templates/poc.md` | 开发者 / 验证工程师 | product type 默认 |
 
-未指定 `--outputs` → 按 `research_type` 预设默认值（见 [research-types.md](research-types.md)）。
+未指定 `--sections` → 按 `research_type` 预设默认值（见 [research-types.md](research-types.md)）。所有段落合并输出为单一 markdown 文件
 
 ## 一、report — 主报告
 
@@ -29,7 +29,7 @@
 
 **FIR 标记**：每段首标 `[F]` / `[I]` / `[R]`（见 [research-protocol.md](research-protocol.md) § FIR）。
 
-**文件命名**：`<topic-slug>-<YYYYMMDD>-report.md`
+**段落标识**：`report`（合并文件中的根段落，保留 H1）
 
 ## 二、checklist — 可执行 checklist
 
@@ -67,7 +67,7 @@
 3. 按置信度分级：High（L1-L2 来源支持）/ Medium（L3）/ Low（L5 或推测）
 4. 每项附来源 section 引用
 
-**文件命名**：`<topic-slug>-<YYYYMMDD>-checklist.md`
+**段落标识**：`checklist`
 
 ## 三、adr — Architecture Decision Record
 
@@ -112,13 +112,13 @@
 
 **生成规则**：
 
-1. 仅当 `research_type == technology` 或 `--outputs` 含 `adr` 时生成
+1. 仅当 `research_type == technology` 或 `--sections` 含 `adr` 时生成
 2. "决策"必须对应报告推荐排序第 1 项
 3. "理由"至少 3 条，每条配 source URL
 4. "后果"正负必须同时存在（无负面后果 = 不合格 ADR）
 5. ADR 编号由用户提供或自动分配 `ADR-<YYYYMMDD>-<topic-slug>`
 
-**文件命名**：`<topic-slug>-<YYYYMMDD>-adr.md`
+**段落标识**：`adr`
 
 ## 四、decision-tree — 快速选型决策树
 
@@ -163,7 +163,7 @@
 3. 叶子节点必须标注适用边界（Check 11 因果纪律）
 4. 至少给出"本决策树不适用"的边界条件
 
-**文件命名**：`<topic-slug>-<YYYYMMDD>-decision-tree.md`
+**段落标识**：`decision-tree`
 
 ## 五、poc — PoC 验证模板
 
@@ -225,22 +225,39 @@
 4. 测试脚本必须可执行（不接受伪代码）
 5. 时间边界建议 1-2 周
 
-**文件命名**：`<topic-slug>-<YYYYMMDD>-poc.md`
+**段落标识**：`poc`
 
-## 多输出协调
+## 段落合并规则（单一文件）
 
-当 `--outputs` 包含多个物件时，Stage 6 按以下顺序串行渲染：
+`--sections` 列表中的段落按以下**依赖顺序**拼接为单一 markdown 文件（跳过未选中段落，保持相对顺序不变）：
 
-1. `report` —— 其他物件引用之
+1. `report` —— 根段落，提供文档唯一 H1
 2. `checklist` —— 从 report 抽取
 3. `adr` —— 从 report 的决策段 + 推荐排序抽取
 4. `decision-tree` —— 从 report 的方案对比 + 推荐段抽取
 5. `poc` —— 从 skeleton.hypotheses + report 的待验证清单抽取
 
-每个物件独立文件；物件间通过相对路径链接互引（确保归档到 KB 后仍可追溯）。
+### 标题降级规则
+
+合并文件只允许一个 H1（来自 report 段落）。其余段落在拼接时执行机械降级：
+
+| 段落 | 原模板标题级别 | 合并后级别 | 说明 |
+|------|-------------|-----------|------|
+| report | `# <title>` | `# <title>` | 保持不变，作为文档唯一 H1 |
+| 非 report 段 | `# <title>` | `## §N+1. <title>` | H1 → H2，续接 report 最后 §N 的编号 |
+| 非 report 段 | `## <heading>` | `### <heading>` | H2 → H3（级联降一级） |
+| 非 report 段 | `### <heading>` | `#### <heading>` | H3 → H4（级联降一级） |
+
+### 段间引用改写
+
+模板中的相对路径链接（如 `基于：<report.md link>`）在合并时改写为段内锚点引用 `(见上文 §X)`，确保单文件内导航有效。
+
+### 统一文件命名
+
+合并文件命名：`{kb_root}/raw/reports/insight-fuse/{YYYY-MM-DD}-{topic-slug}.md`（与 tome-forge KB 的 Save Algorithm 一致）。控制台输出时不涉及文件命名。
 
 ## 归档行为
 
 - `--no-save` → 输出到控制台，不归档
-- tome-forge 已装 → 按 tome-forge 的 `report-archival-protocol.md` 归档，每个物件一条目
-- tome-forge 未装 → 仅控制台，输出一行 `[note] tome-forge not installed; outputs printed to console only`
+- tome-forge 已装 → 按 tome-forge 的 `report-archival-protocol.md` 归档为单条目；frontmatter 由协议生成，并在 `outputs: [report, adr, ...]` 字段中记录本次合并所含段落
+- tome-forge 未装 → 仅控制台，输出一行 `[note] tome-forge not installed; output printed to console only`
