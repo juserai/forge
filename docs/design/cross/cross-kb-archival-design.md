@@ -112,4 +112,4 @@ operations.md 新增报告路由规则：
 | `skills/insight-fuse/SKILL.md` | MODIFY | KB 归档可选节 |
 | `skills/council-fuse/SKILL.md` | MODIFY | KB 归档可选节 |
 | `skills/news-fetch/SKILL.md` | MODIFY | KB 归档可选节 |
-| `docs/design/cross-kb-archival-design.md` | NEW | 本文档 |
+| `docs/design/cross/cross-kb-archival-design.md` | NEW | 本文档 |

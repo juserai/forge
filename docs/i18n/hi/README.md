@@ -2,13 +2,13 @@
 
 > और मेहनत करो, फिर ब्रेक लो। Claude Code के साथ बेहतर कोडिंग रिदम के लिए 8 skills।
 
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](../../LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](../../../LICENSE)
 [![Skills](https://img.shields.io/badge/skills-8-blue.svg)]()
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)]()
 [![Claude Code](https://img.shields.io/badge/platform-Claude%20Code-purple.svg)]()
 [![OpenClaw](https://img.shields.io/badge/platform-OpenClaw-orange.svg)]()
 
-[English](../../README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Español](README.es.md) | [Português](README.pt-BR.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Русский](README.ru.md) | [हिन्दी](README.hi.md) | [Türkçe](README.tr.md) | [Tiếng Việt](README.vi.md)
+[English](../../../README.md) | [中文](../zh-CN/README.md) | [日本語](../ja/README.md) | [한국어](../ko/README.md) | [Español](../es/README.md) | [Português](../pt-BR/README.md) | [Français](../fr/README.md) | [Deutsch](../de/README.md) | [Русский](../ru/README.md) | [हिन्दी](README.md) | [Türkçe](../tr/README.md) | [Tiếng Việt](../vi/README.md)
 
 ### क्विक डेमो
 
@@ -287,8 +287,8 @@ forge/
 4. `.claude-plugin/marketplace.json` — `plugins` array में entry add करें
 5. ज़रूरत हो तो hooks: `skills/<name>/hooks/hooks.json` + scripts बनाएँ; marketplace.json में `source` `./skills/<name>` पर point करना चाहिए
 
-पूरी development guidelines के लिए [CLAUDE.md](../../CLAUDE.md) देखें।
+पूरी development guidelines के लिए [CLAUDE.md](../../../CLAUDE.md) देखें।
 
 ## लाइसेंस
 
-[MIT](../../LICENSE) - [Juneq Cheung](https://github.com/juserai)
+[MIT](../../../LICENSE) - [Juneq Cheung](https://github.com/juserai)

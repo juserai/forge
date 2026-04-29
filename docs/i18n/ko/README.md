@@ -2,13 +2,13 @@
 
 > 더 열심히, 그리고 잠깐 쉬어가기. Claude Code와 함께하는 더 나은 코딩 리듬을 위한 8가지 skill.
 
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](../../LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](../../../LICENSE)
 [![Skills](https://img.shields.io/badge/skills-8-blue.svg)]()
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)]()
 [![Claude Code](https://img.shields.io/badge/platform-Claude%20Code-purple.svg)]()
 [![OpenClaw](https://img.shields.io/badge/platform-OpenClaw-orange.svg)]()
 
-[English](../../README.md) | [中文](README.zh-CN.md) | [日本語](README.ja.md) | [Español](README.es.md) | [Português](README.pt-BR.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Русский](README.ru.md) | [हिन्दी](README.hi.md) | [Türkçe](README.tr.md) | [Tiếng Việt](README.vi.md)
+[English](../../../README.md) | [中文](../zh-CN/README.md) | [日本語](../ja/README.md) | [Español](../es/README.md) | [Português](../pt-BR/README.md) | [Français](../fr/README.md) | [Deutsch](../de/README.md) | [Русский](../ru/README.md) | [हिन्दी](../hi/README.md) | [Türkçe](../tr/README.md) | [Tiếng Việt](../vi/README.md)
 
 ## 설치
 
@@ -262,8 +262,8 @@ forge/
 4. `.claude-plugin/marketplace.json` — `plugins` 배열에 항목 추가
 5. hooks가 필요한 경우: `skills/<name>/hooks/hooks.json` + 스크립트 생성. marketplace.json의 `source`는 `./skills/<name>`을 가리켜야 함
 
-자세한 개발 가이드라인은 [CLAUDE.md](../../CLAUDE.md)를 참고하십시오.
+자세한 개발 가이드라인은 [CLAUDE.md](../../../CLAUDE.md)를 참고하십시오.
 
 ## License
 
-[MIT](../../LICENSE) - [Juneq Cheung](https://github.com/juserai)
+[MIT](../../../LICENSE) - [Juneq Cheung](https://github.com/juserai)

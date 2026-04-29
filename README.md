@@ -8,7 +8,7 @@
 [![Claude Code](https://img.shields.io/badge/platform-Claude%20Code-purple.svg)]()
 [![OpenClaw](https://img.shields.io/badge/platform-OpenClaw-orange.svg)]()
 
-[中文](docs/i18n/README.zh-CN.md) | [日本語](docs/i18n/README.ja.md) | [한국어](docs/i18n/README.ko.md) | [Español](docs/i18n/README.es.md) | [Português](docs/i18n/README.pt-BR.md) | [Français](docs/i18n/README.fr.md) | [Deutsch](docs/i18n/README.de.md) | [Русский](docs/i18n/README.ru.md) | [हिन्दी](docs/i18n/README.hi.md) | [Türkçe](docs/i18n/README.tr.md) | [Tiếng Việt](docs/i18n/README.vi.md)
+[中文](docs/i18n/zh-CN/README.md) | [日本語](docs/i18n/ja/README.md) | [한국어](docs/i18n/ko/README.md) | [Español](docs/i18n/es/README.md) | [Português](docs/i18n/pt-BR/README.md) | [Français](docs/i18n/fr/README.md) | [Deutsch](docs/i18n/de/README.md) | [Русский](docs/i18n/ru/README.md) | [हिन्दी](docs/i18n/hi/README.md) | [Türkçe](docs/i18n/tr/README.md) | [Tiếng Việt](docs/i18n/vi/README.md)
 
 ### Quick Demo
 
@@ -273,22 +273,28 @@ forge/
 ├── docs/
 │   ├── user-guide/                # Per-skill usage guides (English)
 │   ├── dev-guide/                 # Cross-cutting developer docs
-│   ├── design/                    # Design documents (cross-* prefix = horizontal)
-│   └── i18n/                      # Translations (11 languages)
-│       ├── README.*.md            # Translated READMEs
-│       └── (translated guides now under docs/user-guide/i18n/)
+│   ├── design/                    # Per-category design docs (hammer/crucible/anvil/quench/cross)
+│   └── i18n/                      # Translations (11 languages, single-track)
+│       └── <lang>/
+│           ├── README.md          # Translated README
+│           └── <skill>-guide.md   # Translated skill guide
+├── openspec/                      # Evolution meta-repo (RFCs + horizontal capability specs)
+│   ├── specs/<capability>/        # help-mode / skill-lifecycle / category-decision / etc.
+│   └── changes/<id>/              # In-flight RFCs (archive/ for landed ones)
 └── plugin.json                    # Collection metadata
 ```
 
 ## Contributing
 
 1. `skills/<name>/SKILL.md` — Claude Code skill + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw adaptation + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw adaptation + references/scripts (see [platform-parity](openspec/specs/platform-parity/spec.md) for the broadcast contract)
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — Eval scenarios
 4. `.claude-plugin/marketplace.json` — Add entry to `plugins` array
 5. Hooks if needed: create `skills/<name>/hooks/hooks.json` + scripts; marketplace.json `source` must point to `./skills/<name>`
 
-See [CLAUDE.md](CLAUDE.md) for full development guidelines.
+For non-trivial changes to repo structure or horizontal contracts, propose via `openspec/changes/<id>/` (proposal + design + tasks + affected specs).
+
+See [CLAUDE.md](CLAUDE.md) for the navigation map and links to all 7 horizontal capability specs.
 
 ## License
 

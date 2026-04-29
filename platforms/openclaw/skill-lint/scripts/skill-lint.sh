@@ -38,9 +38,9 @@ CFG_VERIFY_PLATFORM_SUBDIRS=""
 CFG_VERIFY_I18N_STRUCTURE=""
 CFG_VERIFY_CROSS_SKILL_CATEGORY=""
 # Path config (see rules.md): fallback to legacy layout if keys absent.
+# i18n is single-track: <i18n-dir>/<lang>/{README.md, <skill>-guide.md}
 CFG_USER_GUIDE_DIR="docs/guide"
 CFG_DESIGN_DIR="docs/plans"
-CFG_I18N_GUIDE_DIR="docs/i18n/guide"
 
 if [ -f "$CONFIG_FILE" ]; then
     # Parse config using python
@@ -84,8 +84,6 @@ if 'user-guide-dir' in rules:
     print(f'CFG_USER_GUIDE_DIR={shlex.quote(rules[\"user-guide-dir\"])}')
 if 'design-dir' in rules:
     print(f'CFG_DESIGN_DIR={shlex.quote(rules[\"design-dir\"])}')
-if 'i18n-guide-dir' in rules:
-    print(f'CFG_I18N_GUIDE_DIR={shlex.quote(rules[\"i18n-guide-dir\"])}')
 " 2>/dev/null)" || true
 fi
 
@@ -249,12 +247,16 @@ sys.exit(1)
         fi
     fi
 
-    # --- S13: Design document ---
+    # --- S13: Design document (recursive find — typical layout <design-dir>/<category>/<skill>-design.md) ---
     if [ -n "$CFG_REQUIRE_DESIGN_DOC" ]; then
-        if [ -f "$PLUGIN_ROOT/$CFG_DESIGN_DIR/$skill_name-design.md" ]; then
-            add_passed "S13: $CFG_DESIGN_DIR/$skill_name-design.md exists"
+        design_match=""
+        if [ -d "$PLUGIN_ROOT/$CFG_DESIGN_DIR" ]; then
+            design_match=$(find "$PLUGIN_ROOT/$CFG_DESIGN_DIR" -name "$skill_name-design.md" -type f 2>/dev/null | head -1)
+        fi
+        if [ -n "$design_match" ]; then
+            add_passed "S13: ${design_match#"$PLUGIN_ROOT/"} exists"
         else
-            add_warning "S13: $CFG_DESIGN_DIR/$skill_name-design.md missing"
+            add_warning "S13: $CFG_DESIGN_DIR/<category>/$skill_name-design.md missing"
         fi
     fi
 
@@ -283,50 +285,49 @@ sys.exit(1)
         done
     fi
 
-    # --- S15: i18n README coverage ---
+    # --- S15: i18n README coverage (single-track <i18n-dir>/<lang>/README.md) ---
     if [ -n "$CFG_I18N_DIR" ]; then
         i18n_path="$PLUGIN_ROOT/$CFG_I18N_DIR"
         if [ -d "$i18n_path" ]; then
-            for i18n_readme in "$i18n_path/"README.*.md; do
+            for lang_dir in "$i18n_path"/*/; do
+                [ -d "$lang_dir" ] || continue
+                i18n_readme="$lang_dir/README.md"
                 [ -f "$i18n_readme" ] || continue
-                lang="$(basename "$i18n_readme" | sed 's/README\.//;s/\.md//')"
+                lang="$(basename "$lang_dir")"
                 if grep -q "$skill_name" "$i18n_readme" 2>/dev/null; then
-                    add_passed "S15: '$skill_name' listed in README.$lang.md"
+                    add_passed "S15: '$skill_name' listed in $lang/README.md"
                 else
-                    add_warning "S15: '$skill_name' not found in $CFG_I18N_DIR/README.$lang.md"
+                    add_warning "S15: '$skill_name' not found in $CFG_I18N_DIR/$lang/README.md"
                 fi
             done
         fi
     fi
 
-    # --- S16: i18n guide coverage ---
-    # Path driven by CFG_I18N_GUIDE_DIR (default docs/i18n/guide).
+    # --- S16: i18n guide coverage (single-track <i18n-dir>/<lang>/<skill>-guide.md) ---
     if [ -n "$CFG_REQUIRE_I18N_GUIDE" ] && [ -n "$CFG_I18N_DIR" ]; then
         i18n_path="$PLUGIN_ROOT/$CFG_I18N_DIR"
-        guide_i18n_dir="$PLUGIN_ROOT/$CFG_I18N_GUIDE_DIR"
         if [ -d "$i18n_path" ]; then
-            for i18n_readme in "$i18n_path/"README.*.md; do
-                [ -f "$i18n_readme" ] || continue
-                lang="$(basename "$i18n_readme" | sed 's/README\.//;s/\.md//')"
-                guide_i18n_file="$guide_i18n_dir/$skill_name-guide.$lang.md"
+            for lang_dir in "$i18n_path"/*/; do
+                [ -d "$lang_dir" ] || continue
+                lang="$(basename "$lang_dir")"
+                guide_i18n_file="$lang_dir/$skill_name-guide.md"
                 if [ -f "$guide_i18n_file" ]; then
-                    add_passed "S16: $CFG_I18N_GUIDE_DIR/$skill_name-guide.$lang.md exists"
+                    add_passed "S16: $CFG_I18N_DIR/$lang/$skill_name-guide.md exists"
                 else
-                    add_warning "S16: $CFG_I18N_GUIDE_DIR/$skill_name-guide.$lang.md missing"
+                    add_warning "S16: $CFG_I18N_DIR/$lang/$skill_name-guide.md missing"
                 fi
             done
         fi
     fi
 done
 
-# --- S17: i18n guide wrong-path guard ---
-# Guard against the reversed misplacement: <user-guide-dir>/i18n/ (where files would be invisible to S16).
+# --- S17: legacy i18n path guard ---
+# After single-track migration, <user-guide-dir>/i18n/ should not contain any .md files.
 if [ -n "$CFG_REQUIRE_I18N_GUIDE" ] \
-    && [ "$CFG_I18N_GUIDE_DIR" != "$CFG_USER_GUIDE_DIR/i18n" ] \
     && [ -d "$PLUGIN_ROOT/$CFG_USER_GUIDE_DIR/i18n" ]; then
     wrong_count=$(find "$PLUGIN_ROOT/$CFG_USER_GUIDE_DIR/i18n" -type f -name "*.md" 2>/dev/null | wc -l)
     if [ "$wrong_count" -gt 0 ]; then
-        add_error "S17: $CFG_USER_GUIDE_DIR/i18n/ contains $wrong_count files — wrong path. i18n guides belong in $CFG_I18N_GUIDE_DIR/"
+        add_error "S17: $CFG_USER_GUIDE_DIR/i18n/ contains $wrong_count file(s) — i18n guides moved to $CFG_I18N_DIR/<lang>/<skill>-guide.md"
     fi
 fi
 
@@ -437,18 +438,21 @@ fi
 
 # --- S23: i18n structure parity (H2 headings) ---
 # For each skill's English guide, ensure each i18n guide has >= 90% of the H2 headings.
+# Single-track layout: <i18n-dir>/<lang>/<skill>-guide.md
 if [ -n "$CFG_VERIFY_I18N_STRUCTURE" ] && [ -n "$CFG_I18N_DIR" ]; then
     s23_fail=0
     guide_dir="$PLUGIN_ROOT/$CFG_USER_GUIDE_DIR"
-    i18n_guide_dir="$PLUGIN_ROOT/$CFG_I18N_GUIDE_DIR"
+    i18n_root="$PLUGIN_ROOT/$CFG_I18N_DIR"
     for skill_name in "${SKILL_NAMES[@]}"; do
         en_guide="$guide_dir/$skill_name-guide.md"
         [ -f "$en_guide" ] || continue
         en_h2_count=$(grep -c "^## " "$en_guide" 2>/dev/null || echo 0)
         [ "$en_h2_count" -eq 0 ] && continue
-        for i18n_file in "$i18n_guide_dir/$skill_name-guide."*.md; do
+        for lang_dir in "$i18n_root"/*/; do
+            [ -d "$lang_dir" ] || continue
+            lang=$(basename "$lang_dir")
+            i18n_file="$lang_dir/$skill_name-guide.md"
             [ -f "$i18n_file" ] || continue
-            lang=$(basename "$i18n_file" | sed "s/^$skill_name-guide\\.//;s/\\.md$//")
             i18n_h2_count=$(grep -c "^## " "$i18n_file" 2>/dev/null || echo 0)
             # require i18n to have >= ceil(en * 0.9) sections
             threshold=$(( (en_h2_count * 90 + 99) / 100 ))
@@ -479,8 +483,8 @@ if [ -n "$CFG_VERIFY_CROSS_SKILL_CATEGORY" ]; then
         cat_val=$(grep -E '^\s*category:' "$skill_md" | head -1 | sed 's/.*category:[[:space:]]*//' | tr -d '[:space:]')
         [ -n "$cat_val" ] && seen_categories[$skill_name]=$cat_val
     done
-    # Scan guide files for potentially stale claims
-    for guide_file in "$PLUGIN_ROOT/$CFG_USER_GUIDE_DIR/"*.md "$PLUGIN_ROOT/$CFG_I18N_GUIDE_DIR/"*.md; do
+    # Scan guide files for potentially stale claims (single-track i18n: <i18n-dir>/<lang>/<skill>-guide.md)
+    for guide_file in "$PLUGIN_ROOT/$CFG_USER_GUIDE_DIR/"*.md "$PLUGIN_ROOT/$CFG_I18N_DIR"/*/*-guide.md; do
         [ -f "$guide_file" ] || continue
         # Find lines matching "<same/different category phrase> ... (<category keyword>)" OR "... is <category>"
         matches=$(grep -nE "($same_category_patterns).*\\((${cat_keywords})\\)|\\*\\*(${cat_keywords})\\*\\*" "$guide_file" 2>/dev/null || true)

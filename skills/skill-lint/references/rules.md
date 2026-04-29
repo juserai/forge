@@ -94,10 +94,10 @@
 
 ### S13: 设计文档
 
-- **检查**: `<design-dir>/<name>-design.md` (default `docs/design/<name>-design.md`) 是否存在
+- **检查**: `<design-dir>/**/<name>-design.md` 是否存在（递归查找）
 - **级别**: warning
 - **配置**: `"require-design-doc": true`
-- **说明**: 设计文档记录 skill 的定位、机制和决策理由
+- **说明**: 设计文档记录 skill 的定位、机制和决策理由。典型布局是 `docs/design/<category>/<name>-design.md`（按 forge 4 分类组织，hammer/crucible/anvil/quench/cross），递归查找避免硬绑路径。
 
 ### S14: 平台适配
 
@@ -108,31 +108,31 @@
 
 ### S15: i18n README 覆盖
 
-- **检查**: 配置中 `i18n-dir` 指定目录下的每个 `README.*.md` 是否包含该 skill 名称
+- **检查**: `<i18n-dir>/<lang>/README.md`（按目录扫描发现的每种语言）是否包含该 skill 名称
 - **级别**: warning
 - **配置**: `"i18n-dir": "docs/i18n"`
-- **说明**: i18n 目录路径可自定义
+- **说明**: 单轨布局——每语言一目录，README 与 skill guide 同处。语言列表从 `<i18n-dir>/` 下的子目录自动推断
 
 ### S16: i18n 使用手册覆盖
 
-- **检查**: 对于 `i18n-dir` 下发现的每个语言，`<i18n-guide-dir>/<name>-guide.<lang>.md` (default `docs/user-guide/i18n/<name>-guide.<lang>.md`) 是否存在
+- **检查**: 对于 `<i18n-dir>/` 下每个语言目录，`<i18n-dir>/<lang>/<name>-guide.md` 是否存在
 - **级别**: warning
 - **配置**: `"require-i18n-guide": true`（同时需要 `i18n-dir` 配置）
-- **说明**: 使用手册的多语言版本存放在 `<i18n-guide-dir>` (default `docs/user-guide/i18n/`) 下，文件名格式为 `<skill>-guide.<lang>.md`，语言列表从 i18n README 文件名自动推断。与 CLAUDE.md 目录约定一致（i18n 相关资源统一在 `docs/i18n/` 下）
+- **说明**: 单轨布局，i18n guide 与 README 同住 `<i18n-dir>/<lang>/`，文件名与英文版对齐（仅目录不同）
 
-### S17: i18n guide 路径守卫
+### S17: 旧 i18n 路径守卫
 
-- **检查**: `<user-guide-dir>/i18n/` 目录是否存在且包含 .md 文件（常见误放位置）
+- **检查**: `<user-guide-dir>/i18n/` 目录是否存在且包含 .md 文件
 - **级别**: error
 - **配置**: `"require-i18n-guide": true`（复用 S16 配置）
-- **说明**: i18n guide 的正确位置是 `<i18n-guide-dir>` (default `docs/user-guide/i18n/`)，而非 `<user-guide-dir>/i18n/`。此规则防止文件放错位置
+- **说明**: 单轨迁移完成后 `<user-guide-dir>/i18n/` 应该不存在或为空。任何残留 .md 文件视为迁移未完成或被回退。i18n guide 的正确位置是 `<i18n-dir>/<lang>/<name>-guide.md`
 
 ### S26: `docs/design/cross-*` 命名空间保护
 
-- **检查**: `<design-dir>/` 下 `cross-<token>[-design].md` 文件的 `<token>`（去前缀、去 `-design` 后缀）不得与任何 `skills/*/` 目录名重名
+- **检查**: `<design-dir>/` 顶层下 `cross-<token>[-design].md` 文件的 `<token>`（去前缀、去 `-design` 后缀）不得与任何 `skills/*/` 目录名重名
 - **级别**: error
 - **配置**: `"protect-cross-namespace": true`
-- **说明**: `cross-` 前缀保留给横切设计文档（跨多个 skill 的主题，例如 `cross-kb-archival-design.md`）。如果 `docs/design/cross-block-break-design.md` 与 `skills/block-break/` 并存，说明横切文件侵占了 per-skill 命名空间，视为命名冲突。本规则**不**限制 skill 本身以 `cross-` 开头（例如 `cross-check` 作为合法的 noun-verb kebab-case skill 名不会被误伤）——只保护 `docs/design/` 下的前缀语义
+- **说明**: 横切设计文档放在 `docs/design/cross/` 子目录下（典型路径 `docs/design/cross/cross-kb-archival-design.md`）。本规则保护 `<design-dir>/` 顶层不被 `cross-<skill>-design.md` 污染——若有人把 `docs/design/cross-block-break-design.md` 放在顶层并与 `skills/block-break/` 并存，视为命名冲突。Skill 本身以 `cross-` 开头（例如 `cross-check` 作为合法的 noun-verb kebab-case skill 名）不会被误伤——只检查 `docs/design/` 顶层文件。
 
 ### S25: Help 段落要求
 

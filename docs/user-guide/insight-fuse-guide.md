@@ -146,7 +146,7 @@ Stage 6 runs all 17 blocking checks. Any failure triggers rewrite, up to 2 round
 
 ## Source reliability (v3.1)
 
-Version 3.1 hardens the pipeline against the "URL real, number fake" hallucination mode by introducing three new blocking checks, tiered by `--type` × `--depth`. Full rationale in [docs/design/insight-fuse-design.md §11](../design/insight-fuse-design.md).
+Version 3.1 hardens the pipeline against the "URL real, number fake" hallucination mode by introducing three new blocking checks, tiered by `--type` × `--depth`. Full rationale in [docs/design/crucible/insight-fuse-design.md §11](../design/crucible/insight-fuse-design.md).
 
 **Tier enforcement** (blocking `block` vs advisory `adv`; C15 / C16 / C17 in order):
 

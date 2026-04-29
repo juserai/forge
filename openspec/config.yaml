@@ -1,0 +1,48 @@
+schema: spec-driven
+
+context: |
+  Forge — 多平台 AI agent skill 集合。每个 skill 是独立自包含单元，通过
+  SKILL.md 注入 AI 上下文。各平台各自持有完整文件，互不依赖，零运行时依赖。
+
+  Tech stack: Bash + Markdown + JSON。零运行时依赖。
+  目标平台: Claude Code（规范版） / OpenClaw（适配版）。
+
+  四大分类（forge category）：
+    - hammer    施力塑形    OUTPUT 是行为指令（"必须/不许做 X"）
+    - crucible  熔炼提纯    OUTPUT 是融合产出（比输入更精炼）
+    - anvil     承托定型    OUTPUT 是 pass/fail 判定
+    - quench    冷却定性    OUTPUT 是辅助信息或节奏调节
+
+  命名规范: Skill 目录名与 frontmatter `name` 必须使用 noun-verb kebab-case，
+  例如 block-break / council-fuse / news-fetch。
+
+  提交风格: Conventional Commits 风格前缀（feat / fix / docs / refactor / chore），
+  改动 SKILL.md 必须重算 marketplace.json 的 SHA-256 hash。
+
+  运行时状态根目录: ~/.forge/<skill>-state.json，跨 skill 不共享。
+
+  i18n 布局: docs/i18n/<lang>/{README.md, <skill>-guide.md} 单轨
+  （历史双轨已于 2026-04-29 通过 bootstrap-openspec-and-restructure change 收敛）。
+
+rules:
+  proposal:
+    - 必须有 ## Why（动机）/ ## What Changes（变更概览）/ ## Non-goals（不在范围内）三段
+    - 控制在 500 字以内，复杂取舍移到 design.md
+    - 顶部用一句话说明这次 change 解决什么张力（来自 Context 的哪一项）
+
+  design:
+    - 每个关键决策必须列出"选了什么 / 为什么不是其他方案 / 反例验证"三元组
+    - 引用具体文件路径与行号，而不是泛泛"某些地方"
+    - 标注本 change 影响的 forge 4 分类（hammer / crucible / anvil / quench / cross）
+
+  tasks:
+    - 每个任务 ≤ 2 小时执行体量
+    - 任务之间显式标注依赖（"依赖任务 N"）
+    - 每个任务给出**验证命令**，不是"自己看一下"
+    - 涉及多文件批量改动的任务，必须给出脚本入口或 grep 兜底命令
+
+  spec:
+    - 文件路径 openspec/specs/<capability>/spec.md（capability 用 kebab-case）
+    - 必须有 ## Purpose / ## Behavior / ## Rationale / ## Verification 四段
+    - Behavior 段用 MUST / SHOULD / MAY 等 RFC 2119 关键字写规则
+    - Verification 段给出可执行命令或人工核对清单

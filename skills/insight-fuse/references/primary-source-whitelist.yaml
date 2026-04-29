@@ -8,7 +8,7 @@
 # 1. 非封闭名单：未收录 ≠ 恶意，未收录域名降级处理而非拒绝
 # 2. 来源侧优先：给出 host 而非具体 path
 # 3. 黑名单（secondary-blacklist.yaml）负责已知二手聚合域名——本文件只列白
-# 4. 新增条目需在 docs/design/insight-fuse-design.md 记录理由 + 添加日期
+# 4. 新增条目需在 docs/design/crucible/insight-fuse-design.md 记录理由 + 添加日期
 
 schema_version: 1
 

@@ -2,13 +2,13 @@
 
 > 全力で取り組み、ひと休みする。Claude Code との開発リズムを整える 8 つの skill。
 
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](../../LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](../../../LICENSE)
 [![Skills](https://img.shields.io/badge/skills-8-blue.svg)]()
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)]()
 [![Claude Code](https://img.shields.io/badge/platform-Claude%20Code-purple.svg)]()
 [![OpenClaw](https://img.shields.io/badge/platform-OpenClaw-orange.svg)]()
 
-[English](../../README.md) | [中文](README.zh-CN.md) | [한국어](README.ko.md) | [Español](README.es.md) | [Português](README.pt-BR.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Русский](README.ru.md) | [हिन्दी](README.hi.md) | [Türkçe](README.tr.md) | [Tiếng Việt](README.vi.md)
+[English](../../../README.md) | [中文](../zh-CN/README.md) | [한국어](../ko/README.md) | [Español](../es/README.md) | [Português](../pt-BR/README.md) | [Français](../fr/README.md) | [Deutsch](../de/README.md) | [Русский](../ru/README.md) | [हिन्दी](../hi/README.md) | [Türkçe](../tr/README.md) | [Tiếng Việt](../vi/README.md)
 
 ## インストール
 
@@ -262,8 +262,8 @@ forge/
 4. `.claude-plugin/marketplace.json` — `plugins` 配列にエントリを追加
 5. hooks が必要な場合：`skills/<name>/hooks/hooks.json` + スクリプトを作成。marketplace.json の `source` は `./skills/<name>` を指す必要があります
 
-開発ガイドラインの詳細は [CLAUDE.md](../../CLAUDE.md) を参照してください。
+開発ガイドラインの詳細は [CLAUDE.md](../../../CLAUDE.md) を参照してください。
 
 ## License
 
-[MIT](../../LICENSE) - [Juneq Cheung](https://github.com/juserai)
+[MIT](../../../LICENSE) - [Juneq Cheung](https://github.com/juserai)

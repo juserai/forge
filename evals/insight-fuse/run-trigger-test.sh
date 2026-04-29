@@ -111,7 +111,7 @@ check "evals/insight-fuse/scenarios.md"
 echo ""
 echo "[7/13] Documentation..."
 check "docs/user-guide/insight-fuse-guide.md"
-check "docs/design/insight-fuse-design.md"
+check "docs/design/crucible/insight-fuse-design.md"
 
 echo ""
 echo "[8/13] Marketplace entry + hash match..."
@@ -157,12 +157,13 @@ done
 
 echo ""
 echo "[13/13] i18n README + guide parity..."
-for lang_file in docs/i18n/README.*.md; do
+for lang_dir in docs/i18n/*/; do
+    lang_file="$lang_dir/README.md"
     if [ -f "$lang_file" ]; then
         check_contains "$lang_file" "insight-fuse" "insight-fuse mention"
     fi
 done
-LANG_COUNT=$(ls docs/user-guide/i18n/insight-fuse-guide.*.md 2>/dev/null | wc -l)
+LANG_COUNT=$(ls docs/i18n/*/insight-fuse-guide.md 2>/dev/null | wc -l)
 if [ "$LANG_COUNT" -eq 11 ]; then
     echo "  OK: 11 i18n guide files present"
 else

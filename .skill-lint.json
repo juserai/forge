@@ -18,7 +18,6 @@
     "require-help-section": "warn",
     "user-guide-dir": "docs/user-guide",
     "design-dir": "docs/design",
-    "i18n-guide-dir": "docs/user-guide/i18n",
     "protect-cross-namespace": true
   }
 }
