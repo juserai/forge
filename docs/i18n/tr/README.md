@@ -272,17 +272,19 @@ forge/
 ├── evals/                         # Platformlar arası değerlendirme senaryoları
 ├── docs/
 │   ├── user-guide/                # Kullanıcı kılavuzları (İngilizce)
-│   ├── design/                    # Tasarım belgeleri
-│   └── i18n/                      # Çeviriler (11 dil)
-│       ├── README.*.md            # Çevrilmiş README'ler
-│       └── (translated guides moved to docs/user-guide/i18n/)
+│   ├── dev-guide/                 # Geliştirici dokümantasyonu
+│   ├── design/<category>/         # 4 kategoriye göre tasarım belgeleri
+│   └── i18n/<lang>/               # Çeviriler (README + skill kılavuzları)
+├── openspec/                      # Evrim meta-deposu
+│   ├── specs/<capability>/        # Yatay yetenek sözleşmeleri
+│   └── changes/<id>/              # Aktif RFC'ler (tamamlananlar archive/)
 └── plugin.json                    # Koleksiyon meta verisi
 ```
 
 ## Katkıda Bulunma
 
 1. `skills/<name>/SKILL.md` — Claude Code skill + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw adaptasyonu + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw adaptasyonu + references/scripts (yayın sözleşmesi için [platform-parity](../../../openspec/specs/platform-parity/spec.md) bakın)
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — Değerlendirme senaryoları
 4. `.claude-plugin/marketplace.json` — `plugins` dizisine giriş ekle
 5. Gerekirse hook ekle: `skills/<name>/hooks/hooks.json` + scriptler oluştur; marketplace.json'daki `source` `./skills/<name>`'i göstermeli

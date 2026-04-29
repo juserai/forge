@@ -272,17 +272,19 @@ forge/
 ├── evals/                         # Cross-platform eval scenarios
 ├── docs/
 │   ├── user-guide/                # User guides (English)
-│   ├── design/                    # Design documents
-│   └── i18n/                      # अनुवाद (11 भाषाएँ)
-│       ├── README.*.md            # अनूदित README
-│       └── (translated guides moved to docs/user-guide/i18n/)
+│   ├── dev-guide/                 # डेवलपर दस्तावेज़
+│   ├── design/<category>/         # 4 श्रेणियों के अनुसार design dokumens
+│   └── i18n/<lang>/               # अनुवाद (README + skill guide)
+├── openspec/                      # विकास मेटा-रिपॉजिटरी
+│   ├── specs/<capability>/        # क्षैतिज क्षमता अनुबंध
+│   └── changes/<id>/              # सक्रिय RFC (पूर्ण हुए archive/ में)
 └── plugin.json                    # Collection metadata
 ```
 
 ## योगदान करें
 
 1. `skills/<name>/SKILL.md` — Claude Code skill + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw adaptation + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw adaptation + references/scripts (broadcast contract के लिए [platform-parity](../../../openspec/specs/platform-parity/spec.md) देखें)
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — Eval scenarios
 4. `.claude-plugin/marketplace.json` — `plugins` array में entry add करें
 5. ज़रूरत हो तो hooks: `skills/<name>/hooks/hooks.json` + scripts बनाएँ; marketplace.json में `source` `./skills/<name>` पर point करना चाहिए

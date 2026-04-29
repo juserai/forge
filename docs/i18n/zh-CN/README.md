@@ -251,13 +251,14 @@ forge/
 ├── .claude-plugin/                # Claude Code marketplace 元数据
 ├── evals/                         # 跨平台评估场景
 ├── docs/                          # 跨平台文档
+├── openspec/                      # 演化元仓库（RFC + 横向能力契约）
 └── plugin.json                    # 集合级元数据
 ```
 
 ## 贡献
 
 1. `skills/<name>/SKILL.md` — Claude Code skill + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw 适配版 + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw 适配版 + references/scripts（平台广播契约见 [platform-parity](../../../openspec/specs/platform-parity/spec.md)）
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — 评估场景
 4. `.claude-plugin/marketplace.json` — 在 `plugins` 数组追加条目
 5. 如需 hooks：创建 `skills/<name>/hooks/hooks.json` + 脚本；marketplace.json 的 `source` 必须指向 `./skills/<name>`

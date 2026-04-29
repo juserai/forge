@@ -272,17 +272,19 @@ forge/
 ├── evals/                         # Kịch bản đánh giá đa nền tảng
 ├── docs/
 │   ├── user-guide/                # Hướng dẫn sử dụng (tiếng Anh)
-│   ├── design/                    # Tài liệu thiết kế
-│   └── i18n/                      # Bản dịch (11 ngôn ngữ)
-│       ├── README.*.md            # README đã dịch
-│       └── (translated guides moved to docs/user-guide/i18n/)
+│   ├── dev-guide/                 # Tài liệu cho lập trình viên
+│   ├── design/<category>/         # Tài liệu thiết kế theo 4 phân loại
+│   └── i18n/<lang>/               # Bản dịch (README + hướng dẫn skill)
+├── openspec/                      # Meta-repo tiến hóa
+│   ├── specs/<capability>/        # Hợp đồng năng lực ngang
+│   └── changes/<id>/              # RFC đang xử lý (đã hoàn thành ở archive/)
 └── plugin.json                    # Metadata bộ sưu tập
 ```
 
 ## Đóng góp
 
 1. `skills/<name>/SKILL.md` — Claude Code skill + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — Phiên bản OpenClaw + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — Phiên bản OpenClaw + references/scripts (xem [platform-parity](../../../openspec/specs/platform-parity/spec.md) cho hợp đồng broadcast)
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — Kịch bản đánh giá
 4. `.claude-plugin/marketplace.json` — Thêm mục vào mảng `plugins`
 5. Hook nếu cần: tạo `skills/<name>/hooks/hooks.json` + scripts; `source` trong marketplace.json phải trỏ đến `./skills/<name>`

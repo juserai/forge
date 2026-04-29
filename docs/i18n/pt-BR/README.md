@@ -272,17 +272,19 @@ forge/
 ├── evals/                         # Cenários de avaliação multiplataforma
 ├── docs/
 │   ├── user-guide/                # Guias de usuário (inglês)
-│   ├── design/                    # Documentos de design
-│   └── i18n/                      # Traduções (11 languages)
-│       ├── README.*.md            # READMEs traduzidos
-│       └── (translated guides moved to docs/user-guide/i18n/)
+│   ├── dev-guide/                 # Documentação para desenvolvedores
+│   ├── design/<category>/         # Documentos de design por 4 categorias
+│   └── i18n/<lang>/               # Traduções (README + guias de skill)
+├── openspec/                      # Meta-repositório de evolução
+│   ├── specs/<capability>/        # Contratos de capacidade horizontal
+│   └── changes/<id>/              # RFCs em andamento (archive/ para os concluídos)
 └── plugin.json                    # Metadados da coleção
 ```
 
 ## Contribuir
 
 1. `skills/<name>/SKILL.md` — Skill para Claude Code + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — Adaptação para OpenClaw + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — Adaptação para OpenClaw + references/scripts (veja [platform-parity](../../../openspec/specs/platform-parity/spec.md) para o contrato de broadcast)
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — Cenários de avaliação
 4. `.claude-plugin/marketplace.json` — Adicionar entrada ao array `plugins`
 5. Hooks se necessário: crie `skills/<name>/hooks/hooks.json` + scripts; o `source` em marketplace.json deve apontar para `./skills/<name>`

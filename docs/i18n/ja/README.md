@@ -251,13 +251,14 @@ forge/
 ├── .claude-plugin/                # Claude Code marketplace メタデータ
 ├── evals/                         # クロスプラットフォーム評価シナリオ
 ├── docs/                          # クロスプラットフォームドキュメント
+├── openspec/                      # 進化メタリポジトリ（RFC + 横断的能力契約）
 └── plugin.json                    # コレクションメタデータ
 ```
 
 ## コントリビュート
 
 1. `skills/<name>/SKILL.md` — Claude Code skill + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw 向け適応版 + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw 向け適応版 + references/scripts （プラットフォームのブロードキャスト契約は [platform-parity](../../../openspec/specs/platform-parity/spec.md) を参照）
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — 評価シナリオ
 4. `.claude-plugin/marketplace.json` — `plugins` 配列にエントリを追加
 5. hooks が必要な場合：`skills/<name>/hooks/hooks.json` + スクリプトを作成。marketplace.json の `source` は `./skills/<name>` を指す必要があります

@@ -251,13 +251,14 @@ forge/
 ├── .claude-plugin/                # Claude Code marketplace 메타데이터
 ├── evals/                         # 크로스 플랫폼 평가 시나리오
 ├── docs/                          # 크로스 플랫폼 문서
+├── openspec/                      # 진화 메타 저장소 (RFC + 횡단 역량 계약)
 └── plugin.json                    # 컬렉션 메타데이터
 ```
 
 ## 기여 방법
 
 1. `skills/<name>/SKILL.md` — Claude Code skill + references/scripts
-2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw 적응 버전 + references/scripts
+2. `platforms/openclaw/<name>/SKILL.md` — OpenClaw 적응 버전 + references/scripts (플랫폼 브로드캐스트 계약은 [platform-parity](../../../openspec/specs/platform-parity/spec.md) 참조)
 3. `evals/<name>/scenarios.md` + `run-trigger-test.sh` — 평가 시나리오
 4. `.claude-plugin/marketplace.json` — `plugins` 배열에 항목 추가
 5. hooks가 필요한 경우: `skills/<name>/hooks/hooks.json` + 스크립트 생성. marketplace.json의 `source`는 `./skills/<name>`을 가리켜야 함
