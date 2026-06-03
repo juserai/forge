@@ -12,6 +12,11 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 
 ## block-break
 
+### [1.1.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。直接调用时控制指导文本语言，默认 zh-CN，`--lang auto` 按用户消息语言。Hook 自动注入路径不受影响。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
+
 ### [1.0.2] — 2026-05-11
 
 #### Fixed
@@ -30,6 +35,11 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 ---
 
 ## claim-ground
+
+### [1.3.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。控制手动执行路径（如 `verify`）输出语言，默认 zh-CN。自动事件注入路径不受影响。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
 
 ### [1.2.2] — 2026-05-11
 
@@ -63,6 +73,11 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 
 ## council-fuse
 
+### [1.2.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。控制综合答案 / 评分矩阵输出语言，默认 zh-CN，`--lang auto` 按用户问题语言。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
+
 ### [1.1.2] — 2026-05-11
 
 #### Fixed
@@ -88,6 +103,11 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 ---
 
 ## insight-fuse
+
+### [3.5.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。控制 5 段报告正文输出语言，默认 zh-CN，`--lang auto` 按用户消息语言。不改 KB 归档路径。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
 
 ### [3.4.3] — 2026-05-11
 
@@ -138,6 +158,14 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 
 ## news-fetch
 
+### [1.2.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
+
+#### Changed
+- **默认输出语言改为 zh-CN**（行为变更）：不带 `--lang` 时一律输出中文模板，覆盖原"按输入 CJK 字符自动检测"。需要原自动检测请用 `--lang auto`。
+
 ### [1.1.2] — 2026-05-11
 
 #### Fixed
@@ -163,6 +191,14 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 ---
 
 ## peer-fuse
+
+### [0.3.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
+
+#### Changed
+- **默认评审语言改为 zh-CN**（行为变更）：不带 `--lang` 时评审报告一律中文，覆盖 narrative-discipline Rule 6 原"按源文档语言"。需要按源语言请用 `--lang auto`。
 
 ### [0.2.1] — 2026-05-11
 
@@ -230,6 +266,11 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 
 ## ralph-boost
 
+### [1.1.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。控制循环状态 / 进度 / 指导文本输出语言，默认 zh-CN。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
+
 ### [1.0.1] — 2026-05-11
 
 #### Fixed
@@ -241,6 +282,12 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 ---
 
 ## skill-lint
+
+### [1.2.0] — 2026-06-03
+
+#### Added
+- 新增 **S35** lint 规则：每个 `user-invokable` skill 的 `argument-hint` MUST 含 `--lang`（缺失报 error）；配置键 `verify-lang-flag-required`。
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）控制语义诊断语言；结构检查 JSON 字段不变。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
 
 ### [1.1.2] — 2026-05-11
 
@@ -273,6 +320,11 @@ Detailed rationale for each entry lives under `openspec/changes/<id>/` (active o
 ---
 
 ## tome-forge
+
+### [1.2.0] — 2026-06-03
+
+#### Added
+- 新增 `--lang` 输出语言选项（`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto）。控制 `query` 回答 / `lint` 诊断输出语言，默认 zh-CN。`ingest`/`compile` 写入 wiki 的持久化内容不受影响。Reference: [openspec/changes/add-output-language-flag](openspec/changes/add-output-language-flag/proposal.md)
 
 ### [1.1.1] — 2026-05-11
 

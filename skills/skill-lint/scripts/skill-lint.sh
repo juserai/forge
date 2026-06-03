@@ -43,6 +43,7 @@ CFG_VERIFY_CHANGELOG_ENTRY=""
 CFG_VERIFY_DOCS_VERSION_DRIFT=""
 CFG_VERIFY_ARCHIVED_SPEC_MERGE=""
 CFG_VERIFY_HELP_CARD_FLAG_COVERAGE=""
+CFG_VERIFY_LANG_FLAG_REQUIRED=""
 CFG_REQUIRE_HELP_SECTION=""
 # Path config (see rules.md): fallback to legacy layout if keys absent.
 # i18n is single-track: <i18n-dir>/<lang>/{README.md, <skill>-guide.md}
@@ -108,6 +109,11 @@ if help_flag_coverage_rule is True or help_flag_coverage_rule == 'error':
     print('CFG_VERIFY_HELP_CARD_FLAG_COVERAGE=error')
 elif help_flag_coverage_rule == 'warn':
     print('CFG_VERIFY_HELP_CARD_FLAG_COVERAGE=warn')
+lang_flag_rule = rules.get('verify-lang-flag-required')
+if lang_flag_rule is True or lang_flag_rule == 'error':
+    print('CFG_VERIFY_LANG_FLAG_REQUIRED=error')
+elif lang_flag_rule == 'warn':
+    print('CFG_VERIFY_LANG_FLAG_REQUIRED=warn')
 # require-help-section: tri-value 'warn' / 'error' / 'off' (also accepts true/false for back-compat)
 help_rule = rules.get('require-help-section')
 if help_rule is True or help_rule == 'error':
@@ -1323,6 +1329,89 @@ S34EOF
         esac
     done <<< "$s34_raw"
     [ "$s34_fail" -eq 0 ] && add_passed "S34: All argument-hint --flags are documented in their help card (canonical + platforms)"
+fi
+
+# --- S35: lang-flag-required (--lang in argument-hint for every user-invokable skill) ---
+# output-language spec: 每个 user-invokable skill 的 argument-hint MUST 含 --lang。
+# canonical(nested 优先,flat 兜底) + platform mirror 同等约束。
+if [ -n "$CFG_VERIFY_LANG_FLAG_REQUIRED" ]; then
+    s35_raw=$(python3 - "$PLUGIN_ROOT" "${CFG_PLATFORMS:-}" << 'S35EOF' 2>/dev/null || true
+import os, re, sys
+
+root = sys.argv[1]
+platforms_raw = sys.argv[2] if len(sys.argv) > 2 else ""
+platforms = [p for p in platforms_raw.split() if p]
+
+def extract_argument_hint(text):
+    fm_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
+    if not fm_match:
+        return None
+    fm = fm_match.group(1)
+    for pat in (r'^argument-hint:\s*"(.*)"\s*$', r"^argument-hint:\s*'(.*)'\s*$", r'^argument-hint:\s*(.*)$'):
+        m = re.search(pat, fm, re.MULTILINE)
+        if m:
+            return m.group(1).strip()
+    return None
+
+def check(path, label, issues):
+    try:
+        with open(path, 'r', encoding='utf-8') as fh:
+            text = fh.read()
+    except Exception:
+        return
+    hint = extract_argument_hint(text)
+    if hint is None:
+        issues.append(f"S35: {label} missing argument-hint with --lang (output-language spec requires --lang)")
+    elif "--lang" not in hint:
+        issues.append(f"S35: {label} argument-hint missing --lang (output-language spec)")
+
+issues = []
+checked = 0
+skills_dir = os.path.join(root, "skills")
+if os.path.isdir(skills_dir):
+    for name in sorted(os.listdir(skills_dir)):
+        if name.startswith('_'):
+            continue
+        nested = os.path.join(skills_dir, name, "skills", name, "SKILL.md")
+        flat = os.path.join(skills_dir, name, "SKILL.md")
+        skill_md = nested if os.path.isfile(nested) else (flat if os.path.isfile(flat) else None)
+        if skill_md:
+            checked += 1
+            check(skill_md, f"skills/{name}/SKILL.md", issues)
+
+for plat in platforms:
+    plat_dir = os.path.join(root, "platforms", plat)
+    if not os.path.isdir(plat_dir):
+        continue
+    for name in sorted(os.listdir(plat_dir)):
+        if name.startswith('_'):
+            continue
+        skill_md = os.path.join(plat_dir, name, "SKILL.md")
+        if os.path.isfile(skill_md):
+            checked += 1
+            check(skill_md, f"platforms/{plat}/{name}/SKILL.md", issues)
+
+print(f"##S35_CHECKED count={checked}")
+for i in issues:
+    print(i)
+S35EOF
+)
+    s35_fail=0
+    while IFS= read -r line; do
+        case "$line" in
+            "##S35_CHECKED"*) ;;
+            "S35:"*)
+                if [ "$CFG_VERIFY_LANG_FLAG_REQUIRED" = "error" ]; then
+                    add_error "$line"
+                else
+                    add_warning "$line"
+                fi
+                s35_fail=1
+                ;;
+            "") ;;
+        esac
+    done <<< "$s35_raw"
+    [ "$s35_fail" -eq 0 ] && add_passed "S35: All user-invokable skills declare --lang in argument-hint (canonical + platforms)"
 fi
 
 # --- Output JSON ---

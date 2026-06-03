@@ -2,7 +2,7 @@
 name: ralph-boost
 description: "Ralph Boost — Autonomous dev loop engine with convergence guarantee. Built-in Block Break integration. setup → run → status → clean."
 license: MIT
-argument-hint: "[setup|run|status|clean]"
+argument-hint: "[setup|run|status|clean] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 metadata:
   category: hammer
   permissions:
@@ -29,13 +29,14 @@ metadata:
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行：
 
 ```
-Ralph Boost v1.0.1 — Autonomous dev loop engine with convergence guarantee
+Ralph Boost v1.1.0 — Autonomous dev loop engine with convergence guarantee
 
 Usage:
   /ralph-boost setup             Initialize ralph-boost in current project
   /ralph-boost run               Start the autonomous loop
   /ralph-boost status            Show current loop state + pressure level
   /ralph-boost clean             Clean .ralph-boost/ artifacts
+  /ralph-boost <cmd> --lang <code>   Output language (default zh-CN)
   /ralph-boost help              Show this help
 
 Examples:
@@ -45,6 +46,10 @@ Examples:
 
 Guide: docs/user-guide/ralph-boost-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制循环状态 / 进度 / 指导文本输出语言。取值：`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto。不带 `--lang` → zh-CN；`--lang <code>` → 强制该语言；`--lang auto` → 按用户消息语言；非法值 → 输出 help card。契约见 openspec/specs/output-language/spec.md。
 
 ## 子命令
 

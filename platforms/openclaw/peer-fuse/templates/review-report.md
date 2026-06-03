@@ -32,7 +32,7 @@ date: <YYYY-MM-DD>
 
 ### § Document Reading
 
-<5-9 段（standard 7-8 段）~1500-3500 字连贯叙事性重读，遵守 6 条 narrative discipline（contextual 开场 / meta-reflective 收束 / verbatim bold-italic 内嵌 / number-density 双峰 / limitation-as-strength / output-language 匹配源），写于 Stage 3.5，FREEZE 后不可改。详见 [../references/narrative-discipline.md](../references/narrative-discipline.md)。>
+<5-9 段（standard 7-8 段）~1500-3500 字连贯叙事性重读，遵守 6 条 narrative discipline（contextual 开场 / meta-reflective 收束 / verbatim bold-italic 内嵌 / number-density 双峰 / limitation-as-strength / output-language 由 --lang 定（默认 zh-CN，`--lang auto` 匹配源）），写于 Stage 3.5，FREEZE 后不可改。详见 [../references/narrative-discipline.md](../references/narrative-discipline.md)。>
 
 ---
 

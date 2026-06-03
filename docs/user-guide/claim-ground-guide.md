@@ -1,4 +1,4 @@
-# Claim Ground User Guide (v1.2.0)
+# Claim Ground User Guide (v1.3.0)
 
 > Epistemic discipline in 3 minutes — anchor every "right-now" claim and every standards-body term definition to runtime / authoritative evidence
 
@@ -226,3 +226,15 @@ Look for citation patterns in the answer: `system prompt says: "..."`, `command 
 ## License
 
 [MIT](../../LICENSE) - [Juneq Cheung](https://github.com/juserai)
+
+## Output language (`--lang`)
+
+Set the language of this skill's user-facing output. Default is **zh-CN**.
+
+- Values: `zh-CN` (default) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- Omit `--lang` → output is **zh-CN** (overrides any auto-detection).
+- `--lang <code>` → force that language (inline terms / paper titles / code identifiers may stay in the original).
+- `--lang auto` → restore the skill's native language detection.
+- Invalid value → prints the help card and stops.
+
+See the [output-language contract](../../openspec/specs/output-language/spec.md).

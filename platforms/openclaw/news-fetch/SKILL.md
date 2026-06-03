@@ -9,7 +9,7 @@ metadata:
     filesystem: read-write
     execution: none
     tools: [WebSearch, WebFetch, Read, Write, Glob, Edit]
-argument-hint: "[topic] [time-range] [--no-save]"
+argument-hint: "[topic] [time-range] [--no-save] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
 # News Fetch — 新闻获取工具
@@ -21,14 +21,16 @@ argument-hint: "[topic] [time-range] [--no-save]"
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行：
 
 ```
-News Fetch v1.1.2 — Quick news between coding sessions (3-tier network fallback)
+News Fetch v1.2.0 — Quick news between coding sessions (3-tier network fallback)
 
 Usage:
   /news-fetch <topic> [time-range]              Fetch news, archive to KB
   /news-fetch <topic> [time-range] --no-save    Fetch news, skip KB archive
+  /news-fetch <topic> --lang <code>             Output language (default zh-CN)
   /news-fetch help                              Show this help
 
 Time range: today | week (default) | month | YYYY-MM-DD~YYYY-MM-DD
+--lang:     zh-CN(default) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto
 
 Examples:
   /news-fetch AI
@@ -38,6 +40,10 @@ Examples:
 
 Guide: docs/user-guide/news-fetch-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制新闻清单输出语言。取值：`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto。不带 `--lang` → zh-CN 模板（**覆盖**原"按输入 CJK 检测"）；`--lang <code>` → 强制该语言；`--lang auto` → 恢复 CJK 检测；非法值 → 输出 help card。契约见 openspec/specs/output-language/spec.md。
 
 ## 参数解析
 
@@ -115,7 +121,7 @@ TOP {N} 条
 建议: 检查网络连接，或稍后重试。
 ```
 
-**语言检测规则**: 如果用户输入包含中日韩字符，使用中文模板；否则使用英文模板。
+**语言规则**（由 `--lang` 决定）: 不带 `--lang` → zh-CN 中文模板（hard default，覆盖输入检测）；`--lang en` → 英文模板，其它 code 对应语言；`--lang auto` → 恢复原检测（含中日韩字符用中文模板，否则英文模板）；非法值 → 输出 help card。契约见 openspec/specs/output-language/spec.md。
 
 ### 英文失败输出 / English Failure Output
 

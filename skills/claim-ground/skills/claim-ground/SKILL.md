@@ -1,8 +1,8 @@
 ---
 name: claim-ground
-description: "Claim Ground v1.2 — Epistemic constraint engine. Use when answering factual questions about current/live state, when defining professional terms with authoritative standards bodies (Red Line 7), when the user challenges a prior factual assertion (pushback regex), OR proactively when input contains ambiguity (path/pronoun/quantity/preference/missing-param), destructive actions (rm -rf / reset --hard / push --force), scope creep (Edit/Write unmentioned files), env-var assumptions, ecosystem-scope questions ('latest/strongest model'), or hard constraints ('don't / never'). Forces runtime-context-first reasoning + dispatches across UserPromptSubmit / PreToolUse / PostToolUse / SessionStart hooks. Detects under-specified deploy/path commands and verification gaps across Claude Code and openclaw."
+description: "Claim Ground v1.3 — Epistemic constraint engine. Use when answering factual questions about current/live state, when defining professional terms with authoritative standards bodies (Red Line 7), when the user challenges a prior factual assertion (pushback regex), OR proactively when input contains ambiguity (path/pronoun/quantity/preference/missing-param), destructive actions (rm -rf / reset --hard / push --force), scope creep (Edit/Write unmentioned files), env-var assumptions, ecosystem-scope questions ('latest/strongest model'), or hard constraints ('don't / never'). Forces runtime-context-first reasoning + dispatches across UserPromptSubmit / PreToolUse / PostToolUse / SessionStart hooks. Detects under-specified deploy/path commands and verification gaps across Claude Code and openclaw."
 license: MIT
-argument-hint: "[verify <claim>]"
+argument-hint: "[verify <claim>] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 metadata:
   category: hammer
   permissions:
@@ -21,12 +21,13 @@ metadata:
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行（parsing 规则详见 [CLAUDE.md § Help 模式约定](../../../../CLAUDE.md)）。Hook 自动触发（UserPromptSubmit + PostToolUse + SessionStart）不受此路径影响。手动执行路径见下方 §Manual Execution。
 
 ```
-Claim Ground v1.2.2 — Epistemic constraint engine (runtime evidence before assertions)
+Claim Ground v1.3.0 — Epistemic constraint engine (runtime evidence before assertions)
 
 Usage:
   /claim-ground                       Show this help
   /claim-ground help                  Show this help
   /claim-ground verify <claim>        Manually ground a specific assertion (Mode 1, v1.1)
+  /claim-ground verify <claim> --lang <code>   Output language (default zh-CN)
 
 How it normally activates:
   - Auto via UserPromptSubmit hook when user input matches pushback regex
@@ -42,6 +43,15 @@ What it enforces:
 
 Guide: docs/user-guide/claim-ground-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制**手动执行**路径（如 `verify`）输出的语言。契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → **zh-CN**；`--lang <code>` → 强制该语言；`--lang auto` → 按用户消息语言
+- 非法值 → 输出 help card 并停止
+- **例外**：经 UserPromptSubmit / PostToolUse / SessionStart hook **自动注入**的提示保持现有双语，不受 `--lang` 影响
 
 ## Manual Execution（v1.1）
 

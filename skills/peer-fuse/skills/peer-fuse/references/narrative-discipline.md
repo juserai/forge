@@ -151,19 +151,26 @@ limitation-as-strength 是 narrative-reading 的核心姿态——把"自承空�
 
 ---
 
-## 6. Output language matches source
+## 6. Output language — `--lang` 决定（默认 zh-CN）
+
+评审报告（含 § Document Reading）的输出语言由 `--lang` 决定，契约见
+[openspec/specs/output-language/spec.md](../../../../../openspec/specs/output-language/spec.md)。
 
 ### 判定优先级
 
-1. 源报告 frontmatter `lang` / `language` 字段（若有）
-2. 正文段落主导语言：中文字符 (Unicode `一-鿿`) 比例 ≥ 50% → 中文；否则英文
-3. fallback 中文（peer-fuse 默认中文 reviewer）
+1. **显式 `--lang <code>`**（`code ≠ auto`）→ 强制该语言
+2. **不带 `--lang`** → **`zh-CN`**（hard default；**覆盖**源文档语言）
+3. **`--lang auto`** → 恢复"按源"检测：
+   1. 源报告 frontmatter `lang` / `language` 字段（若有）
+   2. 正文段落主导语言：中文字符 (Unicode `一-鿿`) 比例 ≥ 50% → 中文；否则英文
+   3. fallback 中文
 
 ### 一致性
 
-- 源中文 → § Document Reading 全中文叙事（允许 inline 英文术语 / arXiv 论文标题保留原文）
-- 源英文 → § Document Reading 全英文叙事
-- **禁混合**：不要中英穿插长句，会破坏 narrative 连贯性
+- 目标中文 → § Document Reading 全中文叙事（允许 inline 英文术语 / arXiv 论文标题保留原文）
+- 目标英文 → § Document Reading 全英文叙事
+- 其它语言（ja/ko/fr/…）→ 全目标语言叙事，inline 术语 / 论文标题保留原文
+- **禁混合**：不要多语穿插长句，会破坏 narrative 连贯性
 
 ---
 

@@ -188,6 +188,15 @@ S29-S33 在 commit `cf79b1d`（version-governance change）与 `f0a91e9`（versi
   - insight-fuse: argument-hint 含 11 flag，help "Key flags" 仅列 4 → S34 warn 列出漏的 7 个
 - **检测方式**: 正则 `--[a-z][a-z0-9-]+` 提取两侧 flag 集合，用集合差返回缺失项
 
+### S35: 输出语言 flag 必填（v1.2）
+
+- **检查**: 每个 user-invokable skill 的 SKILL.md frontmatter `argument-hint` MUST 含 `--lang`（output-language 契约）。canonical（nested 优先，flat 兜底）+ platform mirror 同等约束
+- **级别**: error
+- **配置**: `.skill-lint.json` 中 `verify-lang-flag-required` 三态 (`off` / `warn` / `error`)
+- **不通过**: argument-hint 缺失 → `S35: <path> missing argument-hint with --lang`；存在但不含 `--lang` → `S35: <path> argument-hint missing --lang`
+- **契约**: openspec/specs/output-language/spec.md
+- **与 S34 协作**: S35 保证 `--lang` 进入 argument-hint；S34 保证它出现在 help card
+
 ## 语义检查规则（AI 执行）
 
 ### M01: Description 质量

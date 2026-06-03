@@ -1,4 +1,4 @@
-# Peer Fuse v0.2.0 Guide
+# Peer Fuse v0.3.0 Guide
 
 > Generic peer-reviewer for research artifacts — **8-stage pipeline (Stage 7 KB archival mandatory + observable, opt-out via `--no-save`) + 10-format input adapter (md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html, 3-tier dispatch) + 6 research-type presets (auto-classified) + 8-dimensional weighted rubric + 18-flag taxonomy + 3-perspective panel + narrative-style § Document Reading (5-9 paras / 6-rule discipline / review-isolation freeze)**.
 
@@ -134,3 +134,15 @@ bash scripts/recalc-all-hashes.sh
 - [openspec/changes/archive/add-peer-fuse-skill/](../../openspec/changes/archive/add-peer-fuse-skill/) — RFC (after merge)
 - [docs/user-guide/insight-fuse-guide.md](insight-fuse-guide.md) — sibling crucible
 - [docs/user-guide/council-fuse-guide.md](council-fuse-guide.md) — sibling crucible (panel pattern source)
+
+## Output language (`--lang`)
+
+Set the language of this skill's user-facing output. Default is **zh-CN**.
+
+- Values: `zh-CN` (default) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- Omit `--lang` → output is **zh-CN** (overrides any auto-detection).
+- `--lang <code>` → force that language (inline terms / paper titles / code identifiers may stay in the original).
+- `--lang auto` → restore the skill's native language detection.
+- Invalid value → prints the help card and stops.
+
+See the [output-language contract](../../openspec/specs/output-language/spec.md).

@@ -158,3 +158,15 @@ Council Fuse 将 Karpathy 的 LLM Council 模式浓缩为单个命令：
 
 **问：如果某个代理失败了怎么办？**
 答：主席将该成员评分为 0，从剩余回复中综合。优雅降级，不会崩溃。
+
+## 输出语言（`--lang`）
+
+设置本 skill 全部 user-facing 输出的语言，默认 **zh-CN**。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 输出 **zh-CN**（覆盖任何自动检测）。
+- `--lang <code>` → 强制该语言（inline 术语 / 论文标题 / 代码标识符可保留原文）。
+- `--lang auto` → 恢复该 skill 的原生语言检测。
+- 非法值 → 输出 help card 并停止。
+
+契约见 [output-language spec](../../../openspec/specs/output-language/spec.md)。

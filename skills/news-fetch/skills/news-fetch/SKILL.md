@@ -9,7 +9,7 @@ metadata:
     filesystem: read-write
     execution: none
     tools: [WebSearch, WebFetch, Read, Write, Glob, Edit]
-argument-hint: "[topic] [time-range] [--no-save]"
+argument-hint: "[topic] [time-range] [--no-save] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
 # News Fetch — 新闻获取工具
@@ -21,14 +21,16 @@ argument-hint: "[topic] [time-range] [--no-save]"
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行（parsing 规则详见 [CLAUDE.md § Help 模式约定](../../../../CLAUDE.md)）：
 
 ```
-News Fetch v1.1.2 — Quick news between coding sessions (3-tier network fallback)
+News Fetch v1.2.0 — Quick news between coding sessions (3-tier network fallback)
 
 Usage:
   /news-fetch <topic> [time-range]              Fetch news, archive to KB
   /news-fetch <topic> [time-range] --no-save    Fetch news, skip KB archive
+  /news-fetch <topic> --lang <code>             Output language (default zh-CN)
   /news-fetch help                              Show this help
 
 Time range: today | week (default) | month | YYYY-MM-DD~YYYY-MM-DD
+--lang:     zh-CN(default) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto
 
 Examples:
   /news-fetch AI
@@ -38,6 +40,16 @@ Examples:
 
 Guide: docs/user-guide/news-fetch-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制新闻清单输出的语言。契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 一律 **zh-CN** 模板，**覆盖**原"按输入 CJK 检测"行为
+- `--lang <code>` → 强制该语言（媒体名 / 专有名词可保留原文）
+- `--lang auto` → 恢复原生检测（输入含中日韩字符 → 中文模板，否则英文模板）
+- 非法值 → 输出 help card 并停止
 
 ## Scope Isolation（强制约束）
 
@@ -101,9 +113,9 @@ news-fetch 是一个**独立**的新闻获取工具。每次运行是一次从�
 
 ### 3. 输出 / Output
 
-按相关性得分倒序排列。根据用户语言自动选择输出模板：
+按相关性得分倒序排列。输出模板语言由 `--lang` 决定（默认 **zh-CN**，详见 [§输出语言](#输出语言--lang)）：
 
-**英文用户（默认）/ English output:**
+**English output（`--lang en`，或 `--lang auto` 且输入非 CJK）:**
 
 ```markdown
 ## {Topic} News
@@ -125,7 +137,7 @@ Related: [{Source2}]({url2}) | [{Source3}]({url3})
 {N} items | Source: {L1/L2/L3} {specific source}
 ```
 
-**中文用户 / Chinese output:**
+**中文输出 / Chinese output（默认；`--lang zh-CN`，或 `--lang auto` 且输入含 CJK）:**
 
 ```markdown
 ## {主题}资讯
@@ -147,7 +159,11 @@ TOP {N} 条
 共 {N} 条 | 数据获取: {L1/L2/L3} {具体来源}
 ```
 
-**语言检测规则**: 如果用户输入包含中日韩字符，使用中文模板；否则使用英文模板。
+**语言规则**（由 `--lang` 决定，契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)）:
+- 不带 `--lang` → **zh-CN 中文模板**（hard default，覆盖输入语言检测）
+- `--lang en` → 英文模板；其它 code（`ja`/`ko`/`fr`/…）→ 对应语言输出
+- `--lang auto` → 恢复原检测：输入含中日韩字符用中文模板，否则英文模板
+- 非法值 → 输出 help card 并停止
 
 ### 失败输出 / Failure Output
 

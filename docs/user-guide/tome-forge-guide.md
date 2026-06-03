@@ -262,3 +262,15 @@ A: It's all files in a git repo. `git push` and you're done.
 
 **Q: What if the LLM makes a mistake in the wiki?**
 A: Add a correction to `raw/` and re-ingest. The merge algorithm prefers more authoritative sources. Or note disagreements in your My Understanding Delta.
+
+## Output language (`--lang`)
+
+Set the language of this skill's user-facing output. Default is **zh-CN**.
+
+- Values: `zh-CN` (default) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- Omit `--lang` → output is **zh-CN** (overrides any auto-detection).
+- `--lang <code>` → force that language (inline terms / paper titles / code identifiers may stay in the original).
+- `--lang auto` → restore the skill's native language detection.
+- Invalid value → prints the help card and stops.
+
+See the [output-language contract](../../openspec/specs/output-language/spec.md).

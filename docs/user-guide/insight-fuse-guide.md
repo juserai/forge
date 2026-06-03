@@ -1,4 +1,4 @@
-# Insight Fuse v3.4.0 Guide
+# Insight Fuse v3.5.0 Guide
 
 > Systematic multi-source research engine — **8-stage pipeline (Stage 7 KB archival mandatory + observable, opt-out via `--no-save`) + skeleton.yaml data contract + 6 research-type presets + 6-dimensional quality rubric + 17 blocking checks (incl. primary-source binding / verbatim snippet / numeric reconciliation, v3.1) + 5 output formats with multi-file default and `--merge` opt-in single-file**.
 
@@ -226,3 +226,15 @@ Both are `crucible` skills. Compose them: use insight-fuse to research, then cou
 - [primary-source whitelist](../../skills/insight-fuse/references/primary-source-whitelist.yaml) (v3.1)
 - [reconciliation-log template](../../skills/insight-fuse/templates/reconciliation-log.md) (v3.1)
 - [output formats](../../skills/insight-fuse/references/output-formats.md)
+
+## Output language (`--lang`)
+
+Set the language of this skill's user-facing output. Default is **zh-CN**.
+
+- Values: `zh-CN` (default) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- Omit `--lang` → output is **zh-CN** (overrides any auto-detection).
+- `--lang <code>` → force that language (inline terms / paper titles / code identifiers may stay in the original).
+- `--lang auto` → restore the skill's native language detection.
+- Invalid value → prints the help card and stops.
+
+See the [output-language contract](../../openspec/specs/output-language/spec.md).

@@ -1,4 +1,4 @@
-# Claim Ground 用户指南 (v1.2.0)
+# Claim Ground 用户指南 (v1.3.0)
 
 > 3 分钟建立认知纪律 — 把每一个"此刻"的断言锚定到运行时证据 (v1.1: also anchors standards-body term definitions to authoritative evidence; adds /claim-ground verify manual mode)
 
@@ -183,3 +183,15 @@ Claim Ground 是**自动触发**的 skill。没有 slash 命令 — skill 根据
 ## 许可证
 
 [MIT](../../../LICENSE) - [Juneq Cheung](https://github.com/juserai)
+
+## 输出语言（`--lang`）
+
+设置本 skill 全部 user-facing 输出的语言，默认 **zh-CN**。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 输出 **zh-CN**（覆盖任何自动检测）。
+- `--lang <code>` → 强制该语言（inline 术语 / 论文标题 / 代码标识符可保留原文）。
+- `--lang auto` → 恢复该 skill 的原生语言检测。
+- 非法值 → 输出 help card 并停止。
+
+契约见 [output-language spec](../../../openspec/specs/output-language/spec.md)。

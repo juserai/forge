@@ -48,6 +48,7 @@ scripts/recalc-all-hashes.sh                     # 重算 marketplace.json SHA-2
 | 运行时状态 | [runtime-state/spec.md](openspec/specs/runtime-state/spec.md) | skill 需要持久化状态时 |
 | 仓库不变量 | [repo-invariants/spec.md](openspec/specs/repo-invariants/spec.md) | 引入新依赖 / hook owner / SKILL.md hash 锁步 |
 | i18n 布局 | [i18n-layout/spec.md](openspec/specs/i18n-layout/spec.md) | 改任何翻译文件 / 加新语言 |
+| **输出语言** | [output-language/spec.md](openspec/specs/output-language/spec.md) | 改任何 skill 的 `--lang` 行为 / 加 user-invokable skill 时 |
 | 平台广播 | [platform-parity/spec.md](openspec/specs/platform-parity/spec.md) | 加 skill / 加 platform 时 |
 
 ## 4 分类速览

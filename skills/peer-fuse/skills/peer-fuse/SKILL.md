@@ -1,6 +1,6 @@
 ---
 name: peer-fuse
-description: "Peer-Fuse v0.2.1 — Generic peer-reviewer for research artifacts in md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html. 8-dim rubric weighted by 6 research types (auto-classified) + 18-flag taxonomy + 3-perspective panel + narrative-style § Document Reading (5-9 paras, 6-rule discipline). Stage 7 KB archival mandatory + observable, opt-out via --no-save."
+description: "Peer-Fuse v0.3.0 — Generic peer-reviewer for research artifacts in md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html. 8-dim rubric weighted by 6 research types (auto-classified) + 18-flag taxonomy + 3-perspective panel + narrative-style § Document Reading (5-9 paras, 6-rule discipline). Stage 7 KB archival mandatory + observable, opt-out via --no-save."
 license: MIT
 user-invokable: true
 metadata:
@@ -10,10 +10,10 @@ metadata:
     filesystem: read-write
     execution: bash
     tools: [Read, Write, Edit, Bash, Agent]
-argument-hint: "<path-to-artifact> [--type auto|overview|technology|market|academic|product|competitive] [--depth quick|standard|deep|full] [--no-save]"
+argument-hint: "<path-to-artifact> [--type auto|overview|technology|market|academic|product|competitive] [--depth quick|standard|deep|full] [--no-save] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
-# Peer-Fuse v0.2.1 — 通用调研工件 peer-review 引擎
+# Peer-Fuse v0.3.0 — 通用调研工件 peer-review 引擎
 
 跨 skill 外审引擎：给定任意调研工件（md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html），输出**同行评议 markdown 报告**——含 § Document Reading（评审隔离的 5-9 段连贯叙事性重读，遵守 6 条 narrative discipline）+ § Holistic Assessment（评价综述）+ Score Matrix（8 维加权 → A+...D）+ Flag List（18 类 taxonomy）+ Multi-Perspective Panel（3 视角）+ Diff Suggestions + Reconciliation。与 [skills/insight-fuse/](../../../insight-fuse/skills/insight-fuse/) Stage 6.5 同源内审并存——peer-fuse 是**他源外审**，覆盖 IF Stage 6.5 不能审的所有场景（跨 skill / 跨格式 / 显式触发）。
 
@@ -22,12 +22,13 @@ argument-hint: "<path-to-artifact> [--type auto|overview|technology|market|acade
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行（parsing 规则详见 [openspec/specs/help-mode/spec.md](../../../../openspec/specs/help-mode/spec.md)）：
 
 ```
-Peer-Fuse v0.2.1 — Generic peer-reviewer for research artifacts (md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html).
+Peer-Fuse v0.3.0 — Generic peer-reviewer for research artifacts (md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html).
 
 Usage:
   /peer-fuse <path>                              Review with auto-detected type
   /peer-fuse <path> --type <auto|overview|technology|market|academic|product|competitive>
   /peer-fuse <path> --depth <quick|standard|deep|full> --no-save
+  /peer-fuse <path> --lang <zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto>   Output language (default zh-CN)
   /peer-fuse help                                Show this help
 
 Defaults:
@@ -50,6 +51,16 @@ Examples:
 
 Guide: docs/user-guide/peer-fuse-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制评审报告全部 user-facing 输出的语言。契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 一律 **zh-CN**，**覆盖**原"按源文档语言"行为（[references/narrative-discipline.md §6](references/narrative-discipline.md)）
+- `--lang <code>` → 强制该语言（inline 术语 / arXiv 论文标题 / 代码标识符可保留原文）
+- `--lang auto` → 恢复原生检测（源 frontmatter `lang` → 字符比例 → fallback 中文）
+- 非法值 → 输出 help card 并停止
 
 ## Scope Isolation（强制约束）
 
@@ -76,6 +87,7 @@ peer-fuse 是**独立**评审工具。每次调用从零开始。运行时**只�
 | `--type` | 否 | **`auto`** | auto / overview / technology / market / academic / product / competitive。auto 时 Stage 0.5 自动分类（启发式 mirror [skills/insight-fuse/references/research-types.md](../../../insight-fuse/skills/insight-fuse/references/research-types.md)）|
 | `--depth` | 否 | standard | quick / standard / deep / full（与 IF 对齐）|
 | `--no-save` | 否 | false | 跳过 Stage 7 KB 归档，仅控制台输出（与 IF/CF/news-fetch 同口径，日志 `Archive: skipped (--no-save flag)`）|
+| `--lang` | 否 | **zh-CN** | 评审报告输出语言，详见 [§输出语言](#输出语言--lang)。默认 zh-CN 覆盖原"按源语言"行为，`--lang auto` 恢复 |
 
 ## 工作流（8 阶段 pipeline）
 

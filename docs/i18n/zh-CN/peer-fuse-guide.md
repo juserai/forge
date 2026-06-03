@@ -1,4 +1,4 @@
-# Peer Fuse v0.2.0 使用手册
+# Peer Fuse v0.3.0 使用手册
 
 > 通用调研工件评议器 — **8 阶段流水线（Stage 7 KB 归档 mandatory + observable，可用 `--no-save` 退出）+ 10 格式输入适配器（md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html，三层分发）+ 6 种研究类型预设（自动分类）+ 8 维加权评分表 + 18 项 flag 分类法 + 3 视角评议团 + § Document Reading 5-9 段连贯叙事（6 条 narrative discipline + 评议隔离冻结）**。
 
@@ -134,3 +134,15 @@ bash scripts/recalc-all-hashes.sh
 - [openspec/changes/archive/add-peer-fuse-skill/](../../openspec/changes/archive/add-peer-fuse-skill/) —— RFC（合并后）
 - [docs/user-guide/insight-fuse-guide.md](insight-fuse-guide.md) —— 同胞 crucible
 - [docs/user-guide/council-fuse-guide.md](council-fuse-guide.md) —— 同胞 crucible（评议团模式来源）
+
+## 输出语言（`--lang`）
+
+设置本 skill 全部 user-facing 输出的语言，默认 **zh-CN**。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 输出 **zh-CN**（覆盖任何自动检测）。
+- `--lang <code>` → 强制该语言（inline 术语 / 论文标题 / 代码标识符可保留原文）。
+- `--lang auto` → 恢复该 skill 的原生语言检测。
+- 非法值 → 输出 help card 并停止。
+
+契约见 [output-language spec](../../../openspec/specs/output-language/spec.md)。

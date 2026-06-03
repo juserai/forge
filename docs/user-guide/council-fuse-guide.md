@@ -158,3 +158,15 @@ A: The framework supports it — add another `agents/*.md` file and update the S
 
 **Q: What if one agent fails?**
 A: The Chairman scores that member 0 and synthesizes from the remaining responses. Graceful degradation, no crash.
+
+## Output language (`--lang`)
+
+Set the language of this skill's user-facing output. Default is **zh-CN**.
+
+- Values: `zh-CN` (default) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- Omit `--lang` → output is **zh-CN** (overrides any auto-detection).
+- `--lang <code>` → force that language (inline terms / paper titles / code identifiers may stay in the original).
+- `--lang auto` → restore the skill's native language detection.
+- Invalid value → prints the help card and stops.
+
+See the [output-language contract](../../openspec/specs/output-language/spec.md).

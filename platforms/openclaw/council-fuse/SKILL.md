@@ -9,7 +9,7 @@ metadata:
     filesystem: read-write
     execution: none
     tools: [Read, Write, Glob, Edit]
-argument-hint: "[question or task] [--no-save]"
+argument-hint: "[question or task] [--no-save] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
 # Council Fuse — 多视角议会蒸馏引擎
@@ -21,12 +21,15 @@ argument-hint: "[question or task] [--no-save]"
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行：
 
 ```
-Council Fuse v1.1.2 — Multi-perspective deliberation engine (3 agents + Chairman synthesis)
+Council Fuse v1.2.0 — Multi-perspective deliberation engine (3 agents + Chairman synthesis)
 
 Usage:
   /council-fuse <question or task>          Deliberate, synthesize, archive to KB
   /council-fuse <question> --no-save        Deliberate but skip Stage 4 KB archive
   /council-fuse help                        Show this help
+
+Flags:
+  --lang <code>   Output language: zh-CN(default) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto
 
 Examples:
   /council-fuse 单体应用 vs 微服务怎么选
@@ -36,6 +39,10 @@ Examples:
 
 Guide: docs/user-guide/council-fuse-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制本 skill user-facing 输出语言。取值：`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto。不带 `--lang` → zh-CN（覆盖任何自动检测）；`--lang <code>` → 强制该语言；`--lang auto` → 恢复原生检测（按用户问题语言）；非法值 → 输出 help card。契约见 openspec/specs/output-language/spec.md。
 
 ## 自动激活（无 Hook 环境）
 

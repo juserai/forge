@@ -9,7 +9,7 @@ metadata:
     filesystem: read-write
     execution: sandboxed
     tools: [Read, Write, Bash, Agent]
-argument-hint: "[setup|run|status|clean]"
+argument-hint: "[setup|run|status|clean] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
 # Ralph Boost — 自主开发循环引擎
@@ -23,13 +23,14 @@ argument-hint: "[setup|run|status|clean]"
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行（parsing 规则详见 [CLAUDE.md § Help 模式约定](../../../../CLAUDE.md)）：
 
 ```
-Ralph Boost v1.0.1 — Autonomous dev loop engine with convergence guarantee
+Ralph Boost v1.1.0 — Autonomous dev loop engine with convergence guarantee
 
 Usage:
   /ralph-boost setup             Initialize ralph-boost in current project
   /ralph-boost run               Start the autonomous loop
   /ralph-boost status            Show current loop state + pressure level
   /ralph-boost clean             Clean .ralph-boost/ artifacts
+  /ralph-boost <cmd> --lang <code>   Output language (default zh-CN)
   /ralph-boost help              Show this help
 
 Examples:
@@ -39,6 +40,14 @@ Examples:
 
 Guide: docs/user-guide/ralph-boost-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制循环状态 / 进度 / 指导文本的输出语言。契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → **zh-CN**；`--lang <code>` → 强制该语言；`--lang auto` → 按用户消息语言
+- 非法值 → 输出 help card 并停止
 
 ## 子命令
 

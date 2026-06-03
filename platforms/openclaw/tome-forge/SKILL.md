@@ -9,6 +9,7 @@ metadata:
     filesystem: read-write
     execution: none
     tools: [Read, Write, Glob, Grep]
+argument-hint: "[init|ingest|query|lint|compile|capture] [args...] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
 # Tome Forge — Personal Knowledge Base Engine
@@ -107,7 +108,7 @@ Batch ingest all raw files since last compile.
 ## Help (no arguments)
 
 ```
-Tome Forge v1.1.1 — Personal Knowledge Base Engine
+Tome Forge v1.2.0 — Personal Knowledge Base Engine
 
 Commands:
   /tome-forge init              Initialize KB in current directory
@@ -116,4 +117,9 @@ Commands:
   /tome-forge query <question>  Search and synthesize from wiki
   /tome-forge lint              Health-check wiki structure
   /tome-forge compile           Batch compile all new raw materials
+  /tome-forge <cmd> --lang <code>  Output language for query/lint output (default zh-CN)
 ```
+
+## 输出语言（`--lang`）
+
+控制 `query` 回答与 `lint` 诊断等 user-facing 输出语言。取值：`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto。不带 `--lang` → zh-CN；`--lang <code>` → 强制该语言；`--lang auto` → 按用户消息语言；非法值 → 输出 help card。`ingest`/`compile` 写入 wiki 的持久化内容沿用源材料语言，不被 `--lang` 改写。契约见 openspec/specs/output-language/spec.md。

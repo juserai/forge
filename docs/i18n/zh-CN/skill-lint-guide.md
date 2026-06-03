@@ -188,3 +188,15 @@ Skill Lint 是 forge 合集的一部分，与以下 skill 配合使用效果良�
 ## 许可证
 
 [MIT](../../../LICENSE) - [Juneq Cheung](https://github.com/juserai)
+
+## 输出语言（`--lang`）
+
+设置本 skill 全部 user-facing 输出的语言，默认 **zh-CN**。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 输出 **zh-CN**（覆盖任何自动检测）。
+- `--lang <code>` → 强制该语言（inline 术语 / 论文标题 / 代码标识符可保留原文）。
+- `--lang auto` → 恢复该 skill 的原生语言检测。
+- 非法值 → 输出 help card 并停止。
+
+契约见 [output-language spec](../../../openspec/specs/output-language/spec.md)。

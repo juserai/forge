@@ -9,7 +9,7 @@ metadata:
     filesystem: read-write
     execution: none
     tools: [Read, Write, Glob, Grep]
-argument-hint: "[init|ingest|query|lint|compile|capture] [args...]"
+argument-hint: "[init|ingest|query|lint|compile|capture] [args...] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
 # Tome Forge — Personal Knowledge Base Engine
@@ -21,7 +21,7 @@ Based on Karpathy's LLM Wiki pattern: raw materials + LLM compilation = structur
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行（parsing 规则详见 [CLAUDE.md § Help 模式约定](../../../../CLAUDE.md)）：
 
 ```
-Tome Forge v1.1.1 — Personal Knowledge Base Engine
+Tome Forge v1.2.0 — Personal Knowledge Base Engine
 
 Usage:
   /tome-forge init              Initialize KB (default: ~/.tome-forge/)
@@ -31,6 +31,7 @@ Usage:
   /tome-forge query <question>  Search and synthesize from wiki
   /tome-forge lint              Health-check wiki structure
   /tome-forge compile           Batch compile all new raw materials
+  /tome-forge <cmd> --lang <code>  Output language for query answers/diagnostics (default zh-CN)
   /tome-forge help              Show this help
 
 Tip: Run compile weekly for best wiki coherence. Avoid real-time ingest.
@@ -38,6 +39,15 @@ Tip: Run compile weekly for best wiki coherence. Avoid real-time ingest.
 Based on Karpathy's LLM Wiki pattern. Zero dependencies.
 Guide: docs/user-guide/tome-forge-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制 `query` 综合回答与 `lint` 诊断等 user-facing 输出的语言。契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → **zh-CN**；`--lang <code>` → 强制该语言；`--lang auto` → 按用户消息语言
+- 非法值 → 输出 help card 并停止
+- **carve-out**：`ingest` / `compile` 写入 wiki 的**持久化内容**沿用源材料语言惯例，不被 `--lang` 改写（避免污染已编译 KB）
 
 ## KB Discovery
 

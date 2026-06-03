@@ -9,118 +9,118 @@
         {
             "name": "block-break",
             "description": "Block Break — Behavioral constraint engine. Forces Claude to exhaust all approaches before giving up. L0-L4 pressure escalation. Zero-dep.",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": "./skills/block-break",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "2fe04f8f24aff7b8116e2d301f7877c843d3ecfeacacf7663bb5265eecf9ec31"
+                "skill-md-sha256": "935b1e992df5b7f1b263acbea5fcb8653e54dcd2f63545ff515b8e2889b4ecfe"
             }
         },
         {
             "name": "ralph-boost",
             "description": "Ralph Boost — Autonomous dev loop engine with built-in convergence guarantee. Prevents infinite spinning. Zero-dep.",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": "./skills/ralph-boost",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "87dfc9345508c506d5b6253edc528465a3e17448e74e92871ea410e92fb35af5"
+                "skill-md-sha256": "2f0c5935e86280528caf501ebe5b2a77be0380028cb43d396e16d101d07b1ddd"
             }
         },
         {
             "name": "skill-lint",
             "description": "Skill Lint — Validate Claude Code skill plugins. Structural (bash) + semantic (AI) checks. Works on any plugin project. Zero-dep.",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": "./skills/skill-lint",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "6159e03cc7a62fc7028cf71eb52ca52be5d0afe068d0b962d3da99456c264366"
+                "skill-md-sha256": "b797d6fd6c483718e693fce632bf4e4de2bf19119d1d97cc64c09fcbced7f319"
             }
         },
         {
             "name": "council-fuse",
             "description": "Council Fuse — Multi-perspective deliberation engine. 3 agents debate independently, Chairman synthesizes the best answer. Zero-dep.",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": "./skills/council-fuse",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "87d454c9adcc48ff1725ed9f8ac4367f8ed443ba4e5e706fd2e5730553cbf1d0"
+                "skill-md-sha256": "bd1cd8bf585c11822217cde23875256d1b7c4631cf02177e0ad128cc16117f76"
             }
         },
         {
             "name": "news-fetch",
             "description": "News Fetch — Quick news at your fingertips. Take a mental break between coding sessions. 3-tier network fallback, Markdown output. Zero-dep.",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": "./skills/news-fetch",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "7e70098f04590dad2bb8e6209a92f9d3ec2fa8d6c9f6c2819596c6f7ae064c3b"
+                "skill-md-sha256": "a0e7f7aae68742594d980cf1c7a4cf2a385de4a3d354434a796baacbab4e9e87"
             }
         },
         {
             "name": "tome-forge",
             "description": "Tome Forge — Personal knowledge base engine. LLM-compiled Markdown wiki based on Karpathy's pattern. No RAG needed. Zero-dep.",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": "./skills/tome-forge",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "53d3ed387e789f36ae1e8c446b0d54592e9d9bd3faefc090bca6e4b3510a183f"
+                "skill-md-sha256": "d0e13b7b267c366d0d7a09e620a5b65201b8e6feadaf8d13fc1fefdcd56baf22"
             }
         },
         {
             "name": "insight-fuse",
-            "description": "Insight Fuse v3.4 — Systematic multi-source research engine. 8-stage pipeline + Stage 6.5 reviewer pass (Stage 7 KB archival mandatory + observable, opt-out via --no-save) with skeleton.yaml data contract, 6 research-type presets, 6-dim quality rubric, 19 blocking checks (incl. v3.4 LOAD_BEARING + calibration discipline), and 5-section multi-file output (--merge for single-file). Zero-dep.",
-            "version": "3.4.3",
+            "description": "Insight Fuse v3.5 — Systematic multi-source research engine. 8-stage pipeline + Stage 6.5 reviewer pass (Stage 7 KB archival mandatory + observable, opt-out via --no-save) with skeleton.yaml data contract, 6 research-type presets, 6-dim quality rubric, 19 blocking checks (incl. v3.4 LOAD_BEARING + calibration discipline), and 5-section multi-file output (--merge for single-file). Zero-dep.",
+            "version": "3.5.0",
             "source": "./skills/insight-fuse",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "7a182a0de64ceec1143c8b38948baf9daaf3520f10079adb359a5937e993383c"
+                "skill-md-sha256": "534a77d8a9289fa18e4ddfa9cb25cd8e7c571b7425a3657fd004a7ac36d85f6e"
             }
         },
         {
             "name": "claim-ground",
-            "description": "Claim Ground v1.2 — Epistemic constraint engine. 15 Red Lines + 5 hook surfaces (UserPromptSubmit / PreToolUse / PostToolUse / SessionStart). Detects ambiguity (path/pronoun/quantity/preference), destructive actions, scope creep, env-var assumptions, ecosystem-scope questions, hard constraints. Dual-platform: Claude Code (bash) + OpenClaw (TS handler). Shared anchors.json state. Zero-dep.",
-            "version": "1.2.2",
+            "description": "Claim Ground v1.3 — Epistemic constraint engine. 15 Red Lines + 5 hook surfaces (UserPromptSubmit / PreToolUse / PostToolUse / SessionStart). Detects ambiguity (path/pronoun/quantity/preference), destructive actions, scope creep, env-var assumptions, ecosystem-scope questions, hard constraints. Dual-platform: Claude Code (bash) + OpenClaw (TS handler). Shared anchors.json state. Zero-dep.",
+            "version": "1.3.0",
             "source": "./skills/claim-ground",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "43c7ca827f8460d0fe71bb2a91e493379fa4956a79cdcc2d7f025d295526c1be"
+                "skill-md-sha256": "9b8e776a51783f5786801e17bced402dca2876885d33b7d84d13e477a4ecf01d"
             }
         },
         {
             "name": "peer-fuse",
-            "description": "Peer-Fuse v0.2.0 — Generic peer-reviewer for research artifacts in md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html. 8-dim rubric weighted by 6 research types (auto-classified) + 18-flag taxonomy + 3-perspective panel + narrative-style § Document Reading (5-9 paras, 6-rule discipline). Stage 7 KB archival mandatory + observable, opt-out via --no-save. Zero-dep.",
-            "version": "0.2.1",
+            "description": "Peer-Fuse v0.3.0 — Generic peer-reviewer for research artifacts in md / pdf / docx / pptx / doc / ppt / odt / odp / txt / html. 8-dim rubric weighted by 6 research types (auto-classified) + 18-flag taxonomy + 3-perspective panel + narrative-style § Document Reading (5-9 paras, 6-rule discipline). Stage 7 KB archival mandatory + observable, opt-out via --no-save. Zero-dep.",
+            "version": "0.3.0",
             "source": "./skills/peer-fuse",
             "author": {
                 "name": "Juneq Cheung",
                 "url": "https://github.com/juserai"
             },
             "integrity": {
-                "skill-md-sha256": "7e950afd22f9582017dc9c89e7aee33984aa3bc12ec591252af5e6a3060baffa"
+                "skill-md-sha256": "d0d955a26cecdb68564373626ef6f624ae9b42950394408b6b683700d2fd23a6"
             }
         }
     ]

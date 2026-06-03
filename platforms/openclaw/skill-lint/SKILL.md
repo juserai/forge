@@ -2,7 +2,7 @@
 name: skill-lint
 description: "Skill Lint — Validate Claude Code skill plugins. Structural + semantic checks for any plugin project."
 license: MIT
-argument-hint: "[path]"
+argument-hint: "[path] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 metadata:
   category: anvil
   permissions:
@@ -22,11 +22,12 @@ metadata:
 仅当第一参数为 `help` / `--help` 时输出以下 help card 并停止执行：
 
 ```
-Skill Lint v1.1.2 — Validate Claude Code skill plugins (structural + semantic)
+Skill Lint v1.2.0 — Validate Claude Code skill plugins (structural + semantic)
 
 Usage:
   /skill-lint                    Lint the current working directory (default)
   /skill-lint <path>             Lint the plugin project at <path>
+  /skill-lint <path> --lang <code>   Output language for diagnostics (default zh-CN)
   /skill-lint help               Show this help
 
 Examples:
@@ -36,6 +37,10 @@ Examples:
 Rules are configured in .skill-lint.json (see references/rules.md).
 Guide: docs/user-guide/skill-lint-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制语义检查 diagnostics（人工可读部分）输出语言；结构检查 JSON 的 rule id / 字段名不变。取值：`zh-CN`(默认) | en | ja | ko | fr | de | es | pt-BR | ru | tr | vi | auto。不带 `--lang` → zh-CN；`--lang <code>` → 强制该语言；`--lang auto` → 按用户消息语言；非法值 → 输出 help card。契约见 openspec/specs/output-language/spec.md。
 
 ## 工作流
 

@@ -1,6 +1,6 @@
 ---
 name: insight-fuse
-description: "Insight Fuse v3.4 — Systematic multi-source research engine. 8-stage pipeline + Stage 6.5 reviewer pass (Stage 7 KB archival mandatory + observable, opt-out via --no-save) with skeleton.yaml data contract, 6 research-type presets, 6-dim quality rubric, 19 blocking checks (incl. v3.4 LOAD_BEARING + calibration discipline), and 5-section multi-file output (--merge for single-file)."
+description: "Insight Fuse v3.5 — Systematic multi-source research engine. 8-stage pipeline + Stage 6.5 reviewer pass (Stage 7 KB archival mandatory + observable, opt-out via --no-save) with skeleton.yaml data contract, 6 research-type presets, 6-dim quality rubric, 19 blocking checks (incl. v3.4 LOAD_BEARING + calibration discipline), and 5-section multi-file output (--merge for single-file)."
 license: MIT
 user-invokable: true
 metadata:
@@ -10,10 +10,10 @@ metadata:
     filesystem: read-write
     execution: none
     tools: [WebSearch, WebFetch, Agent, Read, Write, Bash]
-argument-hint: "[topic] [--type overview|technology|market|academic|product|competitive] [--depth quick|standard|deep|full] [--skeleton path|auto|skip] [--perspectives p1,p2,p3] [--sections report,checklist,adr,decision-tree,poc] [--merge] [--focus q] [--audience role] [--strategy c|b|a] [--no-advisory] [--no-save]"
+argument-hint: "[topic] [--type overview|technology|market|academic|product|competitive] [--depth quick|standard|deep|full] [--skeleton path|auto|skip] [--perspectives p1,p2,p3] [--sections report,checklist,adr,decision-tree,poc] [--merge] [--focus q] [--audience role] [--strategy c|b|a] [--no-advisory] [--no-save] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 ---
 
-# Insight Fuse v3.4 — 系统化多源调研熔炼引擎
+# Insight Fuse v3.5 — 系统化多源调研熔炼引擎
 
 从主题到专业调研报告的 8 阶段流水线（v3.2 新增 Stage 7 — KB 归档：必须执行 + 可见日志，`--no-save` 显式 opt-out；**v3.4 新增 Stage 6.5 reviewer pass** — 独立 reviewer agent 在 Stage 6 与 Stage 7 之间复核评分，破除自评循环）。**skeleton.yaml 作为结构化数据契约**贯穿全程 + **6 维正交评分 + 19 项 blocking check**（v3.1 新增 C15 主源绑定 / C16 verbatim 证据 / C17 数字调和；**v3.4 新增 C18 LOAD_BEARING 跨节单源 / C19 confidence 数字校准纪律**）作为质量尺 + **6 research-type 预设** 覆盖场景差异 + **5 段可选组合**：v3.3 默认每段独立 markdown 文件多文件交付，需要单文件请加 `--merge`。
 
@@ -22,7 +22,7 @@ argument-hint: "[topic] [--type overview|technology|market|academic|product|comp
 当第一参数为 `help` / `--help`，**或无参数**时，输出以下 help card 并停止执行（parsing 规则详见 [CLAUDE.md § Help 模式约定](../../../../CLAUDE.md)）：
 
 ```
-Insight Fuse v3.4.3 — Systematic multi-source research engine (8-stage pipeline)
+Insight Fuse v3.5.0 — Systematic multi-source research engine (8-stage pipeline)
 
 Usage:
   /insight-fuse <topic> [flags]      Run research
@@ -40,6 +40,7 @@ Key flags:
   --strategy    conservative | balanced | aggressive   Advisory style (with --audience)
   --no-advisory                                   Disable advisory appendix even with --audience
   --no-save                                       Skip Stage 7 KB archive (console only)
+  --lang        zh-CN(default)|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto   Output language
 
 Examples:
   /insight-fuse Kubernetes operators --type technology --depth standard
@@ -51,6 +52,17 @@ Examples:
 
 Guide: docs/user-guide/insight-fuse-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制本 skill 全部 user-facing 输出（5 段报告正文 / 控制台摘要）的语言。契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 一律 **zh-CN**（覆盖任何自动检测）
+- `--lang <code>` → 强制该语言（inline 术语 / arXiv 论文标题 / 代码标识符可保留原文）
+- `--lang auto` → 恢复原生检测（按用户消息主导语言）
+- 非法值 → 输出 help card 并停止
+- 不改变 KB 归档路径 / 文件命名，仅影响内容语言
 
 ## Scope Isolation（强制约束）
 
@@ -79,6 +91,7 @@ insight-fuse 是**独立**调研工具。每次调用从零开始。运行时**�
 | `--no-advisory` | 否 | false | 显式关闭 advisory，即 full 模式也不问 |
 | `--no-save` | 否 | false | 跳过 KB 归档，仅控制台输出 |
 | `--timeout-seconds` | 否 | 300 | Stage 2/4 交互超时；超时自动降级 |
+| `--lang` | 否 | zh-CN | 输出报告语言，详见 [§输出语言](#输出语言--lang) |
 
 ## 工作流（8 阶段 + Stage 6.5 reviewer pass）
 

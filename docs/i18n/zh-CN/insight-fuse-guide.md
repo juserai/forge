@@ -1,4 +1,4 @@
-# Insight Fuse v3.4.0.4.0 使用手册
+# Insight Fuse v3.5.0 使用手册
 
 > 系统化多源调研熔炼引擎 — **7 阶段流水线 + skeleton.yaml 数据契约 + 6 种研究类型预设 + 6 维正交质量评分 + 5 种输出物**。
 
@@ -142,3 +142,15 @@ See SKILL.md § Advisory Rendering and `references/research-protocol.md` § Advi
 - [quality standards](../../../skills/insight-fuse/references/quality-standards.md)
 - [output formats](../../../skills/insight-fuse/references/output-formats.md)
 
+
+## 输出语言（`--lang`）
+
+设置本 skill 全部 user-facing 输出的语言，默认 **zh-CN**。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → 输出 **zh-CN**（覆盖任何自动检测）。
+- `--lang <code>` → 强制该语言（inline 术语 / 论文标题 / 代码标识符可保留原文）。
+- `--lang auto` → 恢复该 skill 的原生语言检测。
+- 非法值 → 输出 help card 并停止。
+
+契约见 [output-language spec](../../../openspec/specs/output-language/spec.md)。

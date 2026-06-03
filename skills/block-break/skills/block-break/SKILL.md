@@ -2,7 +2,7 @@
 name: block-break
 description: "Block Break — Behavioral constraint engine. When stuck, forces exhaustive problem-solving with L0-L4 pressure escalation."
 license: MIT
-argument-hint: "[L0|L1|L2|L3|L4] [task description...]"
+argument-hint: "[L0|L1|L2|L3|L4] [task description...] [--lang zh-CN|en|ja|ko|fr|de|es|pt-BR|ru|tr|vi|auto]"
 metadata:
   category: hammer
   permissions:
@@ -22,12 +22,13 @@ metadata:
 仅当第一参数为 `help` / `--help` 时输出以下 help card 并停止执行（parsing 规则详见 [CLAUDE.md § Help 模式约定](../../../../CLAUDE.md)）：
 
 ```
-Block Break v1.0.2 — Behavioral constraint engine (L0-L4 pressure escalation)
+Block Break v1.1.0 — Behavioral constraint engine (L0-L4 pressure escalation)
 
 Usage:
   /block-break                   Activate at L0 (default trust level — see rest of SKILL.md)
   /block-break L0|L1|L2|L3|L4    Activate at a specific pressure level
   /block-break <task>            Activate and immediately start a task
+  /block-break --lang <code>     Output language for guidance text (default zh-CN)
   /block-break help              Show this help
 
 How it normally activates:
@@ -46,6 +47,15 @@ Examples:
 
 Guide: docs/user-guide/block-break-guide.md
 ```
+
+## 输出语言（`--lang`）
+
+控制**直接调用**时指导文本的语言。契约见 [output-language/spec.md](../../../../openspec/specs/output-language/spec.md)。
+
+- 取值：`zh-CN`(默认) | `en` | `ja` | `ko` | `fr` | `de` | `es` | `pt-BR` | `ru` | `tr` | `vi` | `auto`
+- 不带 `--lang` → **zh-CN**；`--lang <code>` → 强制该语言；`--lang auto` → 按用户消息语言
+- 非法值 → 输出 help card 并停止
+- **例外**：经 UserPromptSubmit / PostToolUse hook **自动注入**的提示保持现有双语，不受 `--lang` 影响
 
 ## 三条红线
 

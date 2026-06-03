@@ -21,6 +21,7 @@
     "verify-docs-version-drift": "warn",
     "verify-archived-spec-merge": "warn",
     "verify-help-card-flag-coverage": "error",
+    "verify-lang-flag-required": "error",
     "require-help-section": "warn",
     "user-guide-dir": "docs/user-guide",
     "design-dir": "docs/design",
