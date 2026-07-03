@@ -31,6 +31,20 @@ if [ -n "$INPUT" ]; then
             exit 0
             ;;
     esac
+
+    # In-script matcher gate: hooks.json declares a UserPromptSubmit matcher regex,
+    # but Claude Code's hook engine does not reliably enforce `matcher` on that event
+    # (empirically observed 2026-07 — the trigger fires on every prompt regardless
+    # of content, injecting ~1.5 KB into every turn). Gate here as well; kept in sync
+    # with hooks.json UserPromptSubmit matcher for epistemic-pushback.
+    PUSHBACK_RE='真的吗|不对吧|你确定|已经更新|官方不是|我记得.*已经|不是.*已经|等下|等一下|不是说|不是吧|我以为|really\?|are you sure|I thought.*(was|were)|isn'"'"'?t it already|wait.*thought|hold on|wasn'"'"'t that|didn'"'"'t.*(change|update)|本当に|本当ですか|確か\?|진짜\?|정말\?|아닌데|확실\?|¿en serio|¿seguro|¿de verdad|vraiment\?|en réalité|t'"'"'es sûr|tu es sûr|wirklich\?|bist du sicher|неужели|ты уверен|حقا\?|حقاً\?|هل أنت متأكد|mesmo\?|tem certeza|sério\?|सच में|पक्का'
+    if [ -n "$PROMPT" ]; then
+        if ! printf '%s' "$PROMPT" | grep -Eiq "$PUSHBACK_RE"; then
+            exit 0
+        fi
+    else
+        exit 0
+    fi
 fi
 
 cat << 'EOF'

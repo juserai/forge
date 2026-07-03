@@ -1,6 +1,41 @@
 #!/usr/bin/env bash
 # Block Break frustration trigger — detects user frustration and injects Block Break activation
 # Called by hooks.json on UserPromptSubmit
+#
+# In-script matcher gate: hooks.json declares a UserPromptSubmit matcher regex,
+# but Claude Code's hook engine does not reliably enforce `matcher` on that event
+# (empirically observed 2026-07 across multiple workspaces — the trigger fires
+# on every prompt regardless of content, injecting ~1.3 KB into every turn).
+# We move the same regex into the script itself so behavior is correct under
+# both matcher-honoring and matcher-not-honoring engine versions.
+#
+# UserPromptSubmit hooks receive a JSON payload on stdin: {"prompt": "...", ...}.
+# Parse stdin, grep .prompt against the frustration regex, exit 0 silently on
+# no-match. When stdin is empty (manual CLI invocation for smoke test), fall
+# through to the original unconditional emission.
+
+INPUT=$(cat 2>/dev/null || true)
+if [ -n "$INPUT" ]; then
+    if command -v jq >/dev/null 2>&1; then
+        PROMPT=$(printf '%s' "$INPUT" | jq -r '.prompt // ""' 2>/dev/null)
+    elif command -v python3 >/dev/null 2>&1; then
+        PROMPT=$(printf '%s' "$INPUT" | python3 -c "import json,sys; print(json.load(sys.stdin).get('prompt',''))" 2>/dev/null)
+    elif command -v python >/dev/null 2>&1; then
+        PROMPT=$(printf '%s' "$INPUT" | python -c "import json,sys; print(json.load(sys.stdin).get('prompt',''))" 2>/dev/null)
+    else
+        PROMPT=""
+    fi
+    # frustration matcher — kept in sync with hooks.json UserPromptSubmit matcher
+    FRUSTRATION_RE='try harder|别偷懒|又错了|还不行|stop giving|you broke|降智|原地打转|换个方法|stop spinning|figure it out|you keep failing|加油|再试试|为什么还不行|怎么又失败|质量太差|重新做|能不能靠谱|认真点|怎么搞|不行啊'
+    if [ -n "$PROMPT" ]; then
+        if ! printf '%s' "$PROMPT" | grep -Eiq "$FRUSTRATION_RE"; then
+            exit 0
+        fi
+    else
+        # non-empty stdin but empty .prompt — nothing to gate on, stay silent
+        exit 0
+    fi
+fi
 
 cat << 'EOF'
 <BLOCK_BREAK_ACTIVATED>
